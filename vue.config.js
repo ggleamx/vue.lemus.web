@@ -1,5 +1,6 @@
 const zopfli = require("@gfx/zopfli");
 module.exports = {
+  publicPath: process.env.NODE_ENV === "production" ? "/lemus-enero/" : "/",
   pluginOptions: {
     compression: {
       zopfli: {
