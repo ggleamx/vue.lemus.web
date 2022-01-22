@@ -1,0 +1,31 @@
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  background-color: #fafafa;
+  margin: 0;
+  padding: 0;
+}
+
+h1,
+h2,
+h3,
+p {
+  margin: 0px;
+  color: #3a3a3a;
+}
+
+a {
+  text-decoration: none;
+  color: #3a3a3a;
+}
+
+ul,
+li,
+menu,
+ol {
+  margin: none;
+  list-style: none;
+}
