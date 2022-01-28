@@ -1,6 +1,7 @@
 
 <template>
   <div class="main-nav">
+    <!--LOGO----------------------------------------------------------------->
     <div class="lemus-logo">
       <router-link :to="{ name: 'Home' }"
         ><img src="../assets/lemus-logo.svg" alt="logo"
@@ -8,107 +9,111 @@
     </div>
     <!----------------------------------------------------------------------->
     <nav class="main-nav-items">
-      <!----------------------------------------------------------------------->
-      <div class="nav-item" :class="{ hovered: onHover }">
-        <router-link
-          :to="{ name: 'home-search' }"
-          @mouseover="hovering"
-          @mouseleave="unhovered"
-        >
-          <p>Buscar Propiedad</p></router-link
+      <!---HomeSearch Option--------------------------------------------------->
+      <div class="nav-item">
+        <router-link :to="{ name: 'home-search' }">
+          <p class="option-underline">Buscar Propiedad</p></router-link
         >
       </div>
-      <!----------------------------------------------------------------------->
+      <!--Neighborhoods Option------------------------------------------------->
       <div
-        class="nav-item neighborhoods-option"
-        :class="{
-          openMenu: neighborhoodsMenu,
-        }"
+        class="neighborhoods-option"
+        @mouseover="neighborhoodsMenuOn"
+        @mouseleave="neighborhoodsMenuOff"
       >
-        <a
-          :to="{ name: 'neighborhoods' }"
-          @mouseover="neighborhoodsMenuHover"
-          @mouseleave="neighborhoodsMenuUnhover"
-        >
-          <p>Mejores Zonas</p></a
+        <div class="nav-item">
+          <a><p class="option-underline">Mejores Zonas</p></a>
+          <!--Gap-Cover----->
+          <transition name="fade">
+            <div
+              v-if="neighborhoodsMenu"
+              class="neighborhoods-option-border-cover"
+            ></div>
+          </transition>
+          <!---------------->
+        </div>
+        <!--SUBMENU------------------------>
+        <transition name="fade">
+          <div v-show="neighborhoodsMenu" class="neighborhoods-menu">
+            <router-link :to="{ name: 'about-us' }"
+              ><p>Sobre Nosotros</p></router-link
+            >
+          </div>
+        </transition>
+        <!--------------------------------->
+      </div>
+      <!--Virtual Tours Option------------------------------------------------->
+      <div class="nav-item">
+        <router-link :to="{ name: 'virtual-tours' }">
+          <p class="option-underline">Tours Virtuales</p></router-link
         >
       </div>
-      <!----------------------------------------------------------------------->
-      <div class="nav-item" :class="{ hovered: onHover }">
-        <router-link
-          :to="{ name: 'virtual-tours' }"
-          @mouseover="hovering"
-          @mouseleave="unhovered"
-        >
-          <p>Tours Virtuales</p></router-link
-        >
+      <!--About--------------------------------------------------------------->
+      <div
+        class="about-option"
+        @mouseover="aboutMenuOn"
+        @mouseleave="aboutMenuOff"
+      >
+        <div class="nav-item">
+          <router-link :to="{ name: 'about-us' }"
+            ><p class="option-underline">Sobre Nosotros</p></router-link
+          ><!--Gap-Cover----->
+          <transition name="fade">
+            <div v-if="aboutMenu" class="about-option-border-cover"></div>
+          </transition>
+          <!---------------->
+        </div>
+        <!--SUBMENU------------------------>
+        <transition name="fade">
+          <div v-show="aboutMenu" class="neighborhoods-menu">
+            <router-link :to="{ name: 'about-us' }"
+              ><p>Sobre Nosotras</p></router-link
+            >
+          </div>
+        </transition>
+        <!--------------------------------->
       </div>
-      <!----------------------------------------------------------------------->
-      <div class="nav-item about-option" :class="{ hovered: onHover }">
-        <router-link
-          :to="{ name: 'about-us' }"
-          @mouseover="hovering"
-          @mouseleave="unhovered"
-          ><p>Sobre Nosotros</p></router-link
-        >
-      </div>
-      <!----------------------------------------------------------------------->
-      <div class="nav-item owner-login" :class="{ hovered: onHover }">
+      <!----Owner Login Button------------------------------------------------->
+      <div class="nav-item owner-login">
         <a
           href="https://portal.lemusrealty.com/"
           target="_blank"
           rel="noopener noreferrer"
-          @mouseover="hovering"
-          @mouseleave="unhovered"
         >
-          <p>PORTAL DE PROPIETARIOS</p></a
+          <p class="owners-option-underline">PORTAL DE PROPIETARIOS</p></a
         >
       </div>
-      <!----------------------------------------------------------------------->
-      <div class="nav-item join-list-option" :class="{ hovered: onHover }">
-        <router-link
-          :to="{ name: 'about-us' }"
-          @mouseover="hovering"
-          @mouseleave="unhovered"
-        >
+      <!----Join List Button--------------------------------------------------->
+      <div class="nav-item join-list-option">
+        <router-link :to="{ name: 'about-us' }">
           <p>UNIRME A LA LISTA<br />DE INTERESADOS</p></router-link
         >
       </div>
       <!----------------------------------------------------------------------->
     </nav>
   </div>
-  <!-----------------------------------------------------------------SUBMENUS-->
-  <div
-    v-show="neighborhoodsMenu"
-    @mouseover="neighborhoodsMenuHover"
-    @mouseleave="neighborhoodsMenuUnhover"
-    class="neighborhoods-menu"
-  >
-    <router-link :to="{ name: 'about-us' }"><p>Sobre Nosotros</p></router-link>
-  </div>
-  <!----------------------------------------------------------------------->
 </template>
 
 <script>
 export default {
   data() {
     return {
-      onHover: false,
       neighborhoodsMenu: false,
+      aboutMenu: false,
     };
   },
   methods: {
-    hovering() {
-      this.onHover = true;
-    },
-    unhovered() {
-      this.onHover = false;
-    },
-    neighborhoodsMenuHover() {
+    neighborhoodsMenuOn() {
       this.neighborhoodsMenu = true;
     },
-    neighborhoodsMenuUnhover() {
+    neighborhoodsMenuOff() {
       this.neighborhoodsMenu = false;
+    },
+    aboutMenuOn() {
+      this.aboutMenu = true;
+    },
+    aboutMenuOff() {
+      this.aboutMenu = false;
     },
   },
 };
@@ -146,6 +151,8 @@ export default {
   height: 100%;
   display: flex;
   align-items: center;
+  cursor: pointer;
+  position: relative;
 }
 
 .nav-item a {
@@ -160,14 +167,42 @@ export default {
   padding-bottom: 9px;
 }
 
-.nav-item.hovered:hover p {
-  border-top: 2.5px solid transparent;
-  border-bottom: 2.5px solid #0155cb;
+/* vue transitions */
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.4s ease;
 }
 
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+}
+/* /////////////// */
+
 .neighborhoods-option {
-  cursor: pointer;
-  position: relative;
+  height: 100%;
+  transition: 0.4s ease;
+}
+
+.neighborhoods-option:hover {
+  box-shadow: 0 2px 18px 0 rgba(0, 0, 0, 0.1), 0 3px 6px 0 rgba(0, 0, 0, 0.2);
+  transition: 0.3s ease;
+}
+
+.neighborhoods-menu {
+  background-color: white;
+  width: 100%;
+  height: 92vh;
+  box-shadow: 0 2px 18px 0 rgba(0, 0, 0, 0.1), 0 3px 6px 0 rgba(0, 0, 0, 0.2);
+  position: absolute;
+  top: 0;
+  left: 0;
+  margin-top: 90px;
+}
+
+.about-option {
+  height: 100%;
+  transition: 0.4s ease;
 }
 
 .about-option:hover {
@@ -175,19 +210,45 @@ export default {
   transition: 0.3s ease;
 }
 
+.neighborhoods-option-border-cover {
+  background: white;
+  width: 100%;
+  height: 10%;
+  margin-top: 59%;
+  position: absolute;
+  z-index: 2;
+}
+
+.about-option-border-cover {
+  background: white;
+  width: 100%;
+  height: 10%;
+  margin-top: 57%;
+  position: absolute;
+  z-index: 2;
+  margin-left: 0.3px;
+}
+
 .owner-login {
   border-left: 2px solid #ebebeb;
+  transition: 0.3s ease;
 }
 
 .owner-login:hover {
-  box-shadow: 0 2px 18px 0 rgba(0, 0, 0, 0.1), 0 3px 6px 0 rgba(0, 0, 0, 0.2);
+  box-shadow: 2px 2px 18px 0 rgba(0, 0, 0, 0.2),
+    2px 3px 6px 0 rgba(0, 0, 0, 0.2);
   transition: 0.3s ease;
+}
+
+.owner-login:hover .owners-option-underline::before {
+  opacity: 1;
+  transform: translate3d(0, 18px, 0);
 }
 
 .join-list-option {
   background-color: #0155cb;
   line-height: 18px;
-  padding-left: 15px;
+  padding: 0px 2px 0px 2px;
 }
 
 .join-list-option a:hover {
@@ -198,29 +259,52 @@ export default {
   color: white;
 }
 
-.neighborhoods-menu {
-  width: 100%;
-  height: 100vh;
-  box-shadow: 0 2px 18px 0 rgb(0 0 0 / 10%), 0 3px 6px 0 rgb(0 0 0 / 20%);
-  background-color: wheat;
+.option-underline {
+  display: flex;
+  justify-content: center;
 }
 
-.openMenu {
-  box-shadow: 0 -2px 18px 0 rgb(0 0 0 / 10%), 0 -2px 6px 0 rgb(0 0 0 / 20%);
-}
-
-.openMenu::after {
+.option-underline::before {
   content: "";
   position: absolute;
-  bottom: 0;
-  width: 100%;
-  background: white;
-  height: 5px;
-  left: 0;
+  top: 55%;
+  height: 2px;
+  background: #0155cb;
+  width: calc(100% - 28px);
+  transform: translate3d(0, 10px, 0);
+  opacity: 0;
+  transition: 0.2s ease;
 }
 
-.nav-item.openMenu p {
-  border-top: 2.5px solid transparent;
-  border-bottom: 2.5px solid #0155cb;
+.owners-option-underline {
+  display: flex;
+  justify-content: center;
+}
+
+.owners-option-underline::before {
+  content: "";
+  position: absolute;
+  top: 55%;
+  height: 2px;
+  background: #0155cb;
+  width: calc(100% - 100px);
+  transform: translate3d(0, 10px, 0);
+  opacity: 0;
+  transition: 0.2s ease;
+}
+
+.neighborhoods-option:hover .option-underline::before {
+  opacity: 1;
+  transform: translate3d(0, 18px, 0);
+}
+
+.about-option:hover .option-underline::before {
+  opacity: 1;
+  transform: translate3d(0, 18px, 0);
+}
+
+.nav-item:hover .option-underline::before {
+  opacity: 1;
+  transform: translate3d(0, 18px, 0);
 }
 </style>
