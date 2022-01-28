@@ -64,6 +64,7 @@ export default {
   width: 1000px;
   height: auto;
   overflow: hidden;
+  margin-top: 60px;
 }
 
 button {
