@@ -138,7 +138,7 @@ export default {
 
 .lemus-logo img {
   width: 285px;
-  padding-left: 0.5rem;
+  margin-left: 1rem;
 }
 
 .main-nav-items {

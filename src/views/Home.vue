@@ -25,11 +25,11 @@
       <div class="images-grid-column">
         <!----------------------------------------------------------------------->
         <div class="images-grid-content">
-          <div class="grid-content-graphic">
+          <div class="grid-content-graphic graphic-1">
             <img src="../assets/images/home-main-callout-1.webp" alt="" />
           </div>
           <!----------------------------------------------------------------------->
-          <div class="grid-content-card">
+          <div class="grid-content-card column-1">
             <h3>Lorem Ipsum Dolor si Amet</h3>
             <div>
               <p>
@@ -48,11 +48,11 @@
       <div class="images-grid-column">
         <!----------------------------------------------------------------------->
         <div class="images-grid-content">
-          <div class="grid-content-graphic">
+          <div class="grid-content-graphic graphic-2">
             <img src="../assets/images/home-main-callout-2.webp" alt="" />
           </div>
           <!----------------------------------------------------------------------->
-          <div class="grid-content-card">
+          <div class="grid-content-card column-2">
             <h3>Lorem Ipsum Dolor si Amet</h3>
             <div>
               <p>
@@ -71,11 +71,11 @@
       <div class="images-grid-column">
         <!----------------------------------------------------------------------->
         <div class="images-grid-content">
-          <div class="grid-content-graphic">
+          <div class="grid-content-graphic graphic-3">
             <img src="../assets/images/home-main-callout-3.jpg" alt="" />
           </div>
           <!----------------------------------------------------------------------->
-          <div class="grid-content-card">
+          <div class="grid-content-card column-3">
             <h3>Lorem Ipsum Dolor si Amet</h3>
             <div>
               <p>
@@ -149,7 +149,7 @@
             <div class="images-grid-main-button chat-callout-button">
               <router-link
                 class="grid-button chat-button"
-                :to="{ name: 'about-us' }"
+                :to="{ name: 'Home' }"
               >
                 <p>Chat en vivo</p>
               </router-link>
@@ -164,7 +164,7 @@
   </div>
   <!----------------------------------------------------------------------->
 
-  <Carousel></Carousel>
+  <carousel></carousel>
 </template>
 
 
@@ -268,12 +268,50 @@ export default {
   align-items: center;
 }
 
+.grid-content-graphic {
+  animation: cardAnimation 0.6s ease-out 0ms forwards;
+  animation-delay: 0s;
+  opacity: 0;
+}
+
+@keyframes cardAnimation {
+  0% {
+    transform: translate3d(0, 80px, 0);
+    opacity: 0;
+  }
+  100% {
+    transform: translateZ(0);
+    opacity: 1;
+  }
+}
+
+.graphic-2 {
+  animation-delay: 0.1s;
+}
+
+.graphic-3 {
+  animation-delay: 0.2s;
+}
+
+.grid-content-card.column-1 {
+  animation-delay: 0.4s;
+}
+.grid-content-card.column-2 {
+  animation-delay: 0.5s;
+}
+.grid-content-card.column-3 {
+  animation-delay: 0.6s;
+}
+
 .grid-content-card {
   background-color: white;
   width: 330px;
   padding: 25px 30px;
   box-shadow: 0 6px 12px -4px rgb(0 0 0 / 25%);
   margin: -15px auto 0;
+  z-index: 1;
+  animation: cardAnimation 0.9s ease-out 0ms forwards;
+  opacity: 0;
 }
 
 .grid-content-card h3 {
@@ -311,6 +349,20 @@ export default {
 .images-grid-main-button {
   margin-top: 40px;
   display: flex;
+  animation: buttonAnimation 0.4s ease-out 0.9s forwards;
+  opacity: 0;
+}
+@keyframes buttonAnimation {
+  0% {
+    -webkit-transform: translate3d(0, 40px, 0);
+    transform: translate3d(0, 40px, 0);
+    opacity: 0;
+  }
+  100% {
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+    opacity: 1;
+  }
 }
 
 .grid-button {
@@ -401,11 +453,23 @@ export default {
 
 .chat-callout-button {
   margin: 0px;
+  animation: none;
+  opacity: 1;
 }
 
 .chat-button {
   width: 210px;
   border: 1px solid #0155cb;
+}
+
+.callout-box-button {
+  width: 280px;
+}
+
+.callout-box-slide-button {
+  margin-top: 0px;
+  opacity: 1;
+  animation: none;
 }
 
 /******************************************************/
