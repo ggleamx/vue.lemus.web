@@ -189,8 +189,6 @@ export default {
   background-repeat: no-repeat;
   background-size: 100%;
   background-position: center top;
-  /* border: 1px solid red; */
-  /* position: relative; */
 }
 
 .callout-images-grid {
@@ -200,7 +198,6 @@ export default {
   align-items: center;
   flex-direction: column;
   color: #222;
-  /* margin-bottom: 20vh; */
 }
 
 /***************/
@@ -219,7 +216,6 @@ export default {
   font-weight: 500;
   text-align: center;
   margin-bottom: 10px;
-  /* position: relative; */
 }
 
 .callout-intro-text h2::after {
@@ -233,7 +229,6 @@ export default {
   left: 0;
   right: 0;
   margin-top: 5px;
-  /* position: absolute; */
 }
 
 .callout-intro-text p {
@@ -251,11 +246,6 @@ export default {
   display: flex;
   width: 1140px;
   justify-content: space-between;
-  /* border: 2px solid green; */
-}
-
-.images-grid-column {
-  /* border: 1px solid red; */
 }
 
 .images-grid-column img {
@@ -333,7 +323,6 @@ export default {
   background: #0155cb;
   bottom: 0;
   margin-top: 10px;
-  /* position: absolute; */
 }
 
 .grid-content-card p {
@@ -407,7 +396,6 @@ export default {
   display: flex;
   justify-content: space-between;
   width: 100%;
-  /* border: 1px green solid; */
 }
 
 .chat-callout-inner {
@@ -473,6 +461,7 @@ export default {
 }
 
 /******************************************************/
+
 @media screen and (min-width: 1640px) {
   .hero {
     height: 654px;

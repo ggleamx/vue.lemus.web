@@ -4,6 +4,7 @@ import HomeSearch from '../views/HomeSearch.vue'
 import Neighborhoods from '../views/Neighborhoods.vue'
 import VirtualTours from '../views/VirtualTours.vue'
 import About from '../views/About.vue'
+import Faqs from '../views/Faqs.vue'
 
 const routes = [
   {
@@ -40,6 +41,11 @@ const routes = [
     path: '/about',
     name: 'about-us',
     component: About
+
+  }, {
+    path: '/faqs',
+    name: 'faqs',
+    component: Faqs
 
   },
 

@@ -2,13 +2,6 @@
   <div v-show="visibleSlide === index" class="carousel-slide">
     <slot></slot>
     <div class="carousel-slide-callout-container">
-      <!-- <div class="carousel-slide-callout-buttons-container">
-        <div>
-          <button @click="prev" class="prev">Prev</button>
-          <button @click="next" class="next">Next</button>
-        </div>
-      </div> -->
-
       <!----------------------------------------------------------------------->
       <div v-show="index === 0" class="carousel-slide carousel-slide-callout">
         <!----------------------------------------------------------------------->
@@ -90,7 +83,7 @@
           <div class="carousel-slide-callout-box-text">
             <h2>
               Bibendum Ut Tristique Et Egestas<br />Ipsum Suspendisse Ultrices
-              gravida.
+              gravida
             </h2>
             <h3>Nec ultrices dui sapien eget</h3>
             <p>
@@ -186,7 +179,6 @@ export default {
   /* border: 1px solid red; */
 }
 .carousel-slide-callout {
-  /* width: 100%; */
   width: 1140px;
   display: flex;
   justify-content: flex-end;
@@ -196,8 +188,6 @@ export default {
 
 .carousel-slide-callout-counter {
   text-align: right;
-
-  /* padding: 0 65px; */
   display: flex;
   justify-content: flex-end;
   width: 194px;
@@ -284,7 +274,6 @@ export default {
   height: 1px;
   background: #0155cb;
   margin-top: 5px;
-  /* position: absolute; */
 }
 
 .carousel-slide-callout-box-text p {
@@ -300,13 +289,8 @@ export default {
   align-items: center;
 }
 
-/* .carousel-slide-callout-buttons-container {
-  border: 1px solid red;
-  width: 100%;
-  height: 60px;
-} */
-
 /******************************************************/
+
 @media screen and (min-width: 1640px) {
   .carousel-slide-callout {
     width: 1320px;

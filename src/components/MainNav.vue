@@ -67,7 +67,7 @@
         <transition name="fade">
           <div v-show="aboutMenu" class="neighborhoods-menu">
             <router-link :to="{ name: 'about-us' }"
-              ><p>Sobre Nosotras</p></router-link
+              ><p>Sobre Nosotros</p></router-link
             >
           </div>
         </transition>

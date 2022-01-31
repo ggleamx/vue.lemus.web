@@ -6,7 +6,7 @@ module.exports = {
         compressionOptions: {
           numiterations: 15,
         },
-        include: /\.(js|css|html|svg|json)(\?.*)?$/i,
+        include: /\.(js|css|html|svg|webp|jpg|json)(\?.*)?$/i,
         algorithm(input, compressionOptions, callback) {
           return zopfli.gzip(input, compressionOptions, callback);
         },

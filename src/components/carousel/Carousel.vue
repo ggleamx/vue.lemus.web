@@ -11,6 +11,7 @@
         <img :src="slide" />
         <!----------------------------------------------------------------------->
         <div class="carousel-content-buttons">
+          <!----------------------------------------------------------------------->
           <button @click="prev" class="prev">
             <svg
               width="768"
@@ -25,16 +26,14 @@
               />
             </svg>
           </button>
+          <!----------------------------------------------------------------------->
           <button @click="next" class="next">
             <svg
-              version="1.1"
               xmlns="http://www.w3.org/2000/svg"
               width="768"
               height="768"
               viewBox="0 0 768 768"
             >
-              <title></title>
-              <g id="icomoon-ignore"></g>
               <path
                 fill="#fff"
                 d="M187.5 132l69-67.5 319.5 319.5-319.5 319.5-69-67.5 253.5-252z"
@@ -44,7 +43,6 @@
         </div>
         <!----------------------------------------------------------------------->
       </carousel-slide>
-      <!----------------------------------------------------------------------->
     </div>
   </div>
 </template>
@@ -95,10 +93,6 @@ export default {
 
 
 <style scoped>
-.carousel-slide {
-  /* border: 1px blue solid; */
-}
-
 .carousel-container {
   background: #ebebeb;
   width: 100%;
@@ -110,7 +104,6 @@ export default {
   height: auto;
   overflow: hidden;
   margin-top: 60px;
-  /* border: 2px solid orange; */
 }
 
 .carousel-content img {
@@ -122,13 +115,11 @@ export default {
   display: flex;
   justify-content: center;
   margin-bottom: 50px;
-  /* border: 1px solid yellow; */
 }
 
 button {
   width: 80px;
   height: 60px;
-  /* position: absolute; */
   display: flex;
   align-items: center;
   justify-content: center;
@@ -137,7 +128,6 @@ button {
   margin: 0px;
   transition: all 500ms ease 0ms;
   border: none;
-  /* border: 1px solid red; */
 }
 
 button:hover {
@@ -146,13 +136,13 @@ button:hover {
   background-color: #000;
 }
 
-.next {
-  right: 0;
-}
-
 .prev {
   left: 0;
   margin-right: 1px;
+}
+
+.next {
+  right: 0;
 }
 
 .carousel-content-buttons svg {
