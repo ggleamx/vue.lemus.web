@@ -1,21 +1,19 @@
 <template>
   <!----------------------------------------------------------------------->
-  <div class="hero">
-    <div class="hero-search-box"></div>
+  <div class="hero"></div>
+  <div class="hero-search-box">
+    <filters-box></filters-box>
   </div>
   <!----------------------------------------------------------------------->
 
   <div class="callout-images-grid">
     <!----------------------------------------------------------------------->
     <div class="callout-intro-text">
-      <h2>Iaculis: Phasellus Vestibul Eu Lorem</h2>
+      <h2>Fábrica de éxitos Inmobiliarios</h2>
       <p>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-        tempor incididunt ut labore et dolore magna aliqua. At erat pellentesque
-        adipiscing commodo. Ipsum a arcu cursus vitae congue mauris rhoncus
-        aenean vel. Dolor morbi non arcu risus quis. Sed id semper risus in
-        hendrerit gravida rutrum. Habitasse platea dictumst vestibulum rhoncus
-        est pellentesque. Volutpat consequat mauris nunc congue nisi. mauris.
+        Somos asesores de Bienes Raíces en Rosarito Baja California, México.
+        Grupo Lemus Realty somos un grupo de profesionistas especializados en la
+        promoción de bienes raíces en la costa de Baja California.
       </p>
     </div>
     <!----------------------------------------------------------------------->
@@ -30,14 +28,13 @@
           </div>
           <!----------------------------------------------------------------------->
           <div class="grid-content-card column-1">
-            <h3>Lorem Ipsum Dolor si Amet</h3>
+            <h3>Venta y renta de inmuebles</h3>
             <div>
               <p>
-                Consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-                labore et dolore magna aliqua, enim facilisis gravida neque
-                convallis a, lobortis feugiat vivamus at augue eget. Nunc sed
-                blandit libero volutpat sed cras ornare arcu dui, pellentesque
-                eu tincidunt tortor aliqua, neque sodales.
+                Nos comprometemos con nuestros clientes para encontrar la
+                propiedad que busca teniendo en cuenta sus necesidades e
+                intereses a nivel personal, familiar, económico y/o de
+                inversión.
               </p>
             </div>
           </div>
@@ -53,14 +50,13 @@
           </div>
           <!----------------------------------------------------------------------->
           <div class="grid-content-card column-2">
-            <h3>Lorem Ipsum Dolor si Amet</h3>
+            <h3>Administracion propiedades</h3>
             <div>
               <p>
-                Consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-                labore et dolore magna aliqua, enim facilisis gravida neque
-                convallis a, lobortis feugiat vivamus at augue eget. Nunc sed
-                blandit libero volutpat sed cras ornare arcu dui, pellentesque
-                eu tincidunt tortor aliqua, neque sodales.
+                La administración adecuada de la propiedad ahorra mucho dinero,
+                tiempo y molestias a los propietarios. Grupo Lemus ayuda a
+                mantener el buen estado de conservación de la propiedad y así
+                incrementar su valor. .
               </p>
             </div>
           </div>
@@ -76,14 +72,11 @@
           </div>
           <!----------------------------------------------------------------------->
           <div class="grid-content-card column-3">
-            <h3>Lorem Ipsum Dolor si Amet</h3>
+            <h3>Regularización de propiedades</h3>
             <div>
               <p>
-                Consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-                labore et dolore magna aliqua, enim facilisis gravida neque
-                convallis a, lobortis feugiat vivamus at augue eget. Nunc sed
-                blandit libero volutpat sed cras ornare arcu dui, pellentesque
-                eu tincidunt tortor aliqua, neque sodales.
+                Regularizamos todo tipo de Inmuebles, para obtener 'Título de
+                Propiedad' o 'Escrituras Publicas'.
               </p>
             </div>
           </div>
@@ -167,20 +160,14 @@
   <carousel></carousel>
 </template>
 
-
-
-
-
 <script>
 import Carousel from "@/components/carousel/Carousel.vue";
+import FiltersBox from "@/components/FiltersBox.vue";
 export default {
   name: "Home",
-  components: { Carousel },
+  components: { Carousel, FiltersBox },
 };
 </script>
-
-
-
 
 <style>
 .hero {
@@ -189,6 +176,12 @@ export default {
   background-repeat: no-repeat;
   background-size: 100%;
   background-position: center top;
+}
+
+.hero-search-box {
+  display: flex;
+  justify-content: center;
+  z-index: 0;
 }
 
 .callout-images-grid {
@@ -203,7 +196,7 @@ export default {
 /***************/
 
 .callout-intro-text {
-  max-width: 95ch;
+  max-width: 75ch;
   margin: 0 auto 50px;
   /* border: 1px solid blue; */
 }
@@ -228,7 +221,7 @@ export default {
   margin: 0 auto;
   left: 0;
   right: 0;
-  margin-top: 5px;
+  margin-top: 6.9px;
 }
 
 .callout-intro-text p {
@@ -302,6 +295,7 @@ export default {
   z-index: 1;
   animation: cardAnimation 0.9s ease-out 0ms forwards;
   opacity: 0;
+  height: 274px;
 }
 
 .grid-content-card h3 {
@@ -332,7 +326,7 @@ export default {
   font-weight: 400;
   color: #3a3a3a;
   text-align: left;
-  width: 34ch;
+  width: 35ch;
 }
 
 .images-grid-main-button {
@@ -358,21 +352,28 @@ export default {
   width: 330px;
   padding: 20px 26px 20px 26px;
   border: 1px solid #b9b3b3;
-  background: #fff;
+  background: #0155cb;
   font-size: 13px;
   line-height: 17px;
   letter-spacing: 2px;
   font-weight: 700;
   text-transform: uppercase;
-  color: #27231d;
   text-align: center;
   font-family: Open Sans, Verdana, Helvetica, sans-serif;
   transition: 0.4s ease-out 0.9s forwards;
 }
 
+.grid-button p {
+  color: white;
+}
+.grid-button:hover p {
+  color: #27231d;
+}
+
 .grid-button:hover {
   background: #ebebeb;
   transition: 0.4s ease-out 0.9s forwards;
+  border: 1px solid #0155cb;
 }
 
 /***************/
@@ -480,5 +481,3 @@ export default {
   }
 }
 </style>
-
-

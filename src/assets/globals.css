@@ -7,6 +7,7 @@ body {
   background-color: #fafafa;
   margin: 0;
   padding: 0;
+  -webkit-font-smoothing: antialiased;
 }
 
 h1,
@@ -15,11 +16,13 @@ h3,
 p {
   margin: 0px;
   color: #3a3a3a;
+  -webkit-font-smoothing: antialiased;
 }
 
 a {
   text-decoration: none;
   color: #3a3a3a;
+  -webkit-font-smoothing: antialiased;
 }
 
 ul,
@@ -28,4 +31,5 @@ menu,
 ol {
   margin: none;
   list-style: none;
+  -webkit-font-smoothing: antialiased;
 }

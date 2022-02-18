@@ -1,4 +1,3 @@
-
 <template>
   <div class="main-nav">
     <!--LOGO----------------------------------------------------------------->
@@ -119,8 +118,6 @@ export default {
 };
 </script>
 
-
-
 <style scoped>
 .main-nav {
   background: white;
@@ -198,6 +195,7 @@ export default {
   top: 0;
   left: 0;
   margin-top: 90px;
+  z-index: 1;
 }
 
 .about-option {

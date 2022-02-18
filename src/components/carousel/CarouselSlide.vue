@@ -12,13 +12,12 @@
         <div class="carousel-slide-callout-box">
           <!----------------------------------------------------------------------->
           <div class="carousel-slide-callout-box-text">
-            <h2>Lorem ipsum dolor sit amet,<br />consectetur adipiscing</h2>
-            <h3>Quam pellentesque nec nam aliquam sem</h3>
+            <h2>Deslindes</h2>
+            <h3>GESTIONAMOS EL TRÁMITE DEL DESLINDE POR PERITOS AUTORIZADOS</h3>
             <p>
-              Nec sagittis aliquam malesuada bibendum arcu vitae elementum
-              curabitur. Velit dignissim sodales ut eu sem integer vitae justo
-              eget. Vitae et leo duis ut diam. Tempus egestas sed sed risus
-              pretium. Arcu risus quis varius quam quisque id.
+              Consiste en un reporte de la ubicación exacta de la Propiedad, en
+              el cual se estipula la superficie total del terreno o casa, con
+              sus debidas medidas y colindancia
             </p>
           </div>
           <!----------------------------------------------------------------------->
@@ -47,12 +46,11 @@
         <div class="carousel-slide-callout-box">
           <!----------------------------------------------------------------------->
           <div class="carousel-slide-callout-box-text">
-            <h2>Ut Enim Blandit Volutpat Maecenas, Urna Porttitor Rhon</h2>
-            <h3>Nisi Vitae Suscipit Tellus</h3>
+            <h2>Inscripción Ante El Registro Público</h2>
+            <h3></h3>
             <p>
-              Eu augue ut lectus arcu bibendum at varius vel pharetra. Sed odio
-              morbi quis commodo. Id ornare arcu odio ut. Volutpat maecenas
-              volutpat blandit aliquam etiam erat velit scelerisque in.
+              La propiedad debe estar inscrita en el Registro Público de la
+              Propiedad y de Comercio R.P.P.C.
             </p>
           </div>
           <!----------------------------------------------------------------------->
@@ -81,15 +79,13 @@
         <div class="carousel-slide-callout-box">
           <!----------------------------------------------------------------------->
           <div class="carousel-slide-callout-box-text">
-            <h2>
-              Bibendum Ut Tristique Et Egestas<br />Ipsum Suspendisse Ultrices
-              gravida
-            </h2>
-            <h3>Nec ultrices dui sapien eget</h3>
+            <h2>Avalúos</h2>
+            <h3>ESTIMACIÓN DEL VALOR COMERCIAL DE UN INMUEBLE</h3>
             <p>
-              Dolor purus non enim praesent elementum, donec pretium vulputate
-              sapien nec sagittis. Faucibus vitae aliquet nec ullamcorper,
-              adipiscing diam donec.
+              Por medio de un dictamen técnico imparcial, a través de sus
+              características físicas, de uso, de investigación y el análisis de
+              mercado, tomando en cuenta las condiciones físicas y urbanas del
+              inmueble.
             </p>
           </div>
           <!----------------------------------------------------------------------->
@@ -118,13 +114,13 @@
         <div class="carousel-slide-callout-box">
           <!----------------------------------------------------------------------->
           <div class="carousel-slide-callout-box-text">
-            <h2>Lobortis Elementum Nibh Tellus<br />Molestie Nunc Non</h2>
-            <h3>Excepte ur, sint os cael</h3>
+            <h2>Servicios Jurídicos</h2>
+            <h3>
+              BRINDAR UN SERVICIO DE ASESORÍA LEGAL INMOBILIARIA PERSONALIZADA
+            </h3>
             <p>
-              Aenean euismod elementum nisi quis eleifend quam adipiscing vitae
-              proin. Penatibus et magnis dis parturient montes nascetur,
-              consequat ac felis donec et, venenatis a condimentum vitae sapien
-              pellentesque habitant, lacinia at.
+              Con personal altamente calificado, orientada a cuidar el
+              patrimonio de nuestros clientes, con ética y profesionalismo.
             </p>
           </div>
           <!----------------------------------------------------------------------->
@@ -146,7 +142,6 @@
     </div>
   </div>
 </template>
-
 
 <script>
 export default {
@@ -297,5 +292,3 @@ export default {
   }
 }
 </style>
-
-
