@@ -1,4 +1,4 @@
-<template >
+<template>
   <!----------------------------------------------------------------------->
   <div class="footer-widget">
     <!----------------------------------------------------------------------->
@@ -10,10 +10,7 @@
     <!----------------------------------------------------------------------->
     <!-- <div>{{ dynamicFooterMessage }}</div> -->
     <div class="footer-widget-message">
-      <h3>
-        Ullamcorper a lacus vesti velit digni<br />sim sodales bulum sed arcu
-        non.
-      </h3>
+      <h3>Fábrica De Exitos<br />Inmobiliarios.</h3>
     </div>
     <!----------------------------------------------------------------------->
     <div class="footer-widget-button">
@@ -168,7 +165,6 @@
   </div>
 </template>
 
-
 <script>
 // export default {
 //   data() {
@@ -258,7 +254,7 @@
   font-family: Amiri, Times New Roman, serif;
   font-weight: 400;
   color: #222;
-  font-size: 1.75rem;
+  font-size: 2.25rem;
   line-height: 36px;
   font-style: italic;
 }
