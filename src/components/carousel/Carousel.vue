@@ -2,7 +2,7 @@
   <div class="carousel-container">
     <div class="carousel-content">
       <!----------------------------------------------------------------------->
-      <carousel-slide
+      <home-carousel-slide
         v-for="(slide, index) in slides"
         :key="slide"
         :index="index"
@@ -42,13 +42,13 @@
           </button>
         </div>
         <!----------------------------------------------------------------------->
-      </carousel-slide>
+      </home-carousel-slide>
     </div>
   </div>
 </template>
 
 <script>
-import CarouselSlide from "./CarouselSlide.vue";
+import HomeCarouselSlide from "./HomeCarouselSlide.vue";
 export default {
   data() {
     return {
@@ -63,7 +63,7 @@ export default {
     };
   },
   components: {
-    CarouselSlide,
+    HomeCarouselSlide,
   },
   computed: {
     slidesLen() {

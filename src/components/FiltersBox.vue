@@ -112,7 +112,7 @@ export default {
   text-align: center;
   font-style: italic;
   font-weight: 400;
-  font-family: "Amiri,Times New Roman,serif";
+  font-family: Amiri, Times New Roman, serif;
   color: #222;
 }
 
@@ -135,7 +135,7 @@ export default {
   padding: 0 35px 0 20px;
   margin: 0 10px 0 10px;
   border: 1px solid #b5b5b5;
-  font-family: "Open Sans";
+  font-family: Open Sans;
   line-height: 16px;
   font-weight: 700;
   color: #27231d;

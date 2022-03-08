@@ -75,7 +75,7 @@
       <!----Owner Login Button------------------------------------------------->
       <div class="nav-item owner-login">
         <a
-          href="https://portal.lemusrealty.com/"
+          href="https://lemus-office.herokuapp.com/login"
           target="_blank"
           rel="noopener noreferrer"
         >
@@ -124,13 +124,16 @@ export default {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  font-family: "Open Sans";
+  font-family: Open Sans;
   font-weight: bold;
   font-size: 0.875rem;
   line-height: 1.0625rem;
   letter-spacing: 0.5px;
   height: 90px;
   border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  /* position: absolute; */
+  z-index: 3;
+  width: 100%;
 }
 
 .lemus-logo img {
@@ -192,10 +195,12 @@ export default {
   height: 92vh;
   box-shadow: 0 2px 18px 0 rgba(0, 0, 0, 0.1), 0 3px 6px 0 rgba(0, 0, 0, 0.2);
   position: absolute;
-  top: 0;
+  /* top: 90px; */
+  /* margin-top: 90px; */
   left: 0;
-  margin-top: 90px;
   z-index: 1;
+  /* overflow-y: scroll; 
+  /* border: 5px solid red; */
 }
 
 .about-option {

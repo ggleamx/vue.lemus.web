@@ -205,6 +205,8 @@
   <!----------------------------------------------------------------------->
 
   <carousel></carousel>
+
+  <!----------------------------------------------------------------------->
 </template>
 
 <script>
@@ -249,7 +251,7 @@ export default {
 }
 
 .callout-intro-text h2 {
-  font-family: "Amiri,Times New Roman,serif";
+  font-family: Amiri, Times New Roman, serif;
   font-style: italic;
   font-size: 2rem;
   line-height: 28px;
@@ -273,7 +275,7 @@ export default {
 
 .callout-intro-text p {
   text-align: center;
-  font-family: "Open Sans";
+  font-family: Open Sans;
   line-height: 26px;
   font-weight: 300;
   color: #3a3a3a;
@@ -346,7 +348,7 @@ export default {
 }
 
 .grid-content-card h3 {
-  font-family: "Amiri,Times New Roman,serif";
+  font-family: Amiri, Times New Roman, serif;
   font-weight: 400;
   font-size: 18px;
   line-height: 20px;

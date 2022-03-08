@@ -1,7 +1,11 @@
-<template>
-  <main-nav></main-nav>
+<template >
+  <main-nav
+    v-bind:class="{
+      homeSearchOn: $route.path == '/search',
+    }"
+  ></main-nav>
   <router-view />
-  <main-footer></main-footer>
+  <main-footer v-if="$route.path != '/search'"></main-footer>
 </template>
 
 <script>
@@ -23,5 +27,9 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
+}
+
+.homeSearchOn {
+  position: fixed;
 }
 </style>
