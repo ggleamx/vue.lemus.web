@@ -1,26 +1,49 @@
 <template>
   <search-filters></search-filters>
   <div class="homesearch-main-container">
+  <template v-if="isLoading">
+
+       <loading :active="isLoading" 
+        :can-cancel="true" 
+        :on-cancel="onCancel"
+        :is-full-page="fullPage"></loading>
+
+  </template>
+  <template v-else>
     <div class="map-container"><h2>Mapa Interactivo</h2></div>
     <div class="home-cards-container">
+     <!-- template de Handlebars -->
+
+     
+
+
       <PropertyCard
         v-for="property in propertys.payload"
         :key="property.uid"
         :property="property"
       />
     </div>
+    </template>
+  
   </div>
+  
 </template>
 
 <script>
 import SearchFilters from "@/components/SearchFilters.vue";
 import PropertyCard from "@/components/PropertyCard.vue";
 import propertyService from "@/services/propertyService.js";
+    // Import component
+    import Loading from 'vue-loading-overlay';
+    // Import stylesheet
+    import 'vue-loading-overlay/dist/vue-loading.css'
+
 export default {
   name: "Homesearch",
-  components: { SearchFilters, PropertyCard },
+  components: { SearchFilters, PropertyCard,Loading },
   data() {
     return {
+      isLoading: true,
       propertys: null,
     };
   },
@@ -29,8 +52,11 @@ export default {
       .getPropertys()
 
       .then((res) => {
-        console.log("propertys:", res.data);
+        setTimeout(() => {
+  
         this.propertys = res.data;
+        this.isLoading = false;
+}, 500);
       })
       .catch((error) => {
         console.log(error);
