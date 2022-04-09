@@ -2,9 +2,9 @@
   <div class="main-nav">
     <!--LOGO----------------------------------------------------------------->
     <div class="lemus-logo">
-      <router-link :to="{ name: 'Home' }"
+      <!-- <router-link :to="{ name: 'Home' }"
         ><img src="../assets/lemus-logo.svg" alt="logo"
-      /></router-link>
+      /></router-link> -->
     </div>
     <!----------------------------------------------------------------------->
     <nav class="main-nav-items">

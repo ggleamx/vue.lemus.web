@@ -1,12 +1,22 @@
 <template>
   <search-filters></search-filters>
   <div class="homesearch-main-container">
-    <div class="map-container"><h2>Mapa Interactivo</h2></div>
+    <div class="map-container">
+      <estates-map
+        :markersData="propertys.payload"
+        @filtering="filteringPropertys"
+      ></estates-map>
+    </div>
     <div class="home-cards-container">
       <PropertyCard
         v-for="property in propertys.payload"
         :key="property.uid"
         :property="property"
+        :class="{
+          initialColor: initialCardState,
+          filteredColor: property.uid != markerFilter && !initialCardState,
+          unfilteredColor: property.uid == markerFilter,
+        }"
       />
     </div>
   </div>
@@ -15,26 +25,79 @@
 <script>
 import SearchFilters from "@/components/SearchFilters.vue";
 import PropertyCard from "@/components/PropertyCard.vue";
+import EstatesMap from "@/components/EstatesMap.vue";
 import propertyService from "@/services/propertyService.js";
+
 export default {
   name: "Homesearch",
-  components: { SearchFilters, PropertyCard },
+  components: { SearchFilters, PropertyCard, EstatesMap },
   data() {
     return {
       propertys: null,
+      markerFilter: "",
+      initialCardState: true,
+      // search: ¨¨,
+      // search: [],
     };
   },
   created() {
     propertyService
       .getPropertys()
-
       .then((res) => {
-        console.log("propertys:", res.data);
+        console.log(res);
         this.propertys = res.data;
       })
       .catch((error) => {
         console.log(error);
       });
+  },
+
+  methods: {
+    filteringPropertys(markerUID) {
+      this.markerFilter = markerUID;
+      this.initialCardState = false;
+
+      // console.log(this.propertys.length);
+      // let propertysCollection = [];
+
+      // this.propertys.map((propiedad) => {
+      //   if (!propiedad.uid === markerUID) {
+      //     console.log("hey");
+      //     propertysCollection.push(propiedad);
+      //   }
+      // });
+
+      // this.propertys = propertysCollection;
+
+      // console.log(this.propertys.length);
+
+      // const propertySelected = this.propertys.filter(
+      //   (propiedad, index, arr) => {
+      //     if (propiedad.uid == markerUID) return propiedad;
+      //   }
+      // );
+
+      // this.propertys.unshift(0);
+
+      // this.propertys.unshift((propiedad) => {
+      //   if (propiedad.uid == markerUID) return propiedad;
+      // });
+
+      // const propertySelected = this.propertys.map((property) => {
+
+      //   if (property.uid == markerUID) {
+
+      //   }
+      // });
+    },
+  },
+  computed: {
+    // testUID() {
+    //   console.log(this.propertys.payload);
+    //   return this.propertys.payload.filter((property) => {
+    //     return property.uid.match(this.markerFilter);
+    //   });
+    // },
   },
 };
 </script>
@@ -67,13 +130,23 @@ export default {
   padding: 10px;
   overflow-y: scroll;
   z-index: 2;
-  /* position: absolute; */
-  /*//////*/
-  /* display: flex;
-  flex-direction: column;
-  align-items: center; */
   /* border: 1px solid salmon; */
 }
+
+.filteredColor {
+  background-color: #93918e;
+}
+.unfilteredColor {
+  background-color: none;
+}
+
+.initialColor {
+  background-color: none;
+}
+.filteredColor h5 {
+  color: #646464;
+}
+
 @media screen and (min-width: 1640px) {
   .home-cards-container {
     width: 31.5%;
@@ -83,3 +156,4 @@ export default {
   }
 }
 </style>
+

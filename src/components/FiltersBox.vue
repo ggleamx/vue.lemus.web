@@ -6,7 +6,7 @@
     <!----------------------------------------------------------------------->
     <div class="filter-options">
       <!------------------------------>
-      <div v-on:click="filterMenuOn" class="filter-option">
+      <div @click="filterMenuOn" class="filter-option">
         <div class="filter-option-content"><p>ZONAS</p></div>
         <!--Sub Menu--------------->
         <div v-show="filterZonesMenu" class="filter-menu">
@@ -18,7 +18,7 @@
       </div>
       <!------------------------------>
       <!------------------------------>
-      <div v-on:click="filterRoomsMenuOn" class="filter-option">
+      <div @click="filterRoomsMenuOn" class="filter-option">
         <div class="filter-option-content"><p># DE CUARTOS</p></div>
         <!--Sub Menu--------------->
         <div v-show="filterRoomsMenu" class="filter-menu rooms-filter">
@@ -28,7 +28,7 @@
         </div>
       </div>
       <!------------------------------>
-      <div v-on:click="filterBathsMenuOn" class="filter-option">
+      <div @click="filterBathsMenuOn" class="filter-option">
         <div class="filter-option-content"><p># DE BAÑOS</p></div>
         <!--Sub Menu--------------->
         <div v-show="filterBathsMenu" class="filter-menu baths-filter">
@@ -37,7 +37,7 @@
         </div>
       </div>
       <!------------------------------>
-      <div v-on:click="filterPricesMenuOn" class="filter-option">
+      <div @click="filterPricesMenuOn" class="filter-option">
         <div class="filter-option-content"><p>PRECIO</p></div>
         <!--Sub Menu--------------->
         <div v-show="filterPricesMenu" class="filter-menu prices-filter">

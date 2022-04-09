@@ -3,7 +3,7 @@
     <a href="" class="property-card-link-container">
       <div class="property-card-content">
         <div class="card-picture-slider">
-          <img src="../assets/images/property-card-image.jpg" alt="" />
+          <!-- <img src="../assets/images/property-card-image.jpg" alt="" /> -->
           <!-- <carousel></carousel> -->
         </div>
         <div class="property-card-info">
@@ -18,7 +18,7 @@
               <p class="first-column-item">{{ property.baños }} baños</p>
             </div>
             <div class="property-datails-row second">
-              <p>Precio: ${{ property.venta }}</p>
+              <p>Precio: ${{ priceFormat }}</p>
               <p>Superficie: {{ property.superficie }}m2</p>
             </div>
           </div>
@@ -34,12 +34,19 @@ export default {
   props: {
     property: Object,
   },
+  computed: {
+    priceFormat() {
+      const str = this.property.venta.toString().split(".");
+      str[0] = str[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+      return str.join(".");
+    },
+  },
 };
 </script>
 
 <style>
 .property-card {
-  width: 560px;
+  /* width: 560px; */
   height: 200px;
   border: 1px solid #e1e1e1;
   border-radius: 6px;
@@ -70,7 +77,7 @@ export default {
 .property-card-info {
   width: calc(100% - 280px);
   text-align: left;
-  padding: 10px 14px;
+  padding: 10px 9.65px;
   display: flex;
   flex-direction: column;
 }

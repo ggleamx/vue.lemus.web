@@ -1,6 +1,6 @@
 <template >
   <main-nav
-    v-bind:class="{
+    :class="{
       homeSearchOn: $route.path == '/search',
     }"
   ></main-nav>
