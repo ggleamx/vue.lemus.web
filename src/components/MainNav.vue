@@ -310,4 +310,5 @@ export default {
   opacity: 1;
   transform: translate3d(0, 18px, 0);
 }
+
 </style>

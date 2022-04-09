@@ -1,15 +1,29 @@
 <template>
   <search-filters></search-filters>
   <div class="homesearch-main-container">
+
+  <template v-if="isLoading">
+
+       <loading :active="isLoading" 
+        :can-cancel="true" 
+        :on-cancel="onCancel"
+        :is-full-page="fullPage"></loading>
+
+  </template>
+  <template v-else>
     <div class="map-container">
-      <estates-map
-        :markersData="propertys.payload"
+            <estates-map
+        :markersData="propertys"
         @filtering="filteringPropertys"
       ></estates-map>
     </div>
     <div class="home-cards-container">
+     <!-- template de Handlebars -->
+
+
+
       <PropertyCard
-        v-for="property in propertys.payload"
+        v-for="property in propertys"
         :key="property.uid"
         :property="property"
         :class="{
@@ -19,7 +33,10 @@
         }"
       />
     </div>
+    </template>
+  
   </div>
+  
 </template>
 
 <script>
@@ -27,12 +44,16 @@ import SearchFilters from "@/components/SearchFilters.vue";
 import PropertyCard from "@/components/PropertyCard.vue";
 import EstatesMap from "@/components/EstatesMap.vue";
 import propertyService from "@/services/propertyService.js";
+import Loading from 'vue-loading-overlay';
+import 'vue-loading-overlay/dist/vue-loading.css'
+
 
 export default {
   name: "Homesearch",
-  components: { SearchFilters, PropertyCard, EstatesMap },
+  components: { SearchFilters, PropertyCard, EstatesMap,Loading},
   data() {
     return {
+      isLoading: true,
       propertys: null,
       markerFilter: "",
       initialCardState: true,
@@ -45,7 +66,11 @@ export default {
       .getPropertys()
       .then((res) => {
         console.log(res);
-        this.propertys = res.data;
+        setTimeout(() => {
+  
+        this.propertys = res.data.payload;
+        this.isLoading = false;
+}, 500);
       })
       .catch((error) => {
         console.log(error);
