@@ -20,8 +20,6 @@
     <div class="home-cards-container">
      <!-- template de Handlebars -->
 
-
-
       <PropertyCard
         v-for="property in propertys"
         :key="property.uid"
@@ -70,7 +68,8 @@ export default {
   
         this.propertys = res.data.payload;
         this.isLoading = false;
-}, 500);
+
+}, 300);
       })
       .catch((error) => {
         console.log(error);
@@ -82,25 +81,25 @@ export default {
       this.markerFilter = markerUID;
       this.initialCardState = false;
 
-      // console.log(this.propertys.length);
-      // let propertysCollection = [];
+      console.log(this.propertys.length);
+      let propertysCollection = [];
 
-      // this.propertys.map((propiedad) => {
-      //   if (!propiedad.uid === markerUID) {
-      //     console.log("hey");
-      //     propertysCollection.push(propiedad);
-      //   }
-      // });
+      let target ;
 
-      // this.propertys = propertysCollection;
+      this.propertys.forEach((propiedad, index, array) => {
+        const targetEquals = propiedad.uid === markerUID; 
+        
+        if(!targetEquals)
+            propertysCollection.push(propiedad);  
+        else
+            target = propiedad;
+      })
 
-      // console.log(this.propertys.length);
+      this.propertys = propertysCollection;
 
-      // const propertySelected = this.propertys.filter(
-      //   (propiedad, index, arr) => {
-      //     if (propiedad.uid == markerUID) return propiedad;
-      //   }
-      // );
+      console.log(this.propertys.length);
+
+      this.propertys.unshift(target);
 
       // this.propertys.unshift(0);
 
