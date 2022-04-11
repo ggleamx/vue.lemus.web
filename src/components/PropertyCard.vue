@@ -10,14 +10,14 @@
           <h2>{{ property.direccion }}</h2>
           <h4>En {{ property.ciudad }}</h4>
           <h5>Colonia: {{ property.colonia }}</h5>
-          <div class="property-datails">
-            <div class="property-datails-row">
+          <div class="property-details">
+            <div class="property-details-row">
               <p class="first-column-item">
                 {{ property.recamaras }} recamaras
               </p>
               <p class="first-column-item">{{ property.baños }} baños</p>
             </div>
-            <div class="property-datails-row second">
+            <div class="property-details-row second">
               <p>Precio: ${{ priceFormat }}</p>
               <p>Superficie: {{ property.superficie }}m2</p>
             </div>
@@ -54,7 +54,6 @@ export default {
   box-shadow: 0 6px 12px rgb(0 0 0 / 15%);
   overflow: hidden;
 }
-
 .property-card-content {
   box-shadow: 0 0 6px 0 transparent, 0 0 2px 0 transparent;
   width: 100%;
@@ -63,17 +62,14 @@ export default {
   padding: 0px;
   display: flex;
 }
-
 .card-picture-slider {
   width: 280px;
   height: 200px;
 }
-
 .card-picture-slider img {
   width: 100%;
   height: 100%;
 }
-
 .property-card-info {
   width: calc(100% - 280px);
   text-align: left;
@@ -81,7 +77,6 @@ export default {
   display: flex;
   flex-direction: column;
 }
-
 .property-card-info h2 {
   font-family: Frank Ruhl Libre;
   font-weight: 700;
@@ -91,7 +86,6 @@ export default {
   color: #6f6b66;
   height: 56px;
 }
-
 .property-card-info h4 {
   margin: 0px;
   font-size: 14px;
@@ -112,25 +106,21 @@ export default {
   margin: 7.25px 0px 7.25px 0px;
   /* height: 41px; */
 }
-
-.property-datails {
+.property-details {
   display: flex;
   width: 100%;
   height: 52px;
   overflow: hidden;
 }
-
-.property-datails-row {
+.property-details-row {
   display: flex;
   flex-direction: column;
-  width: 45%;
+  width: 40%;
 }
-
-.property-datails-row.second {
-  width: 55%;
+.property-details-row.second {
+  width: 60%;
 }
-
-.property-datails-row p {
+.property-details-row p {
   font-size: 16px;
   line-height: 26px;
   font-weight: 400;
@@ -138,7 +128,6 @@ export default {
   color: #6f6b66;
   text-align: left;
 }
-
 /* .first-column-item {
   padding-right: 15px;
 } */
