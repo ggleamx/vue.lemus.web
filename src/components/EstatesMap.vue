@@ -12,12 +12,14 @@ export default {
   name: "EstatesMap",
   props: {
     markersData: Object,
+    propertyCardHover: Boolean,
   },
   mounted() {
     const loader = new Loader({ apiKey: GOOGLE_MAPS_API_KEY });
     let that = this;
     let map = null;
     let clickListener = null;
+    let propertyCardOnHover = this.propertyCardHover;
     const mapDiv = this.$refs.mapDiv;
     //creating map instance
     loader.load().then(() => {
@@ -51,6 +53,11 @@ export default {
         minWidth: 239,
         maxWidth: 239,
       });
+      let secondaryInfoWin = new google.maps.InfoWindow({
+        pixelOffset: new google.maps.Size(147, 319),
+        minWidth: 239,
+        maxWidth: 239,
+      });
       for (let i = 0; i < markersData.length; i++) {
         const p = markersData[i];
         const pos = {
@@ -65,16 +72,28 @@ export default {
             scaledSize: new google.maps.Size(21, 30),
           },
         });
-        let markerUID = markersData[i].uid;
+        let markerUID = markersData[i].numPropiedad;
         marker.addListener("click", () => {
           uniqueInfoWin.setContent(templateInfoWin(p));
           uniqueInfoWin.open(map, marker);
-          // console.log("hii!!");
+          //changing color of PropertyCard
           that.$emit("filtering", markerUID);
           // console.log(markerUID);
-          //changing color of PropertyCard
-          // that.markerFiltering(p.uid);
         });
+        //
+        let secondaryWin;
+
+        const secondaryInfoWinOn = () => {
+          secondaryInfoWin.setContent(templateSecondaryInfoWin(p));
+          secondaryInfoWin.open(map, marker);
+        };
+
+        // if (propertyCardOnHover) {
+        //   console.log("culo");
+        //   secondaryWin = secondaryInfoWinOn();
+        // }
+
+        //
         //close all infoWindows when clicking on map
         /*clickListener = map.addListener("click", () => {
           uniqueInfoWin.close();
@@ -88,9 +107,23 @@ export default {
     //InfoWindows template
     function templateInfoWin(r) {
       //formatting value of 'venta'
-      const str = r.venta.toString().split(".");
-      str[0] = str[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-      r.venta = str;
+      const nullPrice = "";
+      let priceFormat;
+      if (r.venta) {
+        const str = r.venta.toString().split(".");
+        str[0] = str[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+        priceFormat = "Desde: $ " + str;
+      } else {
+        priceFormat = nullPrice;
+      }
+
+      let propertyStatus;
+      if (priceFormat == nullPrice) {
+        propertyStatus = "VENDIDO";
+      } else {
+        propertyStatus = "EN VENTA";
+      }
+
       const template = `
       <div class="infowin-box">
         <div class="infowin-ciudad">
@@ -102,19 +135,26 @@ export default {
         <div class="infowin-main-info">
           <div >
             <div class="infowin-status-flag">
-              <h3>EN VENTA</h3>
+              <h3>${propertyStatus}</h3>
             </div>
           </div>
           <div>
             <h4 class="infowin-direccion">${r.direccion}</h4>
             <h4>Superficie: ${r.superficie} m2</h4>
-            <h4>Desde: $${r.venta}</h4>
+            <h4>${priceFormat}</h4>
             <h4>Contacto: +52 (661) 616-9846</h4>
           </div>
         </div>
         <div class="infowin-zona-info-ribbon">
           <h2>INFORMACION DE LA ZONA</h2>
         </div>
+      </div>`;
+      return template;
+    }
+    function templateSecondaryInfoWin(r) {
+      const template = `
+      <div class="infowin-box">
+        <h1>culo</h1>
       </div>`;
       return template;
     }
@@ -257,6 +297,7 @@ h4.infowin-direccion {
   width: 100%;
   height: 107%;
 }
+
 @media screen and (min-width: 1640px) {
   .map-div {
     height: 104.5%;

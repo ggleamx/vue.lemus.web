@@ -1,5 +1,6 @@
 <template>
   <search-filters></search-filters>
+  <!-- <carousel></carousel> -->
   <div class="homesearch-main-container">
     <template v-if="isLoading">
       <loading
@@ -21,13 +22,15 @@
 
         <PropertyCard
           v-for="property in propertys"
-          :key="property.uid"
+          :key="property.numPropiedad"
           :property="property"
           :class="{
             initialColor: initialCardState,
-            filteredColor: property.uid != markerFilter && !initialCardState,
-            unfilteredColor: property.uid == markerFilter,
+            filteredColor:
+              property.numPropiedad != markerFilter && !initialCardState,
+            unfilteredColor: property.numPropiedad == markerFilter,
           }"
+          @mouseover="mapSecondaryInfoWinOn(key)"
         />
       </div>
     </template>
@@ -50,8 +53,6 @@ export default {
       propertys: null,
       markerFilter: "",
       initialCardState: true,
-      // search: ¨¨,
-      // search: [],
     };
   },
   created() {
@@ -72,26 +73,22 @@ export default {
     filteringPropertys(markerUID) {
       this.markerFilter = markerUID;
       this.initialCardState = false;
-      // console.log(this.propertys.length);
       let propertysCollection = [];
       let target;
       this.propertys.forEach((propiedad, index, array) => {
-        const targetEquals = propiedad.uid === markerUID;
+        const targetEquals = propiedad.numPropiedad === markerUID;
         if (!targetEquals) propertysCollection.push(propiedad);
         else target = propiedad;
       });
       this.propertys = propertysCollection;
-      // console.log(this.propertys.length);
       this.propertys.unshift(target);
     },
-  },
-  computed: {
-    // testUID() {
-    //   console.log(this.propertys.payload);
-    //   return this.propertys.payload.filter((property) => {
-    //     return property.uid.match(this.markerFilter);
-    //   });
-    // },
+    mapSecondaryInfoWinOn() {
+      console.log("cakin");
+    },
+    mapSecondaryInfoWinOff() {
+      console.log("cacon");
+    },
   },
 };
 </script>
@@ -104,27 +101,22 @@ export default {
   height: calc(100% - 150px);
   top: 150px;
   background: white;
-  /* border: 3px solid greenyellow; */
 }
 .map-container {
-  /* width: calc(100% - 489.28px); */
   width: 56%;
   background: #dddddd;
   display: flex;
   justify-content: center;
   align-items: center;
-  /* border: 1px solid peru; */
 }
 .home-cards-container {
   right: 0;
-  /* width: 44%; */
   width: 44%;
   height: 100%;
   overflow-y: auto;
   padding: 10px;
   overflow-y: scroll;
   z-index: 2;
-  /* border: 1px solid salmon; */
 }
 .filteredColor {
   background-color: #93918e;
@@ -156,11 +148,9 @@ export default {
 }
 @media screen and (min-width: 1640px) {
   .map-container {
-    /* width: calc(100% - 264px); */
     width: 69.5%;
   }
   .home-cards-container {
-    /* min-width: 264px; */
     width: 31.5%;
   }
 }

@@ -204,7 +204,7 @@
   </div>
   <!----------------------------------------------------------------------->
 
-  <carousel></carousel>
+  <carousel :carouselSlides="slides" :onHomeView="homeSlider"></carousel>
 
   <!----------------------------------------------------------------------->
 </template>
@@ -215,6 +215,17 @@ import FiltersBox from "@/components/FiltersBox.vue";
 export default {
   name: "Home",
   components: { Carousel, FiltersBox },
+  data() {
+    return {
+      homeSlider: true,
+      slides: [
+        require("../assets/images/carousel-picture-1.webp"),
+        require("../assets/images/carousel-picture-2.webp"),
+        require("../assets/images/carousel-picture-3.webp"),
+        require("../assets/images/carousel-picture-4.webp"),
+      ],
+    };
+  },
 };
 </script>
 
@@ -516,6 +527,66 @@ export default {
 }
 
 /******************************************************/
+/* Carousel Styles */
+/******************************************************/
+
+/* .carousel-container {
+  background: #ebebeb;
+  width: 100%;
+  padding-bottom: 60px;
+  border: 1px solid blue;
+}
+
+.carousel-content {
+  position: relative;
+  height: auto;
+  overflow: hidden;
+  margin-top: 60px;
+}
+
+.carousel-content img {
+  width: 100%;
+}
+
+.carousel-content-buttons {
+  width: 436px;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 50px;
+}
+button {
+  width: 80px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #27231d;
+  color: white;
+  margin: 0px;
+  transition: all 500ms ease 0ms;
+  border: none;
+}
+
+button:hover {
+  transition: all 500ms ease 0ms;
+  cursor: pointer;
+  background-color: #000;
+}
+
+.prev {
+  left: 0;
+  margin-right: 1px;
+}
+
+.next {
+  right: 0;
+}
+
+.carousel-content-buttons svg {
+  width: 30px;
+  height: 30px;
+} */
+/******************************************************/
 
 @media screen and (min-width: 1640px) {
   .hero {
@@ -532,6 +603,10 @@ export default {
 
   .grid-content-card {
     margin: -40px auto 0;
+  }
+
+  .carousel-content-buttons {
+    width: 808px;
   }
 }
 </style>

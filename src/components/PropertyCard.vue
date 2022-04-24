@@ -1,10 +1,14 @@
 <template>
   <div class="property-card">
-    <a href="" class="property-card-link-container">
+    <div class="property-card-link-container">
       <div class="property-card-content">
         <div class="card-picture-slider">
-          <!-- <img src="../assets/images/property-card-image.jpg" alt="" /> -->
-          <!-- <carousel></carousel> -->
+          <!-- <img :src="property.imgs.galeria[index]" alt="" /> -->
+          <!-- <p>{{ property.imgs.galeria[index] }}</p> -->
+          <carousel
+            :onPropertyCard="propertyCardSlider"
+            :carouselSlides="property"
+          ></carousel>
         </div>
         <div class="property-card-info">
           <h2>{{ property.direccion }}</h2>
@@ -18,27 +22,35 @@
               <p class="first-column-item">{{ property.baños }} baños</p>
             </div>
             <div class="property-details-row second">
-              <p>Precio: ${{ priceFormat }}</p>
+              <p>Precio: {{ priceFormat }}</p>
               <p>Superficie: {{ property.superficie }}m2</p>
             </div>
           </div>
         </div>
       </div>
-    </a>
+    </div>
   </div>
 </template>
 
 <script>
+import Carousel from "@/components/carousel/Carousel.vue";
 export default {
   name: "PropertyCard",
+  components: { Carousel },
+  data() {
+    return { propertyCardSlider: true };
+  },
   props: {
     property: Object,
+    index: Number,
   },
   computed: {
     priceFormat() {
-      const str = this.property.venta.toString().split(".");
-      str[0] = str[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-      return str.join(".");
+      if (this.property.venta) {
+        const str = this.property.venta.toString().split(".");
+        str[0] = str[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+        return "$" + str.join(".");
+      } else return "VENDIDO";
     },
   },
 };
@@ -65,11 +77,12 @@ export default {
 .card-picture-slider {
   width: 280px;
   height: 200px;
+  background: #ebebeb;
 }
-.card-picture-slider img {
-  width: 100%;
-  height: 100%;
-}
+/* .card-picture-slider img {
+  
+  height: 260px;
+} */
 .property-card-info {
   width: calc(100% - 280px);
   text-align: left;
@@ -130,5 +143,11 @@ export default {
 }
 /* .first-column-item {
   padding-right: 15px;
+} */
+/* .carousel-container {
+  background: transparent;
+  width: 560px;
+  padding-bottom: 0px;
+  border: 1px solid green;
 } */
 </style>

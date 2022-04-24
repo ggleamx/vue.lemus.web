@@ -1,7 +1,11 @@
 <template>
-  <div v-show="visibleSlide === index" class="carousel-slide">
+  <div
+    v-show="visibleSlide === index"
+    :class="{ carouselSlide: onHomeView }"
+    class="slideFx"
+  >
     <slot></slot>
-    <div class="carousel-slide-callout-container">
+    <div v-if="onHomeView" class="carousel-slide-callout-container">
       <!----------------------------------------------------------------------->
       <div v-show="index === 0" class="carousel-slide carousel-slide-callout">
         <!----------------------------------------------------------------------->
@@ -145,7 +149,7 @@
 
 <script>
 export default {
-  props: ["visibleSlide", "index"],
+  props: ["visibleSlide", "index", "onHomeView"],
   data() {
     return {};
   },
@@ -153,14 +157,39 @@ export default {
 </script>
 
 <style>
-.carousel-slide img {
+.carouselSlide img {
   animation: opacity 0.5s ease backwards;
+}
+
+.slideFx img {
+  animation: smooth-opacity 0.2s ease-in-out;
 }
 
 @keyframes opacity {
   0% {
     opacity: 0;
   }
+  100% {
+    opacity: 1;
+  }
+}
+@keyframes smooth-opacity {
+  0% {
+    opacity: 0.6;
+  }
+
+  25% {
+    opacity: 0.7;
+  }
+
+  50% {
+    opacity: 0.8;
+  }
+
+  75% {
+    opacity: 0.9;
+  }
+
   100% {
     opacity: 1;
   }
