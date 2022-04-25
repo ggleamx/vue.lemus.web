@@ -1,4 +1,5 @@
 <template>
+<button @click="aux" >kaka</button>
   <div ref="mapDiv" class="map-div">
     <div></div>
   </div>
@@ -14,16 +15,82 @@ export default {
     markersData: Object,
     propertyCardHover: Boolean,
   },
+  data(){
+    return {
+      googleMap:null,
+      googleMarkers:[],
+      infoMarkers: []
+
+    }
+  },
+
+  methods: {
+    aux(){
+      this.infoMarkers[0].setContent(this.template([this.markersData[0]]));
+      this.infoMarkers[0].open(this.googleMap,this.googleMarkers[0]);
+    },
+     template(r) {
+
+       r = r[0];
+      // formatting value of 'venta'
+      const nullPrice = "";
+      let priceFormat;
+      if (r.venta) {
+        const str = r.venta.toString().split(".");
+        str[0] = str[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+        priceFormat = "Desde: $ " + str;
+      } else {
+        priceFormat = nullPrice;
+      }
+
+      let propertyStatus;
+      if (priceFormat == nullPrice) {
+        propertyStatus = "VENDIDO";
+      } else {
+        propertyStatus = "EN VENTA";
+      }
+
+      const template = `
+      <div class="infowin-box">
+        <div class="infowin-ciudad">
+          <h2>${r.ciudad}</h2>
+        </div>
+        <div class="infowin-colonia">
+          <h4 >${r.colonia}</h4>
+        </div>
+        <div class="infowin-main-info">
+          <div >
+            <div class="infowin-status-flag">
+              <h3>${propertyStatus}</h3>
+            </div>
+          </div>
+          <div>
+            <h4 class="infowin-direccion">${r.direccion}</h4>
+            <h4>Superficie: ${r.superficie} m2</h4>
+            <h4>${priceFormat}</h4>
+            <h4>Contacto: +52 (661) 616-9846</h4>
+          </div>
+        </div>
+        <div class="infowin-zona-info-ribbon">
+          <h2>INFORMACION DE LA ZONA</h2>
+        </div>
+      </div>`;
+      return template;
+    }
+  },
+
+
+  
   mounted() {
+
     const loader = new Loader({ apiKey: GOOGLE_MAPS_API_KEY });
     let that = this;
-    let map = null;
     let clickListener = null;
     let propertyCardOnHover = this.propertyCardHover;
     const mapDiv = this.$refs.mapDiv;
     //creating map instance
-    loader.load().then(() => {
-      map = new google.maps.Map(mapDiv, {
+    loader.load().then((res) => {
+      this.googleMap = new google.maps.Map(mapDiv, {
         mapId: "369869d2d3c4e4fd",
         //Disabling map default controls
         mapTypeControl: false,
@@ -37,13 +104,15 @@ export default {
         //Adjusting zoom
         zoom: 12,
       });
+
+      console.log(this.googleMap);
       //list propertys in estates payload
       let list = Object.keys(this.markersData).map((key) => {
         return this.markersData[key];
       });
-      getMarkers(list);
+      getMarkers(list,this.googleMap,this.googleMarkers,this.infoMarkers);
     });
-    function getMarkers(markersData) {
+    function getMarkers(markersData,googleMap, googleMarkers,infoMarkers) {
       // console.log("list: ", typeof markersData);
       //centering markers
       const bounds = new google.maps.LatLngBounds();
@@ -53,40 +122,45 @@ export default {
         minWidth: 239,
         maxWidth: 239,
       });
-      let secondaryInfoWin = new google.maps.InfoWindow({
-        pixelOffset: new google.maps.Size(147, 319),
-        minWidth: 239,
-        maxWidth: 239,
-      });
+
+
+
+      // let secondaryInfoWin = new google.maps.InfoWindow({
+      //   pixelOffset: new google.maps.Size(147, 319),
+      //   minWidth: 239,
+      //   maxWidth: 239,
+      // });
       for (let i = 0; i < markersData.length; i++) {
-        const p = markersData[i];
-        const pos = {
-          lat: parseFloat(p.latitud),
-          lng: parseFloat(p.longitud),
+        const markerData = markersData[i];
+       
+       const pos = {
+          lat: parseFloat(markerData.latitud),
+          lng: parseFloat(markerData.longitud),
         };
+
+
         const marker = new google.maps.Marker({
           position: pos,
-          map: map,
+          map: googleMap,
           icon: {
             url: mapIcon,
             scaledSize: new google.maps.Size(21, 30),
           },
         });
-        let markerUID = markersData[i].numPropiedad;
+
+        googleMarkers.push(marker);
+        infoMarkers.push(uniqueInfoWin);
+
         marker.addListener("click", () => {
-          uniqueInfoWin.setContent(templateInfoWin(p));
-          uniqueInfoWin.open(map, marker);
-          //changing color of PropertyCard
-          that.$emit("filtering", markerUID);
-          // console.log(markerUID);
+           openMarker(infoMarkers[i],markerData,marker,googleMap);
         });
         //
-        let secondaryWin;
+        // let secondaryWin;
 
-        const secondaryInfoWinOn = () => {
-          secondaryInfoWin.setContent(templateSecondaryInfoWin(p));
-          secondaryInfoWin.open(map, marker);
-        };
+        // const secondaryInfoWinOn = () => {
+        //   secondaryInfoWin.setContent(templateSecondaryInfoWin(p));
+        //   secondaryInfoWin.open(map, marker);
+        // };
 
         // if (propertyCardOnHover) {
         //   console.log("culo");
@@ -104,8 +178,7 @@ export default {
       //center the map based on the postion of all markers
       /* map.fitBounds(bounds);*/
     }
-    //InfoWindows template
-    function templateInfoWin(r) {
+        function templateInfoWin(r) {
       //formatting value of 'venta'
       const nullPrice = "";
       let priceFormat;
@@ -151,6 +224,8 @@ export default {
       </div>`;
       return template;
     }
+    //InfoWindows template
+   
     function templateSecondaryInfoWin(r) {
       const template = `
       <div class="infowin-box">
@@ -158,7 +233,18 @@ export default {
       </div>`;
       return template;
     }
+  function openMarker (uniqueInfoWin,markerData,googlerMarker,googleMap) {
+          uniqueInfoWin.setContent(templateInfoWin(markerData));
+          uniqueInfoWin.open(googleMap, googlerMarker);
+          //changing color of PropertyCard
+          that.$emit("filtering", markerData.numPropiedad);
+          // console.log(markerUID);
+    }
+
   },
+
+
+
 };
 </script>
 
