@@ -1,16 +1,18 @@
 <template>
   <div class="property-card">
+
     <div class="property-card-link-container">
       <div class="property-card-content">
         <div class="card-picture-slider">
-          <!-- <img :src="property.imgs.galeria[index]" alt="" /> -->
-          <!-- <p>{{ property.imgs.galeria[index] }}</p> -->
-          <carousel
-            :onPropertyCard="propertyCardSlider"
-            :carouselSlides="property"
-          ></carousel>
+          <carousel :property="property" :onPropertyCard="propertyCardSlider" :carouselSlides="property"></carousel>
         </div>
-        <div class="property-card-info">
+        <router-link class="property-card-info" :to="{
+          name: 'single-property',
+          params: {
+            propertyId: property.numPropiedad,
+            neighborhood: property.zona,
+          },
+        }">
           <h2>{{ property.direccion }}</h2>
           <h4>En {{ property.ciudad }}</h4>
           <h5>Colonia: {{ property.colonia }}</h5>
@@ -26,9 +28,11 @@
               <p>Superficie: {{ property.superficie }}m2</p>
             </div>
           </div>
-        </div>
+
+        </router-link>
       </div>
     </div>
+
   </div>
 </template>
 
@@ -66,6 +70,7 @@ export default {
   box-shadow: 0 6px 12px rgb(0 0 0 / 15%);
   overflow: hidden;
 }
+
 .property-card-content {
   box-shadow: 0 0 6px 0 transparent, 0 0 2px 0 transparent;
   width: 100%;
@@ -74,11 +79,13 @@ export default {
   padding: 0px;
   display: flex;
 }
+
 .card-picture-slider {
   width: 280px;
   height: 200px;
   background: #ebebeb;
 }
+
 /* .card-picture-slider img {
   
   height: 260px;
@@ -90,6 +97,7 @@ export default {
   display: flex;
   flex-direction: column;
 }
+
 .property-card-info h2 {
   font-family: Frank Ruhl Libre;
   font-weight: 700;
@@ -99,6 +107,7 @@ export default {
   color: #6f6b66;
   height: 56px;
 }
+
 .property-card-info h4 {
   margin: 0px;
   font-size: 14px;
@@ -110,6 +119,7 @@ export default {
   color: #6f6b66;
   height: 16px;
 }
+
 .property-card-info h5 {
   font-family: Georama, Verdana, Helvetica, sans-serif;
   font-size: 16px;
@@ -119,20 +129,24 @@ export default {
   margin: 7.25px 0px 7.25px 0px;
   /* height: 41px; */
 }
+
 .property-details {
   display: flex;
   width: 100%;
   height: 52px;
   overflow: hidden;
 }
+
 .property-details-row {
   display: flex;
   flex-direction: column;
   width: 40%;
 }
+
 .property-details-row.second {
   width: 60%;
 }
+
 .property-details-row p {
   font-size: 16px;
   line-height: 26px;
@@ -141,6 +155,7 @@ export default {
   color: #6f6b66;
   text-align: left;
 }
+
 /* .first-column-item {
   padding-right: 15px;
 } */

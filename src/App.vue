@@ -1,11 +1,9 @@
 <template >
-  <main-nav
-    :class="{
-      homeSearchOn: $route.path == '/search',
-    }"
-  ></main-nav>
+  <main-nav :class="{
+    homeSearchOn: $route.name == 'home-search',
+  }"></main-nav>
   <router-view />
-  <main-footer v-if="$route.path != '/search'"></main-footer>
+  <main-footer v-if="$route.name != 'home-search'"></main-footer>
 </template>
 
 <script>

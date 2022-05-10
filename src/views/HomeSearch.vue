@@ -1,37 +1,20 @@
 <template>
   <search-filters></search-filters>
-  <!-- <carousel></carousel> -->
   <div class="homesearch-main-container">
     <template v-if="isLoading">
-      <loading
-        :active="isLoading"
-        :can-cancel="true"
-        :on-cancel="onCancel"
-        :is-full-page="fullPage"
-      ></loading>
+      <loading :active="isLoading" :can-cancel="true" :on-cancel="onCancel" :is-full-page="fullPage"></loading>
     </template>
     <template v-else>
       <div class="map-container">
-        <estates-map
-          :markersData="propertys"
-          @filtering="filteringPropertys"
-        ></estates-map>
+        <estates-map :markersData="propertys" @filtering="filteringPropertys"></estates-map>
       </div>
       <div class="home-cards-container">
-        <!-- template de Handlebars -->
-
-        <PropertyCard
-          v-for="property in propertys"
-          :key="property.numPropiedad"
-          :property="property"
-          :class="{
-            initialColor: initialCardState,
-            filteredColor:
-              property.numPropiedad != markerFilter && !initialCardState,
-            unfilteredColor: property.numPropiedad == markerFilter,
-          }"
-          @mouseover="mapSecondaryInfoWinOn(key)"
-        />
+        <PropertyCard v-for="property in propertys" :key="property.numPropiedad" :property="property" :class="{
+          initialColor: initialCardState,
+          filteredColor:
+            property.numPropiedad != markerFilter && !initialCardState,
+          unfilteredColor: property.numPropiedad == markerFilter,
+        }" @mouseover="mapSecondaryInfoWinOn(key)" />
       </div>
     </template>
   </div>
@@ -102,6 +85,7 @@ export default {
   top: 150px;
   background: white;
 }
+
 .map-container {
   width: 56%;
   background: #dddddd;
@@ -109,6 +93,7 @@ export default {
   justify-content: center;
   align-items: center;
 }
+
 .home-cards-container {
   right: 0;
   width: 44%;
@@ -118,38 +103,48 @@ export default {
   overflow-y: scroll;
   z-index: 2;
 }
+
 .filteredColor {
   background-color: #93918e;
 }
+
 .unfilteredColor {
   background-color: none;
 }
+
 .initialColor {
   background-color: none;
 }
+
 .filteredColor h5 {
   color: #646464;
 }
+
 @media screen and (min-width: 1025px) {
   .map-container {
     width: 41.5%;
   }
+
   .home-cards-container {
     width: 58.5%;
   }
 }
+
 @media screen and (min-width: 1350px) {
   .map-container {
     width: 56%;
   }
+
   .home-cards-container {
     width: 44%;
   }
 }
+
 @media screen and (min-width: 1640px) {
   .map-container {
     width: 69.5%;
   }
+
   .home-cards-container {
     width: 31.5%;
   }

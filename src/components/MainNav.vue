@@ -2,41 +2,35 @@
   <div class="main-nav">
     <!--LOGO----------------------------------------------------------------->
     <div class="lemus-logo">
-      <router-link :to="{ name: 'Home' }"
-        ><img src="../assets/lemus-logo.svg" alt="logo"
-      /></router-link>
+      <router-link :to="{ name: 'Home' }"><img src="../assets/lemus-logo.svg" alt="logo" /></router-link>
     </div>
     <!----------------------------------------------------------------------->
     <nav class="main-nav-items">
       <!---HomeSearch Option--------------------------------------------------->
       <div class="nav-item">
         <router-link :to="{ name: 'home-search' }">
-          <p class="option-underline">Buscar Propiedad</p></router-link
-        >
+          <p class="option-underline">Buscar Propiedad</p>
+        </router-link>
       </div>
       <!--Neighborhoods Option------------------------------------------------->
-      <div
-        class="neighborhoods-option"
-        @mouseover="neighborhoodsMenuOn"
-        @mouseleave="neighborhoodsMenuOff"
-      >
+      <div class="neighborhoods-option" @mouseover="neighborhoodsMenuOn" @mouseleave="neighborhoodsMenuOff">
         <div class="nav-item">
-          <a><p class="option-underline">Mejores Zonas</p></a>
+          <a>
+            <p class="option-underline">Mejores Zonas</p>
+          </a>
           <!--Gap-Cover----->
           <transition name="fade">
-            <div
-              v-if="neighborhoodsMenu"
-              class="neighborhoods-option-border-cover"
-            ></div>
+            <div v-if="neighborhoodsMenu" class="neighborhoods-option-border-cover"></div>
           </transition>
           <!---------------->
         </div>
         <!--SUBMENU------------------------>
         <transition name="fade">
           <div v-show="neighborhoodsMenu" class="neighborhoods-menu">
-            <router-link :to="{ name: 'about-us' }"
-              ><p>Sobre Nosotros</p></router-link
-            >
+            <router-link :to="{ name: 'about-us' }">
+              <p>Sobre Nosotros</p>
+              <div></div>
+            </router-link>
           </div>
         </transition>
         <!--------------------------------->
@@ -44,19 +38,16 @@
       <!--Virtual Tours Option------------------------------------------------->
       <div class="nav-item">
         <router-link :to="{ name: 'virtual-tours' }">
-          <p class="option-underline">Tours Virtuales</p></router-link
-        >
+          <p class="option-underline">Tours Virtuales</p>
+        </router-link>
       </div>
       <!--About--------------------------------------------------------------->
-      <div
-        class="about-option"
-        @mouseover="aboutMenuOn"
-        @mouseleave="aboutMenuOff"
-      >
+      <div class="about-option" @mouseover="aboutMenuOn" @mouseleave="aboutMenuOff">
         <div class="nav-item">
-          <router-link :to="{ name: 'about-us' }"
-            ><p class="option-underline">Sobre Nosotros</p></router-link
-          ><!--Gap-Cover----->
+          <router-link :to="{ name: 'about-us' }">
+            <p class="option-underline">Sobre Nosotros</p>
+          </router-link>
+          <!--Gap-Cover----->
           <transition name="fade">
             <div v-if="aboutMenu" class="about-option-border-cover"></div>
           </transition>
@@ -65,28 +56,24 @@
         <!--SUBMENU------------------------>
         <transition name="fade">
           <div v-show="aboutMenu" class="neighborhoods-menu">
-            <router-link :to="{ name: 'about-us' }"
-              ><p>Sobre Nosotros</p></router-link
-            >
+            <router-link :to="{ name: 'about-us' }">
+              <p>Sobre Nosotros</p>
+            </router-link>
           </div>
         </transition>
         <!--------------------------------->
       </div>
       <!----Owner Login Button------------------------------------------------->
       <div class="nav-item owner-login">
-        <a
-          href="https://lemus-office.herokuapp.com/login"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <p class="owners-option-underline">PORTAL DE PROPIETARIOS</p></a
-        >
+        <a href="https://lemus-office.herokuapp.com/login" target="_blank" rel="noopener noreferrer">
+          <p class="owners-option-underline">PORTAL DE PROPIETARIOS</p>
+        </a>
       </div>
       <!----Join List Button--------------------------------------------------->
       <div class="nav-item join-list-option">
         <router-link :to="{ name: 'about-us' }">
-          <p>UNIRME A LA LISTA<br />DE INTERESADOS</p></router-link
-        >
+          <p>UNIRME A LA LISTA<br />DE INTERESADOS</p>
+        </router-link>
       </div>
       <!----------------------------------------------------------------------->
     </nav>
@@ -177,6 +164,7 @@ export default {
 .fade-leave-to {
   opacity: 0;
 }
+
 /* /////////////// */
 
 .neighborhoods-option {
@@ -258,6 +246,7 @@ export default {
   border-top: none;
   border-bottom: none;
 }
+
 .join-list-option p {
   color: white;
 }

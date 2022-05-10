@@ -1,9 +1,5 @@
 <template>
-  <div
-    v-show="visibleSlide === index"
-    :class="{ carouselSlide: onHomeView }"
-    class="slideFx"
-  >
+  <div v-show="visibleSlide === index" :class="{ carouselSlide: onHomeView }" class="slideFx">
     <slot></slot>
     <div v-if="onHomeView" class="carousel-slide-callout-container">
       <!----------------------------------------------------------------------->
@@ -27,10 +23,7 @@
           <!----------------------------------------------------------------------->
           <div class="carousel-slide-callout-box-button">
             <div class="images-grid-main-button callout-box-slide-button">
-              <router-link
-                class="grid-button callout-box-button"
-                :to="{ name: 'about-us' }"
-              >
+              <router-link class="grid-button callout-box-button" :to="{ name: 'about-us' }">
                 <p>Conoce Mas</p>
               </router-link>
             </div>
@@ -60,10 +53,7 @@
           <!----------------------------------------------------------------------->
           <div class="carousel-slide-callout-box-button">
             <div class="images-grid-main-button callout-box-slide-button">
-              <router-link
-                class="grid-button callout-box-button"
-                :to="{ name: 'virtual-tours' }"
-              >
+              <router-link class="grid-button callout-box-button" :to="{ name: 'virtual-tours' }">
                 <p>Tomar un tour virtual</p>
               </router-link>
             </div>
@@ -95,10 +85,7 @@
           <!----------------------------------------------------------------------->
           <div class="carousel-slide-callout-box-button">
             <div class="images-grid-main-button callout-box-slide-button">
-              <router-link
-                class="grid-button callout-box-button"
-                :to="{ name: 'neighborhoods' }"
-              >
+              <router-link class="grid-button callout-box-button" :to="{ name: 'neighborhoods' }">
                 <p>Descubrir Mas</p>
               </router-link>
             </div>
@@ -130,10 +117,7 @@
           <!----------------------------------------------------------------------->
           <div class="carousel-slide-callout-box-button">
             <div class="images-grid-main-button callout-box-slide-button">
-              <router-link
-                class="grid-button callout-box-button"
-                :to="{ name: 'virtual-tours' }"
-              >
+              <router-link class="grid-button callout-box-button" :to="{ name: 'virtual-tours' }">
                 <p>Eche un vistazo a los planos</p>
               </router-link>
             </div>
@@ -169,10 +153,12 @@ export default {
   0% {
     opacity: 0;
   }
+
   100% {
     opacity: 1;
   }
 }
+
 @keyframes smooth-opacity {
   0% {
     opacity: 0.6;
@@ -202,6 +188,7 @@ export default {
   width: 100%;
   /* border: 1px solid red; */
 }
+
 .carousel-slide-callout {
   width: 1140px;
   display: flex;
@@ -251,6 +238,7 @@ export default {
     transform: translateZ(0);
     opacity: 1;
   }
+
   100% {
     -webkit-transform: translate3d(-75px, 0, 0);
     transform: translate3d(-75px, 0, 0);
@@ -264,6 +252,7 @@ export default {
     transform: translateZ(0);
     opacity: 0;
   }
+
   100% {
     -webkit-transform: translate3d(-75px, 0, 0);
     transform: translate3d(-75px, 0, 0);
@@ -274,6 +263,7 @@ export default {
 .carousel-slide-callout-box-text {
   padding-right: 20px;
 }
+
 .carousel-slide-callout-box-text h2 {
   font-size: 28px;
   line-height: 36px;

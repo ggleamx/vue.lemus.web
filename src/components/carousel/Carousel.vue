@@ -1,52 +1,37 @@
 <template>
   <!----------------------------------------------------------------------->
-  <div
-    v-if="onPropertyCard"
-    @mouseover="pictureShadowOn"
-    @mouseleave="pictureShadowOff"
-  >
+  <div v-if="onPropertyCard" @mouseover="pictureShadowOn" @mouseleave="pictureShadowOff">
     <!----------------------------------------------------------------------->
     <div class="homesearch-carousel-content">
       <!----------------------------------------------------------------------->
-      <carousel-slides
-        v-for="(slide, index) in carouselSlides.imgs.galeria"
-        :key="slide"
-        :index="index"
-        :visibleSlide="visibleSlide"
-        class="card-slider"
-      >
+      <carousel-slides v-for="(slide, index) in carouselSlides.imgs.galeria" :key="slide" :index="index"
+        :visibleSlide="visibleSlide" class="card-slider">
         <!------------------------------------------------>
-        <img v-if="onPropertyCard" :src="slide.url" />
+        <router-link :to="{
+          name: 'single-property',
+          params: {
+            propertyId: property.numPropiedad,
+            neighborhood: property.zona,
+          },
+        }">
+          <img v-if="onPropertyCard" :src="slide.url" />
+        </router-link>
         <!------------------------------------------------>
         <div class="homesearch-carousel-content-buttons">
           <!------------------------------------------------>
-          <button
-            @click="prev"
-            class="homesearch-prev"
-            :class="{
-              pictureShadow: pictureShadow,
-            }"
-          >
+          <button @click="prev" class="homesearch-prev" :class="{
+            pictureShadow: pictureShadow,
+          }">
             <svg width="768" height="768" viewBox="0 0 768 768" fill="none">
-              <path
-                fill="#fff"
-                d="M579 131.5L510 64L190.5 383.5L510 703L579 635.5L325.5 383.5L579 131.5Z"
-              />
+              <path fill="#fff" d="M579 131.5L510 64L190.5 383.5L510 703L579 635.5L325.5 383.5L579 131.5Z" />
             </svg>
           </button>
           <!------------------------------------------------>
-          <button
-            @click="next"
-            class="homesearch-next"
-            :class="{
-              pictureShadow: pictureShadow,
-            }"
-          >
+          <button @click="next" class="homesearch-next" :class="{
+            pictureShadow: pictureShadow,
+          }">
             <svg width="768" height="768" viewBox="0 0 768 768">
-              <path
-                fill="#fff"
-                d="M187.5 132l69-67.5 319.5 319.5-319.5 319.5-69-67.5 253.5-252z"
-              ></path>
+              <path fill="#fff" d="M187.5 132l69-67.5 319.5 319.5-319.5 319.5-69-67.5 253.5-252z"></path>
             </svg>
           </button>
           <!------------------------------------------------>
@@ -61,32 +46,21 @@
     <!----------------------------------------------------------------------->
     <div class="carousel-content">
       <!----------------------------------------------------------------------->
-      <carousel-slides
-        v-for="(slide, index) in carouselSlides"
-        :key="slide"
-        :index="index"
-        :visibleSlide="visibleSlide"
-        :onHomeView="onHomeView"
-      >
+      <carousel-slides v-for="(slide, index) in carouselSlides" :key="slide" :index="index" :visibleSlide="visibleSlide"
+        :onHomeView="onHomeView">
         <!------------------------------------------------>
         <img v-if="onHomeView" :src="slide" />
         <div class="carousel-content-buttons">
           <!------------------------------------------------>
           <button @click="prev" class="prev">
             <svg width="768" height="768" viewBox="0 0 768 768" fill="none">
-              <path
-                fill="#fff"
-                d="M579 131.5L510 64L190.5 383.5L510 703L579 635.5L325.5 383.5L579 131.5Z"
-              />
+              <path fill="#fff" d="M579 131.5L510 64L190.5 383.5L510 703L579 635.5L325.5 383.5L579 131.5Z" />
             </svg>
           </button>
           <!------------------------------------------------>
           <button @click="next" class="next">
             <svg width="768" height="768" viewBox="0 0 768 768">
-              <path
-                fill="#fff"
-                d="M187.5 132l69-67.5 319.5 319.5-319.5 319.5-69-67.5 253.5-252z"
-              ></path>
+              <path fill="#fff" d="M187.5 132l69-67.5 319.5 319.5-319.5 319.5-69-67.5 253.5-252z"></path>
             </svg>
           </button>
         </div>
@@ -110,6 +84,7 @@ export default {
     carouselSlides: Object,
     onHomeView: Boolean,
     onPropertyCard: Boolean,
+    property: Object,
   },
 
   data() {
