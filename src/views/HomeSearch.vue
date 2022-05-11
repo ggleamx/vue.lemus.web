@@ -24,7 +24,7 @@
 import SearchFilters from "@/components/SearchFilters.vue";
 import PropertyCard from "@/components/PropertyCard.vue";
 import EstatesMap from "@/components/EstatesMap.vue";
-import propertyService from "@/services/propertyService.js";
+import { usePropertiesData } from "@/composables/propertiesDataFetch.js";
 import Loading from "vue-loading-overlay";
 import "vue-loading-overlay/dist/vue-loading.css";
 export default {
@@ -32,25 +32,14 @@ export default {
   components: { SearchFilters, PropertyCard, EstatesMap, Loading },
   data() {
     return {
-      isLoading: true,
-      propertys: null,
       markerFilter: "",
       initialCardState: true,
     };
   },
-  created() {
-    propertyService
-      .getPropertys()
-      .then((res) => {
-        // console.log(res);
-        setTimeout(() => {
-          this.propertys = res.data.payload;
-          this.isLoading = false;
-        }, 300);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+  setup() {
+    const { propertys, isLoading, error } = usePropertiesData()
+    return { propertys, isLoading, error }
+
   },
   methods: {
     filteringPropertys(markerUID) {
@@ -68,6 +57,7 @@ export default {
     },
     mapSecondaryInfoWinOn() {
       console.log("cakin");
+      // console.log(this.propertys[1]);
     },
     mapSecondaryInfoWinOff() {
       console.log("cacon");

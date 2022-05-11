@@ -4,7 +4,7 @@
     <!----------------------------------------------------------------------->
     <div class="homesearch-carousel-content">
       <!----------------------------------------------------------------------->
-      <carousel-slides v-for="(slide, index) in carouselSlides.imgs.galeria" :key="slide" :index="index"
+      <carousel-slides v-for="(slide, index) in carouselSlides.imgs.portada" :key="slide" :index="index"
         :visibleSlide="visibleSlide" class="card-slider">
         <!------------------------------------------------>
         <router-link :to="{
@@ -14,7 +14,7 @@
             neighborhood: property.zona,
           },
         }">
-          <img v-if="onPropertyCard" :src="slide.url" />
+          <img v-if="onPropertyCard" :src="slide.url" /> 
         </router-link>
         <!------------------------------------------------>
         <div class="homesearch-carousel-content-buttons">
@@ -97,7 +97,7 @@ export default {
   computed: {
     slidesLen() {
       if (this.onPropertyCard) {
-        return this.carouselSlides.imgs.galeria.length;
+        return this.carouselSlides.imgs.portada.length;
       } else return this.carouselSlides.length;
     },
   },

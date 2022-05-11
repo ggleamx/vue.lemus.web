@@ -2,7 +2,7 @@
   <div class="main-nav">
     <!--LOGO----------------------------------------------------------------->
     <div class="lemus-logo">
-      <router-link :to="{ name: 'Home' }"><img src="../assets/lemus-logo.svg" alt="logo" /></router-link>
+      <router-link :to="{ name: 'Home' }"><img src="../assets/lemus-logo.svg" alt="logo" /></router-link> 
     </div>
     <!----------------------------------------------------------------------->
     <nav class="main-nav-items">
@@ -155,9 +155,9 @@ export default {
 }
 
 /* vue transitions */
-.fade-enter-active,
+.fade-enter-active{transition: opacity 0.4s ease;}
 .fade-leave-active {
-  transition: opacity 0.4s ease;
+  transition: opacity 0.125s ease;
 }
 
 .fade-enter-from,

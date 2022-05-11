@@ -1,4 +1,5 @@
 import { createRouter, createWebHistory } from "vue-router";
+import { usePropertiesData } from "@/composables/propertiesDataFetch.js";
 import Home from "@/views/Home.vue";
 import HomeSearch from "@/views/HomeSearch.vue";
 import Neighborhoods from "@/views/Neighborhoods.vue";
@@ -8,6 +9,14 @@ import VirtualTours from "@/views/VirtualTours.vue";
 import About from "@/views/About.vue";
 import Faqs from "@/views/Faqs.vue";
 import NotFound from "@/views/NotFound.vue";
+
+
+
+
+
+
+
+
 
 const routes = [
   {
@@ -38,6 +47,17 @@ const routes = [
     path: "/Zonas/:neighborhood",
     name: "single-neighborhood",
     component: SingleNeighborhood,
+    beforeEnter: (to, from,) => {
+
+      function propertiesData() {
+        const { propertys, error } = usePropertiesData()
+        console.log(propertys);
+        return { propertys, error }
+      }
+
+      console.log(propertiesData());
+
+    }
   },
   {
     path: "/Zonas/:neighborhood/:propertyId",
