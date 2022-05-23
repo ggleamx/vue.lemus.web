@@ -11,7 +11,7 @@ const apiClientPropertys = axios.create({
 });
 
 export default {
-  getPropertys() {
+  async getPropertys() {
     return apiClientPropertys.get("/estates");
   },
 };

@@ -2,7 +2,7 @@
   <div class="main-nav">
     <!--LOGO----------------------------------------------------------------->
     <div class="lemus-logo">
-      <router-link :to="{ name: 'Home' }"><img src="../assets/lemus-logo.svg" alt="logo" /></router-link> 
+      <router-link :to="{ name: 'Home' }"><img src="../assets/lemus-logo.svg" alt="logo" /></router-link>
     </div>
     <!----------------------------------------------------------------------->
     <nav class="main-nav-items">
@@ -119,7 +119,7 @@ export default {
   height: 90px;
   border-bottom: 1px solid rgba(0, 0, 0, 0.1);
   /* position: absolute; */
-  z-index: 3;
+  z-index: 4;
   width: 100%;
 }
 
@@ -155,7 +155,10 @@ export default {
 }
 
 /* vue transitions */
-.fade-enter-active{transition: opacity 0.4s ease;}
+.fade-enter-active {
+  transition: opacity 0.4s ease;
+}
+
 .fade-leave-active {
   transition: opacity 0.125s ease;
 }
@@ -186,7 +189,7 @@ export default {
   /* top: 90px; */
   /* margin-top: 90px; */
   left: 0;
-  z-index: 1;
+  z-index: 2;
   /* overflow-y: scroll; 
   /* border: 5px solid red; */
 }
@@ -207,7 +210,7 @@ export default {
   height: 10%;
   margin-top: 59%;
   position: absolute;
-  z-index: 2;
+  z-index: 3;
 }
 
 .about-option-border-cover {
@@ -216,7 +219,7 @@ export default {
   height: 10%;
   margin-top: 57%;
   position: absolute;
-  z-index: 2;
+  z-index: 3;
   margin-left: 0.3px;
 }
 

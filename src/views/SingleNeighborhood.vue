@@ -1,5 +1,5 @@
 <template>
-    <h1>Culo</h1>
+    <h1>neighborhood</h1>
 </template>
 
 <script>

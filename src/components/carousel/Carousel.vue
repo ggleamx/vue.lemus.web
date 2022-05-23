@@ -14,7 +14,7 @@
             neighborhood: property.zona,
           },
         }">
-          <img v-if="onPropertyCard" :src="slide.url" /> 
+          <img v-if="onPropertyCard" :src="slide.url" />
         </router-link>
         <!------------------------------------------------>
         <div class="homesearch-carousel-content-buttons">

@@ -15,6 +15,7 @@ export default {
     propertyCardHover: Boolean,
   },
   mounted() {
+    console.log(this.markersData);
     const loader = new Loader({ apiKey: GOOGLE_MAPS_API_KEY });
     let that = this;
     let map = null;
@@ -170,9 +171,11 @@ export default {
   display: flex;
   flex-direction: column;
 }
+
 .infowin-dir {
   color: #222;
 }
+
 .infowin-ciudad h1,
 h2,
 h3,
@@ -180,6 +183,7 @@ h4 {
   color: #222;
   margin: 0px;
 }
+
 .infowin-ciudad h2 {
   font-family: Frank Ruhl Libre;
   font-size: 28px;
@@ -188,12 +192,14 @@ h4 {
   line-height: 36px;
   padding: 15px 15px 10px 15px;
 }
+
 .infowin-colonia {
   height: 37px;
   background-color: #ebebeb;
   display: flex;
   align-items: center;
 }
+
 .infowin-colonia h4 {
   color: #3a3a3a;
   font-weight: 400;
@@ -203,6 +209,7 @@ h4 {
   line-height: 1.15;
   font-family: Arial;
 }
+
 .infowin-status-flag {
   background: #ffd44d;
   width: 147px;
@@ -212,6 +219,7 @@ h4 {
   justify-content: center;
   margin-bottom: 9px;
 }
+
 .infowin-status-flag h3 {
   font-family: Georama, Verdana, Helvetica, sans-serif;
   font-weight: 700;
@@ -219,9 +227,11 @@ h4 {
   font-size: 12px;
   letter-spacing: 2px;
 }
+
 .infowin-main-info {
   padding: 15px;
 }
+
 .infowin-main-info h4 {
   margin-bottom: 1px;
   font-family: Georama, Verdana, Helvetica, sans-serif;
@@ -230,6 +240,7 @@ h4 {
   font-weight: 400;
   color: #3a3a3a;
 }
+
 h4.infowin-direccion {
   font-family: Georama, Verdana, Helvetica, sans-serif;
   font-size: 15px;
@@ -239,6 +250,7 @@ h4.infowin-direccion {
   color: #27231d;
   margin-bottom: 5px;
 }
+
 .infowin-zona-info-ribbon {
   height: 60px;
   background-color: #0155cb;
@@ -249,6 +261,7 @@ h4.infowin-direccion {
   text-align: center;
   border-radius: 6px 6px 0px 0px;
 }
+
 .infowin-zona-info-ribbon h2 {
   color: white;
   font-size: 13px;
@@ -258,12 +271,14 @@ h4.infowin-direccion {
   text-transform: uppercase;
   font-family: Georama, Verdana, Helvetica, sans-serif;
 }
+
 .gm-style .gm-style-iw-c {
   border-radius: 0px 0px 6px 6px !important;
   box-shadow: 0 1px 6px 0 rgb(0 0 0 / 10%), 0 1px 2px 0 rgb(0 0 0 / 30%);
   padding: 0px;
   text-align: left;
 }
+
 .gm-style .gm-style-iw-t::after {
   top: -307px;
   left: -127px;
@@ -273,9 +288,11 @@ h4.infowin-direccion {
   height: 16px; */
   /* z-index: -1; */
 }
+
 .gm-style .gm-style-iw-d {
   overflow: hidden !important;
 }
+
 .gm-ui-hover-effect {
   display: flex;
   width: 60px !important;
@@ -287,12 +304,14 @@ h4.infowin-direccion {
   margin-top: 6.5px !important;
   margin-right: 6px !important;
 }
+
 .gm-ui-hover-effect span {
   width: 20px !important;
   height: 20px !important;
   margin: 0px !important;
   background-color: #000 !important;
 }
+
 .map-div {
   width: 100%;
   height: 107%;

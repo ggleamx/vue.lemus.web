@@ -1,22 +1,13 @@
 import { createRouter, createWebHistory } from "vue-router";
-import { usePropertiesData } from "@/composables/propertiesDataFetch.js";
+import { fetchPropiedades } from "@/composables/propertiesDataFetch.js";
 import Home from "@/views/Home.vue";
 import HomeSearch from "@/views/HomeSearch.vue";
-import Neighborhoods from "@/views/Neighborhoods.vue";
 import SingleNeighborhood from "@/views/SingleNeighborhood.vue";
 import SingleProperty from "@/views/SingleProperty.vue";
 import VirtualTours from "@/views/VirtualTours.vue";
 import About from "@/views/About.vue";
 import Faqs from "@/views/Faqs.vue";
 import NotFound from "@/views/NotFound.vue";
-
-
-
-
-
-
-
-
 
 const routes = [
   {
@@ -38,31 +29,52 @@ const routes = [
     component: HomeSearch,
   },
   {
-    path: "/Zonas",
-    name: "neighborhoods",
-    component: Neighborhoods,
-    redirect: "/Buscar",
-  },
-  {
     path: "/Zonas/:neighborhood",
     name: "single-neighborhood",
     component: SingleNeighborhood,
-    beforeEnter: (to, from,) => {
+    beforeEnter: (to, from) => {
+      const zones = ["Norte", "Sur", "Este", "Oeste"];
 
-      function propertiesData() {
-        const { propertys, error } = usePropertiesData()
-        console.log(propertys);
-        return { propertys, error }
-      }
+      const route = to.params.neighborhood;
 
-      console.log(propertiesData());
+      let zoneExists = false;
 
-    }
+      zones.forEach((zone) => {
+        if (route == zone) zoneExists = true;
+      });
+
+      if (!zoneExists) return { path: "/error" };
+    },
   },
   {
     path: "/Zonas/:neighborhood/:propertyId",
     name: "single-property",
     component: SingleProperty,
+    beforeEnter: async (to, from) => {
+      const route = to.params.propertyId;
+      const req = await fetchPropiedades();
+
+      if (req.ok) {
+        let flag = false;
+
+        const propiedades = req.payload;
+
+        propiedades.forEach((property) => {
+          if (property.numPropiedad == route) {
+            flag = true;
+            return;
+          }
+        });
+
+        if (!flag)
+          return {
+            path: "/error",
+          };
+      }
+
+      return;
+    },
+    props: true,
   },
   {
     path: "/VRtours",
@@ -85,12 +97,7 @@ const routes = [
     path: "/:catchAll(.*)",
     name: "NotFound",
     component: NotFound,
-  },/*
-  {
-    path: "/Zonas/:catchAll(.*)",
-    name: "NotFound",
-    component: NotFound,
-  }*/
+  },
 ];
 
 const router = createRouter({

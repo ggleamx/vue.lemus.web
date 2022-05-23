@@ -11,6 +11,14 @@
           params: {
             propertyId: property.numPropiedad,
             neighborhood: property.zona,
+            address: property.direccion,
+            colonia: property.colonia,
+            bathrooms: property.baños,
+            ciudad: property.ciudad,
+            images: property.imgs.portada[0].url,
+            rooms: property.recamaras,
+            parking: property.estacionamientos,
+            sqft: property.superficie
           },
         }">
           <h2>{{ property.direccion }}</h2>
@@ -46,7 +54,7 @@ export default {
   },
   props: {
     property: Object,
-    index: Number,
+
   },
   computed: {
     priceFormat() {

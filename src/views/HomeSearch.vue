@@ -41,6 +41,9 @@ export default {
     return { propertys, isLoading, error }
 
   },
+  mounted() {
+    console.log(this.propertys)
+  },
   methods: {
     filteringPropertys(markerUID) {
       this.markerFilter = markerUID;
