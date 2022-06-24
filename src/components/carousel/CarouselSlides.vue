@@ -128,12 +128,14 @@
       </div>
       <!----------------------------------------------------------------------->
     </div>
+
+    <!----------------------------------------------------------------------->
   </div>
 </template>
 
 <script>
 export default {
-  props: ["visibleSlide", "index", "onHomeView"],
+  props: ["visibleSlide", "index", "onHomeView", "onPropertyView"],
   data() {
     return {};
   },

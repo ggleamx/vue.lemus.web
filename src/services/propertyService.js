@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const apiClientPropertys = axios.create({
-  baseURL: "https://lemus-api.herokuapp.com/api/w",
+  baseURL: "http://lemus.gleam.mx/api/w",
 
   withCredentials: false,
   headers: {
@@ -13,5 +13,11 @@ const apiClientPropertys = axios.create({
 export default {
   async getPropertys() {
     return apiClientPropertys.get("/estates");
+
   },
+  // async getProperty() {
+
+  // }
+
 };
+

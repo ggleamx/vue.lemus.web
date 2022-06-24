@@ -14,7 +14,7 @@
           filteredColor:
             property.numPropiedad != markerFilter && !initialCardState,
           unfilteredColor: property.numPropiedad == markerFilter,
-        }" @mouseover="mapSecondaryInfoWinOn(key)" />
+        }" />
       </div>
     </template>
   </div>
@@ -38,11 +38,11 @@ export default {
   },
   setup() {
     const { propertys, isLoading, error } = usePropertiesData()
+    // const { emit } = usePropertiesData()
+    // emit('SinglePropertyData', propertys)
+    // console.log(propertys);
     return { propertys, isLoading, error }
 
-  },
-  mounted() {
-    console.log(this.propertys)
   },
   methods: {
     filteringPropertys(markerUID) {
@@ -58,13 +58,13 @@ export default {
       this.propertys = propertysCollection;
       this.propertys.unshift(target);
     },
-    mapSecondaryInfoWinOn() {
-      console.log("cakin");
-      // console.log(this.propertys[1]);
-    },
-    mapSecondaryInfoWinOff() {
-      console.log("cacon");
-    },
+    // mapSecondaryInfoWinOn() {
+    //   console.log("cakin");
+    //   // console.log(this.propertys[1]);
+    // },
+    // mapSecondaryInfoWinOff() {
+    //   console.log("cacon");
+    // },
   },
 };
 </script>

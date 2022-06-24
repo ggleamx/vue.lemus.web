@@ -10,16 +10,9 @@
           name: 'single-property',
           params: {
             propertyId: property.numPropiedad,
-            neighborhood: property.zona,
-            address: property.direccion,
-            colonia: property.colonia,
-            bathrooms: property.baños,
-            ciudad: property.ciudad,
-            images: property.imgs.portada[0].url,
-            rooms: property.recamaras,
-            parking: property.estacionamientos,
-            sqft: property.superficie
+            neighborhood: property.zona
           },
+        
         }">
           <h2>{{ property.direccion }}</h2>
           <h4>En {{ property.ciudad }}</h4>
@@ -65,6 +58,16 @@ export default {
       } else return "VENDIDO";
     },
   },
+
+  methods: {
+    // DataForSingleProperty() {
+    //   // console.log("chocha");
+    //   // console.log(this.property);
+    //   this.$root.$emit("SinglePropertyData", this.property)
+    // },
+  },
+
+
 };
 </script>
 
