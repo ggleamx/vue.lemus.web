@@ -9,12 +9,19 @@
 <script>
 import MainNav from "@/components/MainNav.vue";
 import MainFooter from "@/components/MainFooter.vue";
+// import { usePropertysData } from "@/stores/PropertysStore.js";
+
 
 export default {
   components: {
     MainNav,
     MainFooter,
   },
+  // setup() {
+  //   const propertysData = usePropertysData();
+  //   console.log(propertysData.property);
+  // }
+
 };
 </script>
 

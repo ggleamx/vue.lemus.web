@@ -22,18 +22,24 @@
     </div>
 
     <div class="fullpage-carousel-container">
-        <Carousel :property="property" :onPropertyView="onPropertyView" :carouselSlides="propertyImages"></Carousel>
-
+        <Carousel :property="property" :onPropertyView="onPropertyView" :activeSlide="currentSlide"
+            :carouselSlides="propertyImages" @selectedSlide="thumbnailSelected"></Carousel>
+        <div v-show="initialStateStyles" class="initial-state-styles">
+            <div>{{ propertyStatus }}</div>
+            <h1>{{ property.ciudad + " - " + property.direccion }}</h1>
+            <h4>Colonia: {{ property.colonia }}</h4>
+        </div>
     </div>
 
     <div class="carousel-thumbnails-container">
 
         <div class="carousel-thumbnails">
 
-            <li v-for="(slide, index) in propertyImages">
+            <li v-for="(slide, index) in propertyImages" class="selected-picture-shadow"
+                :class="{ selectedPictureShadow: index == currentSlide }">
 
 
-                <img :src="slide.url">
+                <img @click="propertyThumbNailSelection(index)" :src="slide.url">
 
 
             </li>
@@ -294,6 +300,8 @@ export default {
             property: [],
             onPropertyView: true,
             propertyImages: null,
+            currentSlide: 0,
+            initialStateStyles: true,
             // SinglePropertyData: null,
         }
     },
@@ -342,9 +350,8 @@ export default {
 
         });
         this.propertyImages = imagesFullList
-        console.log(imagesFullList);
-
-
+        // console.log(imagesFullList);
+        console.log(this.propertyImages.length);
         // this.$root.$on("SinglePropertyData", (propertyData) => {
         //     console.log(propertyData);
         // })
@@ -356,7 +363,28 @@ export default {
     unmounted() {
         document.body.classList.remove('singlePropertyScroll')
     },
+    methods: {
+        propertyThumbNailSelection(index) {
+            this.currentSlide = index;
+            console.log(index);
+            this.initialStateStyles = false
+        },
+        thumbnailSelected(visibleSlide) {
+            this.currentSlide = visibleSlide;
+            console.log(visibleSlide);
+            this.initialStateStyles = false
+        }
+    },
+    computed: {
+        propertyStatus() {
+            if (this.property.venta == null) {
+                return "VENDIDO";
+            } else {
+                return "EN VENTA";
+            }
+        },
 
+    },
 }
 </script>
 
@@ -374,6 +402,57 @@ export default {
     /* border: 1px solid green; */
 }
 
+.initial-state-styles {
+    /* width: 500px;
+    height: 500px; */
+    position: absolute;
+    margin-bottom: 60px;
+    bottom: 0;
+    padding-left: 60px;
+    padding-bottom: 96px;
+    text-align: left;
+    animation: fadeLeftIn .6s ease 0ms forwards;
+    /* border: 1px solid red; */
+}
+
+.initial-state-styles h1 {
+    font-family: Frank Ruhl Libre;
+    font-weight: 700;
+    font-style: normal;
+    letter-spacing: .02em;
+    line-height: 110%;
+    font-size: 52px;
+    color: white;
+    animation: fadeLeftIn .6s ease 0ms forwards
+}
+
+.initial-state-styles h4 {
+    margin-top: 6px;
+    font-family: Georama, Verdana, Helvetica, sans-serif;
+    font-weight: 700;
+    font-style: normal;
+    letter-spacing: 2px;
+    line-height: 22px;
+    font-size: 20px;
+    color: white;
+    animation: fadeLeftIn .6s ease 0ms forwards
+}
+
+@keyframes fadeLeftIn {
+    0% {
+        -webkit-transform: translate3d(-75px, 0, 0);
+        transform: translate3d(-75px, 0, 0);
+        opacity: 0;
+    }
+
+    100% {
+        -webkit-transform: translateZ(0);
+        transform: translateZ(0);
+        opacity: 1;
+    }
+}
+
+
 .carousel-thumbnails-container {
     height: 61px;
     display: flex;
@@ -383,6 +462,11 @@ export default {
     width: calc(100% - 456px);
     height: 100%;
     display: flex;
+    overflow-y: hidden;
+}
+
+li.carouselThumbnails::after {
+    height: 41px;
 }
 
 
@@ -404,6 +488,30 @@ export default {
     margin-left: -90px;
 }
 
+
+.carousel-thumbnails li:hover:after {
+    opacity: 0;
+    transition: opacity .3s ease;
+}
+
+li.selected-picture-shadow {
+    position: relative;
+}
+
+
+li.selectedPictureShadow::after {
+    opacity: 0;
+    transition: opacity .3s ease;
+}
+
+
+
+
+/* 
+li.thumnailPictureSelected:hover:after {
+  opacity: 0;
+} */
+
 .carousel-thumbnails-buttons {
     width: 456px;
     display: flex;
@@ -411,7 +519,7 @@ export default {
     /* height: 61px; */
     height: 100%;
     cursor: pointer;
-
+    z-index: 1;
 }
 
 .carousel-thumbnails-buttons button {
@@ -1013,6 +1121,8 @@ export default {
 .poi-grid-cell-callout-button {
     margin-top: 40px;
     padding-bottom: 25px;
+    padding: 0 60px;
+    text-align: left;
 }
 
 .poi-grid-cell-callout-button button {
@@ -1089,6 +1199,10 @@ export default {
         margin: 0 auto;
         padding: 0;
         max-width: 1320px;
+    }
+
+    .initial-state-styles {
+        padding-left: 80px;
     }
 
     .main-property-features {
