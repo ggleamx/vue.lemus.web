@@ -126,6 +126,10 @@ export default {
     activeSlide: Number,
   },
 
+  setup(props){
+    console.log(props);
+  },
+
   data() {
     return {
       visibleSlide: 0,

@@ -1,9 +1,12 @@
 <template>
-    <div class="nav-container">
+    <h1 v-if="isLoading">{{isLoading}}</h1>
+   
+   <ng-template v-else>
+ <div class="nav-container">
         <div class="side-buttons">
             <div class="zone-info">
                 <h3>
-                    {{ property.ciudad }}
+                    {{property.ciudad}}
                 </h3>
                 <h4>{{ property.colonia }}</h4>
             </div>
@@ -19,23 +22,28 @@
             <li>Mapa</li>
             <li>Contacto</li>
         </div>
+
     </div>
+    
+   
 
     <div class="fullpage-carousel-container">
         <Carousel :property="property" :onPropertyView="onPropertyView" :activeSlide="currentSlide"
-            :carouselSlides="propertyImages" @selectedSlide="thumbnailSelected"></Carousel>
+            :carouselSlides="property.imgs.galeria" @selectedSlide="thumbnailSelected"></Carousel>
+
+
         <div v-show="initialStateStyles" class="initial-state-styles">
             <div>{{ propertyStatus }}</div>
             <h1>{{ property.ciudad + " - " + property.direccion }}</h1>
             <h4>Colonia: {{ property.colonia }}</h4>
         </div>
-    </div>
+    </div> 
 
     <div class="carousel-thumbnails-container">
 
         <div class="carousel-thumbnails">
 
-            <li v-for="(slide, index) in propertyImages" class="selected-picture-shadow"
+            <li v-for="(slide, index) in property.imgs.galeria" :key="slide.index" class="selected-picture-shadow"
                 :class="{ selectedPictureShadow: index == currentSlide }">
 
 
@@ -132,6 +140,8 @@
 
         </div>
     </div>
+
+
 
     <div class="amenities-container">
         <div class="amenities-container-title-section">
@@ -273,12 +283,12 @@
 
         </div>
         <div class="neighborhood-map-container-content">
-            <!-- map component -->
+    
 
         </div>
 
-
     </div>
+    </ng-template>
 
 
 </template>
@@ -286,105 +296,59 @@
 
 <script>
 import Carousel from "@/components/carousel/Carousel.vue";
-import propertyService from "@/services/propertyService.js";
-
-// import { watch } from "vue";
-// import { usePropertiesData } from "@/composables/propertiesDataFetch.js";
+import usePropertys from '@/composables/propertysData.js'
+import { ref } from 'vue';
 
 export default {
-    props: ['propertyId', 'neighborhood'],
+    props: {
+        propertyId:String, 
+        neighborhood:String
+        },
     components: { Carousel },
 
-    data() {
+    setup(props){
+
+        const currentSlide = ref(0);
+        const initialStateStyles = ref(false);
+        const onPropertyView = ref(true);
+
+        const { isLoading, property } = usePropertys(props.propertyId);
+
+        const propertyThumbNailSelection = (index)  => {
+            currentSlide.value = index;
+            initialStateStyles.value = false;
+        }
+
+        const thumbnailSelected = (visibleSlide) => {
+            currentSlide.value = visibleSlide;
+            initialStateStyles.value = false
+        }
+
+        const propertyStatus = () => this.property.venta == null ? 'VENDIDO' : 'EN VENTA';
+
         return {
-            property: [],
-            onPropertyView: true,
-            propertyImages: null,
-            currentSlide: 0,
-            initialStateStyles: true,
-            // SinglePropertyData: null,
+            property,
+            isLoading,
+            onPropertyView,
+            initialStateStyles,
+            propertyThumbNailSelection,
+            thumbnailSelected,
+            propertyStatus,
+            currentSlide
+
         }
     },
-    // setup() {
-    //     const { bus } = usePropertiesData()
-    //     watch(() => bus.value.get('SinglePropertyData'), (propertys) => {
-    //         // destruct the parameters
-    //         const [SinglePropertyDataBus] = propertys ?? []
-    //         SinglePropertyData.value = SinglePropertyDataBus
-    //         console.log(SinglePropertyData);
-    //     })
-    // },
 
     created() {
-
-        propertyService
-            .getPropertys()
-            .then((res) => {
-                setTimeout(() => {
-                    this.property = res.data.payload;
-                    this.property.forEach((property, index, array) => {
-
-                        if (property.numPropiedad === this.propertyId) {
-                            this.property = property
-                        }
-
-                    });
-
-                }, 300);
-            })
-            .catch((error) => {
-                console.log(error);
-            });
     },
     mounted() {
-        document.body.classList.add('singlePropertyScroll')
-        let imagesFullList = [];
-        this.property.imgs.portada.forEach(propertyPortadaImages => {
-            imagesFullList.push(propertyPortadaImages);
-            // console.log(propertyPortadaImages.url);
-
-        });
-        this.property.imgs.galeria.forEach(propertyGaleriaImages => {
-            imagesFullList.push(propertyGaleriaImages);
-            // console.log(propertyGaleriaImages.url);
-
-        });
-        this.propertyImages = imagesFullList
-        // console.log(imagesFullList);
-        console.log(this.propertyImages.length);
-        // this.$root.$on("SinglePropertyData", (propertyData) => {
-        //     console.log(propertyData);
-        // })
-
-        // console.log(this.property.imgs.portada[1].url);
-        // console.log(this.property.imgs.galeria[1].url);
+        document.body.classList.add('singlePropertyScroll');
     },
 
     unmounted() {
         document.body.classList.remove('singlePropertyScroll')
     },
-    methods: {
-        propertyThumbNailSelection(index) {
-            this.currentSlide = index;
-            console.log(index);
-            this.initialStateStyles = false
-        },
-        thumbnailSelected(visibleSlide) {
-            this.currentSlide = visibleSlide;
-            console.log(visibleSlide);
-            this.initialStateStyles = false
-        }
-    },
-    computed: {
-        propertyStatus() {
-            if (this.property.venta == null) {
-                return "VENDIDO";
-            } else {
-                return "EN VENTA";
-            }
-        },
 
-    },
 }
 </script>
 

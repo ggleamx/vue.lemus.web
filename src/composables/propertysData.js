@@ -1,43 +1,55 @@
-/*onst getPropertys = () => {
-    // const propertys = ref([])
-    // const error = ref(null)
+import { ref } from 'vue'
+import axios from 'axios'
 
 
-    const load = async () => {
+
+const usePropertys = (propId) => {
+
+    const property = ref({});
+
+
+    const isLoading = ref(false)
+
+    const getProperty = async(id) => {
         try {
-            let data = await fetch("http://lemus.gleam.mx/api/w/estates")
-            if (!data.ok) {
-                throw Error("no data")
+
+            isLoading.value = true;
+            const { data } = await axios.get(`https://lemus.gleam.mx/api/w/estates`);
+            const propertys = data.payload;
+
+
+            for (let i = 0; i < propertys.length; i++) {
+
+                if (propertys[i].numPropiedad === id) {
+                    console.log('in')
+                    property.value = propertys[i];
+
+                    return
+                }
+
             }
-            propertys = await data.json()
-        }
-        catch (err) {
-            error.value = err.message
-            console.log(error.value);
+
+
+        } catch (error) {
+            console.log('## errr', error)
         }
 
 
-        return propertys
     }
 
-}*/
 
 
+    getProperty(propId);
+    isLoading.value = false;
 
-export function getPropertys() {
-    const propertys = []
-
-    fetch("http://lemus.gleam.mx/api/w/estates")
-        .then((res) => (setTimeout(() => {
-            propertys = res.data.payload;
-
-
-        }, 300)))
-        .catch((error) => (console.log(error)))
-    return
-
+    return {
+        property,
+        isLoading
+    }
 
 }
+
+export default usePropertys;
 
 
 // import { fetchPropiedades } from "@/composables/propertiesDataFetch.js";
