@@ -3,7 +3,7 @@ import { fetchPropiedades } from "@/composables/propertiesDataFetch.js";
 import Home from "@/views/Home.vue";
 import HomeSearch from "@/views/HomeSearch.vue";
 import SingleNeighborhood from "@/views/SingleNeighborhood.vue";
-import SingleProperty from "@/views/SingleProperty.vue";
+import SinglePropertyView from "@/views/single-property/SinglePropertyView.vue";
 import VirtualTours from "@/views/VirtualTours.vue";
 import About from "@/views/About.vue";
 import Faqs from "@/views/Faqs.vue";
@@ -32,7 +32,7 @@ const routes = [
     path: "/Zonas/:neighborhood",
     name: "single-neighborhood",
     component: SingleNeighborhood,
-    beforeEnter: (to, from) => {
+    beforeEnter: (to, from,next) => {
       const zones = ["Norte", "Sur", "Este", "Oeste"];
 
       const route = to.params.neighborhood;
@@ -43,36 +43,37 @@ const routes = [
         if (route == zone) zoneExists = true;
       });
 
-      if (!zoneExists) return { path: "/error" };
+
+      if (!zoneExists) return next('/error');
     },
   },
   {
     path: "/Zonas/:neighborhood/:propertyId",
     name: "single-property",
-    component: SingleProperty,
-    beforeEnter: async (to, from) => {
-      const route = to.params.propertyId;
+    component: SinglePropertyView,
+    beforeEnter: async (to, from,next) => {
+      const numPropiedad = to.params.propertyId;
       const req = await fetchPropiedades();
 
       if (req.ok) {
-        let flag = false;
 
         const propiedades = req.payload;
 
         propiedades.forEach((property) => {
-          if (property.numPropiedad == route) {
-            flag = true;
-            return;
+          if (property.numPropiedad == numPropiedad) {
+            to.params.property = property;
+              next();    
           }
         });
+        
 
-        if (!flag)
-          return {
-            path: "/error",
-          };
+        //Error por no encontrar una propiedad con ese numPropiedad. 200
+        next('/error');
+
+      } else {
+        //Error del servidor. 501
+        next('/error');
       }
-
-      return;
     },
     props: true,
   },
