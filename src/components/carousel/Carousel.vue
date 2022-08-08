@@ -4,8 +4,8 @@
     <!----------------------------------------------------------------------->
     <div class="homesearch-carousel-content">
       <!----------------------------------------------------------------------->
-      <carousel-slides v-for="(slide, index) in carouselSlides.imgs.portada" :key="slide" :index="index"
-        :visibleSlide="visibleSlide" class="card-slider">
+      <carousel-slides v-for="(slide, index) in carouselSlides.imgs.portada.slice().reverse()" :key="slide"
+        :index="index" :visibleSlide="visibleSlide" class="card-slider">
         <!------------------------------------------------>
         <router-link :to="{
           name: 'single-property',
@@ -78,8 +78,8 @@
     <!----------------------------------------------------------------------->
     <div class="property-carousel-content">
       <!----------------------------------------------------------------------->
-      <carousel-slides v-for="(slide, index) in carouselSlides" :key="slide" :index="index" :visibleSlide="visibleSlide"
-        :onPropertyView="onPropertyView">
+      <carousel-slides v-for="(slide, index) in carouselSlides.slice().reverse()" :key="slide" :index="index"
+        :visibleSlide="visibleSlide" :onPropertyView="onPropertyView">
         <!------------------------------------------------>
         <img :src="slide.url" />
         <div class="carousel-gradient-effect"></div>
@@ -126,9 +126,7 @@ export default {
     activeSlide: Number,
   },
 
-  setup(props){
-    console.log(props);
-  },
+
 
   data() {
     return {
@@ -285,10 +283,9 @@ export default {
 
 .homesearch-carousel-content-buttons button {
   width: 40px;
-
+  cursor: pointer;
   height: 200px;
   border: none;
-
   z-index: 1;
 }
 
@@ -398,7 +395,7 @@ li.thumnailPictureSelected:hover:after {
   height: 40px;
   border: none;
   z-index: 1;
-
+  cursor: pointer;
 }
 
 .single-property-carousel-buttons button:hover {

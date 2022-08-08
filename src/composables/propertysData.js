@@ -10,7 +10,7 @@ const usePropertys = (propId) => {
 
     const isLoading = ref(false)
 
-    const getProperty = async(id) => {
+    const getProperty = async (id) => {
         try {
 
             isLoading.value = true;
@@ -21,7 +21,7 @@ const usePropertys = (propId) => {
             for (let i = 0; i < propertys.length; i++) {
 
                 if (propertys[i].numPropiedad === id) {
-                    console.log('in')
+                    // console.log('in')
                     property.value = propertys[i];
 
                     return

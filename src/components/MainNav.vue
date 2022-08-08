@@ -65,7 +65,7 @@
       </div>
       <!----Owner Login Button------------------------------------------------->
       <div class="nav-item owner-login">
-        <a href="https://lemus-office.herokuapp.com/login" target="_blank" rel="noopener noreferrer">
+        <a href="https://lemus.gleam.mx" target="_blank" rel="noopener noreferrer">
           <p class="owners-option-underline">PORTAL DE PROPIETARIOS</p>
         </a>
       </div>

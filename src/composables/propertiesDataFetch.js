@@ -75,7 +75,7 @@ const usePropertiesData = () => {
 export async function fetchPropiedades() {
 
 
-    const response = await fetch("http://lemus.gleam.mx/api/w/estates");
+    const response = await fetch("https://lemus.gleam.mx/api/w/estates");
     const resp = await response.json();
     return resp;
 }

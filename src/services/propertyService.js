@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const apiClientPropertys = axios.create({
-  baseURL: "http://lemus.gleam.mx/api/w",
+  baseURL: "https://lemus.gleam.mx/api/w",
 
   withCredentials: false,
   headers: {
