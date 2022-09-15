@@ -27,8 +27,6 @@ import EstatesMap from "@/components/EstatesMap.vue";
 import { usePropertiesData } from "@/composables/propertiesDataFetch.js";
 import Loading from "vue-loading-overlay";
 import "vue-loading-overlay/dist/vue-loading.css";
-// import { usePropertysData } from "@/stores/PropertysStore.js";
-// import { storeToRefs } from "pinia";
 
 export default {
   name: "Homesearch",
@@ -40,13 +38,7 @@ export default {
     };
   },
   setup() {
-    // usePropertysData()
     const { propertys, isLoading, error } = usePropertiesData()
-    // const { emit } = usePropertiesData()
-    // emit('SinglePropertyData', propertys)
-    // console.log(propertys);
-    // const { propertys } = storeToRefs(usePropertysData());
-    // console.log(propertys.propertys);
     return { propertys, isLoading, error }
 
 
