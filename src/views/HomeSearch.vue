@@ -57,13 +57,6 @@ export default {
       this.propertys = propertysCollection;
       this.propertys.unshift(target);
     },
-    // mapSecondaryInfoWinOn() {
-    //   console.log("cakin");
-    //   // console.log(this.propertys[1]);
-    // },
-    // mapSecondaryInfoWinOff() {
-    //   console.log("cacon");
-    // },
   },
 };
 </script>
