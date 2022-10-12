@@ -320,7 +320,6 @@
 <script>
 import Carousel from "@/components/carousel/Carousel.vue";
 import singlePropertyMap from "@/components/singlePropertyMap.vue";
-import usePropertys from '@/composables/propertysData.js'
 import { ref } from 'vue';
 
 export default {

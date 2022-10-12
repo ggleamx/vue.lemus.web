@@ -1,5 +1,4 @@
 import { createRouter, createWebHistory } from "vue-router";
-import { fetchPropiedades } from "@/composables/propertiesDataFetch.js";
 import Home from "@/views/Home.vue";
 import HomeSearch from "@/views/HomeSearch.vue";
 import SingleNeighborhood from "@/views/SingleNeighborhood.vue";

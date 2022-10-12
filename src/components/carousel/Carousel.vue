@@ -11,7 +11,7 @@
           name: 'single-property',
           params: {
             propertyId: property.numPropiedad,
-            neighborhood: property.zona,
+            neighborhood: property.zona ?? 'Norte',
           },
         }">
           <img :src="slide.url" />
