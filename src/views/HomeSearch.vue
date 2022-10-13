@@ -1,6 +1,6 @@
 <template>
   <search-filters></search-filters>
-  <div class="homesearch-main-container" :class="{ overlay: homeSearchOverlay }">
+  <div @click="toggleHomeSearchOverlay(false)" class="homesearch-main-container" :class="{ overlay: homeSearchOverlay }">
 
 
     <template v-if="isLoading">
@@ -44,14 +44,15 @@ export default {
   },
   setup() {
     const { propertys, isLoading, error } = useProperties();
-    const { homeSearchOverlay } = useFilters();
-
-    return { propertys, isLoading, error, homeSearchOverlay }
+    const { toggleHomeSearchOverlay, homeSearchOverlay } = useFilters();
+    
+    return { propertys, isLoading, error, homeSearchOverlay , toggleHomeSearchOverlay}
 
 
   },
   methods: {
-    filteringPropertys(markerUID) {
+  
+  filteringPropertys(markerUID) {
       this.markerFilter = markerUID;
       this.initialCardState = false;
       let propertysCollection = [];
@@ -64,7 +65,15 @@ export default {
       this.propertys = propertysCollection;
       this.propertys.unshift(target);
     },
+
+  closeOverlayAndFilters(){
+    this.toggleHomeSearchOverlay(false);
+    
+  }
+
   },
+
+
 };
 </script>
 

@@ -7,8 +7,8 @@
     <div class="trailing">
 
       <div @click="toggleHomeSearchOverlay" class="price-filter">
-        <div class="custom-filter">
-          <div @click="toggleRooms" class="cf-title">
+        <div @click="toggleBedsFilter" class="custom-filter">
+          <div  class="cf-title">
             <span># DE CUARTOS</span>
           </div>
 
@@ -21,7 +21,7 @@
           </div>
         </div>
 
-        <div v-if="roomsToggle" class="rooms-dialog-filter">
+        <div v-if="bedsFilter" class="rooms-dialog-filter">
           <div class="dialog-filter-head">
 
 
@@ -44,7 +44,7 @@
 
       <div @click="toggleHomeSearchOverlay" class="price-filter">
         <div class="custom-filter">
-          <div @click="toggleBaths" class="cf-title">
+          <div @click="toggleBathsFilters" class="cf-title">
             <span># BAÑOS</span>
           </div>
 
@@ -57,7 +57,7 @@
           </div>
         </div>
 
-        <div v-if="bathsToggle" class="baths-dialog-filter">
+        <div v-if="bathsFilter" class="baths-dialog-filter">
           <div class="dialog-filter-head">
 
             <div class="dialog-filter-head-column simple">
@@ -94,7 +94,7 @@
           </div>
         </div>
 
-        <div v-if="priceToggle" class="price-dialog-filter">
+        <div v-if="priceFilter" class="price-dialog-filter">
           <div class="dialog-filter-head">
 
             <div class="dialog-filter-head-column min">
@@ -132,25 +132,28 @@
 </template>
 
 <script>
-import { ref } from "vue";
 import { useFilters } from "../composables/useFilters";
 
 export default {
 
   setup() {
-    const priceToggle = ref(false);
-    const roomsToggle = ref(false);
-    const bathsToggle = ref(false);
-
-    const { toggleHomeSearchOverlay } = useFilters();
+  
+    const { 
+      toggleHomeSearchOverlay,
+      togglePriceFilter,
+      toggleBedsFilter,
+      toggleBathsFilter,
+      priceFilter,
+      bathsFilter,
+      bedsFilter } = useFilters();
 
     return {
-      priceToggle,
-      roomsToggle,
-      bathsToggle,
-      toggleRooms: () => { roomsToggle.value = !roomsToggle.value; },
-      toggleBaths: () => { bathsToggle.value = !bathsToggle.value; },
-      togglePrice: () => { priceToggle.value = !priceToggle.value; },
+      priceFilter,
+      bathsFilter,
+      bedsFilter,
+      togglePriceFilter,
+      toggleBedsFilter,
+      toggleBathsFilter,
       toggleHomeSearchOverlay,
 
     }
