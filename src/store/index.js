@@ -2,32 +2,48 @@ import { createStore } from 'vuex'
 
 export default createStore({
   state: {
-   homeSearchOverlay: false,
-   bathsFilter:false,
-   bedsFilter:false,
-   priceFilter:false
+   overlay: false,
+   searchFilters: [false,false,false],
+  
   },
   mutations: {
-    toggleHomeSearchOverlay(state,value){
+    toggleOverlay(state,value = null){
       if(value == null)
-        state.homeSearchOverlay = !state.homeSearchOverlay;
+        state.overlay = !state.overlay;
       else 
-       state.homeSearchOverlay = value;
+       state.overlay = value;
+    },
+    
+    toggleFilter(state,index){
+
+      state.searchFilters[index] =! state.searchFilters[index];
+      
+      console.log(state.searchFilters[index]);
+
+      if(!state.searchFilters[index]){
+        state.overlay = false;
+      }else {
+        state.overlay = true;
+      }
     },
 
-    togglePriceFilter: (state) => state.priceFilter = !state.priceFilter,
-    toggleBedsFilter: (state) => state.toggleBedsFilter = !state.toggleBedsFilter,
-    toggleBathsFilter: (state) => state.toggleBathsFilter = !state.toggleBathsFilter
+    closeAll(state){
+      for(var i = 0; i < state.searchFilters.length; i++){
+          state.searchFilters[i] = false;
+      }
+      
+      state.overlay = false;
+    }
   },
   actions: {
   },
   getters: {
 
-    priceFilter: (state) => state.priceFilter,
-    bathsFilter: (state) => state.bathsFilter,
-    bedsFilter:  (state) => state.bedsFilter,
-    homeSearchOverlay: (state) => {
-      return state.homeSearchOverlay
+    getFilter:(state) => ( index) => {
+      return state.searchFilters[index];
+    },
+    getOverlay: (state) => {
+      return state.overlay
     }
   
   },

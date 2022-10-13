@@ -6,8 +6,8 @@
     </div>
     <div class="trailing">
 
-      <div @click="toggleHomeSearchOverlay" class="price-filter">
-        <div @click="toggleBedsFilter" class="custom-filter">
+      <div  class="price-filter">
+        <div @click="toggleFilter(0)" class="custom-filter">
           <div  class="cf-title">
             <span># DE CUARTOS</span>
           </div>
@@ -21,7 +21,7 @@
           </div>
         </div>
 
-        <div v-if="bedsFilter" class="rooms-dialog-filter">
+        <div v-if="filterStatus(0)" class="rooms-dialog-filter">
           <div class="dialog-filter-head">
 
 
@@ -30,21 +30,14 @@
 
 
           </div>
-          <!-- *************************************************** -->
-
-
-
 
         </div>
 
       </div>
 
-
-
-
-      <div @click="toggleHomeSearchOverlay" class="price-filter">
+      <div class="price-filter">
         <div class="custom-filter">
-          <div @click="toggleBathsFilters" class="cf-title">
+          <div @click="toggleFilter(1)" class="cf-title">
             <span># BAÑOS</span>
           </div>
 
@@ -57,7 +50,7 @@
           </div>
         </div>
 
-        <div v-if="bathsFilter" class="baths-dialog-filter">
+        <div v-if="filterStatus(1)" class="baths-dialog-filter">
           <div class="dialog-filter-head">
 
             <div class="dialog-filter-head-column simple">
@@ -65,7 +58,6 @@
 
 
           </div>
-          <!-- *************************************************** -->
 
 
 
@@ -79,9 +71,9 @@
 
 
 
-      <div @click="toggleHomeSearchOverlay" class="price-filter">
+      <div class="price-filter">
         <div class="custom-filter">
-          <div @click="togglePrice" class="cf-title">
+          <div @click="toggleFilter(2)" class="cf-title">
             <span>PRECIO</span>
           </div>
 
@@ -94,7 +86,7 @@
           </div>
         </div>
 
-        <div v-if="priceFilter" class="price-dialog-filter">
+        <div v-if="filterStatus(2)" class="price-dialog-filter">
           <div class="dialog-filter-head">
 
             <div class="dialog-filter-head-column min">
@@ -102,7 +94,6 @@
             <div class="dialog-filter-head-column">precio max.</div>
 
           </div>
-          <!-- *************************************************** -->
           <div class="dialog-filter-head-column-options">
 
             <div class="dialog-filter-head-option">
@@ -110,7 +101,6 @@
             <div class="dialog-filter-head-option">cualquier precio</div>
 
           </div>
-          <!-- *************************************************** v-for-->
           <div class="dialog-filter-head-column-options">
 
             <div class="dialog-filter-head-option">x
@@ -132,6 +122,7 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex';
 import { useFilters } from "../composables/useFilters";
 
 export default {
@@ -139,25 +130,30 @@ export default {
   setup() {
   
     const { 
-      toggleHomeSearchOverlay,
-      togglePriceFilter,
-      toggleBedsFilter,
-      toggleBathsFilter,
-      priceFilter,
-      bathsFilter,
-      bedsFilter } = useFilters();
+      toggleOverlay,
+      toggleFilter,
+    
+    } = useFilters();
 
     return {
-      priceFilter,
-      bathsFilter,
-      bedsFilter,
-      togglePriceFilter,
-      toggleBedsFilter,
-      toggleBathsFilter,
-      toggleHomeSearchOverlay,
+      toggleOverlay,
+      toggleFilter,
 
     }
 
+  },
+
+  computed: {
+    ...mapGetters(['getFilter'])
+  },
+
+  methods: {
+
+    filterStatus(index){
+      return this.getFilter(index)
+    }
+
+    
   }
 
 };

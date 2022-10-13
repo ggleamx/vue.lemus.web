@@ -1,6 +1,6 @@
 <template>
   <search-filters></search-filters>
-  <div @click="toggleHomeSearchOverlay(false)" class="homesearch-main-container" :class="{ overlay: homeSearchOverlay }">
+  <div @click="closeAll()" class="homesearch-main-container" :class="{ overlay: getOverlay }">
 
 
     <template v-if="isLoading">
@@ -44,9 +44,15 @@ export default {
   },
   setup() {
     const { propertys, isLoading, error } = useProperties();
-    const { toggleHomeSearchOverlay, homeSearchOverlay } = useFilters();
+    const { toggleOverlay, closeAll,getOverlay } = useFilters();
     
-    return { propertys, isLoading, error, homeSearchOverlay , toggleHomeSearchOverlay}
+    return {
+      closeAll, 
+      toggleOverlay,
+      getOverlay, 
+      propertys, 
+      isLoading, 
+      error}
 
 
   },

@@ -1,22 +1,18 @@
-import { computed } from "vue";
+import {ref, computed } from "vue";
 import { useStore } from "vuex";
 
 export function useFilters(){
     const store = useStore();
+
     
 
     return { 
         
-        homeSearchOverlay:computed(() => store.getters['homeSearchOverlay']),
-        priceFilter: computed(() => store.getters['priceFilter']),
-        bathsFilter: computed(() => store.getters['bathsFilter']),
-        bedsFilter:  computed(() => store.getters['bedsFilter']),
+        getOverlay:computed(() => store.getters['getOverlay']),
+
+        toggleOverlay: (value) => store.commit('toggleOverlay',value),
+        toggleFilter:(index) => store.commit('toggleFilter',index),
+        closeAll:() => store.commit('closeAll')
     
-        
-        toggleHomeSearchOverlay: (value) => store.commit('toggleHomeSearchOverlay',value),
-        togglePriceFilter: () => store.commit('togglePriceFilter'),
-        toggleBedsFilter: () => store.commit('toggleBedsFilter'),
-        toggleBathsFilter: () => store.commit('toggleBathsFilter'),
-        
     }
 }
