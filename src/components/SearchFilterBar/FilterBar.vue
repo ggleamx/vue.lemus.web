@@ -6,13 +6,13 @@
     </div>
     <div class="trailing">
 
-      {{ isLoading }}
+      <!-- {{ isLoading }} -->
       {{ minBeds }}
 
 
-      <BedsFilter position = 0 :max="maxBedrooms" :min="minBedrooms"/>
-      <BathsFilter position = 1 :max="maxBaths" :min="minBaths"/>
-      <PriceFilter position = 2 :max="maxPrice" :min="minPrice"/>
+      <BedsFilter position=0 :max="maxBedrooms" :min="minBedrooms" />
+      <BathsFilter position=1 :max="maxBaths" :min="minBaths" />
+      <PriceFilter position=2 :max="maxPrice" :min="minPrice" />
     </div>
 
   </div>
@@ -27,33 +27,33 @@ import { useMinMax } from '../../composables/useMinMax';
 
 export default {
 
-  components: {BedsFilter,BathsFilter,PriceFilter } ,
+  components: { BedsFilter, BathsFilter, PriceFilter },
 
-  setup(){
+  setup() {
 
 
     const {
-            minBedrooms,
-            maxBedrooms,
-            minBaths,
-            maxBaths,
-            minPrice,
-            maxPrice,
-            isLoading,
-            error,
-        } = useMinMax();
+      minBedrooms,
+      maxBedrooms,
+      minBaths,
+      maxBaths,
+      minPrice,
+      maxPrice,
+      isLoading,
+      error,
+    } = useMinMax();
 
-        return {
-            minBedrooms,
-            maxBedrooms,
-            minBaths,
-            maxBaths,
-            minPrice,
-            maxPrice,
-            isLoading,
-            error,
+    return {
+      minBedrooms,
+      maxBedrooms,
+      minBaths,
+      maxBaths,
+      minPrice,
+      maxPrice,
+      isLoading,
+      error,
 
-        }
+    }
   }
 
 
@@ -61,7 +61,6 @@ export default {
 </script>
 
 <style lang='scss'>
-
 .tempBackground {
   background: #ebebeb;
   height: 60px;
@@ -92,7 +91,4 @@ export default {
   align-items: center;
   justify-content: flex-end;
 }
-
-
-
 </style>
