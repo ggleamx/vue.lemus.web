@@ -5,7 +5,6 @@
 
 <script>
 import Carousel from "@/components/carousel/Carousel.vue";
-import propertyService from "@/services/propertyService.js";
 
 export default {
   name: "VirtualTours",
@@ -17,18 +16,7 @@ export default {
     };
   },
   created() {
-    propertyService
-      .getPropertys()
-      .then((res) => {
-        // console.log(res);
-        setTimeout(() => {
-          this.propertys = res.data.payload;
-          this.isLoading = false;
-        }, 300);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+ 
   },
 };
 </script>

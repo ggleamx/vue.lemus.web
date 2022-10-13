@@ -1,6 +1,8 @@
 <template>
   <search-filters></search-filters>
-  <div class="homesearch-main-container">
+  <div class="homesearch-main-container" :class="{ overlay: homeSearchOverlay }">
+
+
     <template v-if="isLoading">
       <loading :active="isLoading" :can-cancel="true" :on-cancel="onCancel" :is-full-page="fullPage"></loading>
     </template>
@@ -17,6 +19,8 @@
         }" />
       </div>
     </template>
+
+
   </div>
 </template>
 
@@ -24,9 +28,10 @@
 import SearchFilters from "@/components/SearchFilters.vue";
 import PropertyCard from "@/components/PropertyCard.vue";
 import EstatesMap from "@/components/EstatesMap.vue";
-import { usePropertiesData } from "@/composables/propertiesDataFetch.js";
+import { useProperties } from "@/composables/usePropertys.js";
 import Loading from "vue-loading-overlay";
 import "vue-loading-overlay/dist/vue-loading.css";
+import { useFilters } from '../composables/useFilters';
 
 export default {
   name: "Homesearch",
@@ -38,8 +43,10 @@ export default {
     };
   },
   setup() {
-    const { propertys, isLoading, error } = usePropertiesData()
-    return { propertys, isLoading, error }
+    const { propertys, isLoading, error } = useProperties();
+    const { homeSearchOverlay } = useFilters();
+    
+    return { propertys, isLoading, error,homeSearchOverlay }
 
 
   },
@@ -77,6 +84,11 @@ export default {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.overlay{
+  opacity: 0.6 ;
+  
 }
 
 .home-cards-container {

@@ -6,7 +6,7 @@
     </div>
     <div class="trailing">
 
-      <b-dropdown text="# DE CUARTOS">
+      <b-dropdown  text="# DE CUARTOS">
         <b-dropdown-item>Second Action</b-dropdown-item>
         <b-dropdown-item>Second Action</b-dropdown-item>
         <b-dropdown-item>Second Action</b-dropdown-item>
@@ -24,7 +24,7 @@
 
 
 
-      <div class="price-filter">
+      <div @click="toggleHomeSearchOverlay" class="price-filter">
         <div class="custom-filter">
           <div @click="togglePrice" class="cf-title">
             <span>PRECIO</span>
@@ -78,22 +78,19 @@
 
 <script>
 import { ref } from "vue";
+import { useFilters } from "../composables/useFilters";
 
 export default {
 
   setup() {
     const priceToggle = ref(false);
 
-
-    const togglePrice = () => {
-
-      priceToggle.value = !priceToggle.value;
-    }
-
+    const { toggleHomeSearchOverlay } = useFilters();
 
     return {
       priceToggle,
-      togglePrice
+      togglePrice: () => { priceToggle.value = !priceToggle.value; },
+      toggleHomeSearchOverlay,
     }
 
   }
