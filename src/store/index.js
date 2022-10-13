@@ -15,6 +15,9 @@ export default createStore({
     },
     
     toggleFilter(state,index){
+      for(var i = 0; i < state.searchFilters.length; i++){
+        state.searchFilters[i] = false;
+    }
 
       state.searchFilters[index] =! state.searchFilters[index];
       

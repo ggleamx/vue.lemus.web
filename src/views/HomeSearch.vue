@@ -1,5 +1,5 @@
 <template>
-  <search-filters></search-filters>
+  <filter-bar></filter-bar>
   <div @click="closeAll()" class="homesearch-main-container" :class="{ overlay: getOverlay }">
 
 
@@ -25,7 +25,7 @@
 </template>
 
 <script>
-import SearchFilters from "@/components/SearchFilters.vue";
+import FilterBar from "@/components/SearchFilterBar/FilterBar.vue";
 import PropertyCard from "@/components/PropertyCard.vue";
 import EstatesMap from "@/components/EstatesMap.vue";
 import { useProperties } from "@/composables/usePropertys.js";
@@ -35,7 +35,7 @@ import { useFilters } from '../composables/useFilters';
 
 export default {
   name: "Homesearch",
-  components: { SearchFilters, PropertyCard, EstatesMap, Loading },
+  components: { FilterBar, PropertyCard, EstatesMap, Loading },
   data() {
     return {
       markerFilter: "",
@@ -45,7 +45,7 @@ export default {
   setup() {
     const { propertys, isLoading, error } = useProperties();
     const { toggleOverlay, closeAll,getOverlay } = useFilters();
-    
+
     return {
       closeAll, 
       toggleOverlay,
