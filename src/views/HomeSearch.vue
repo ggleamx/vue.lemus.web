@@ -45,8 +45,8 @@ export default {
   setup() {
     const { propertys, isLoading, error } = useProperties();
     const { homeSearchOverlay } = useFilters();
-    
-    return { propertys, isLoading, error,homeSearchOverlay }
+
+    return { propertys, isLoading, error, homeSearchOverlay }
 
 
   },
@@ -86,9 +86,10 @@ export default {
   align-items: center;
 }
 
-.overlay{
-  opacity: 0.6 ;
-  
+.overlay {
+  filter: brightness(0.5);
+
+
 }
 
 .home-cards-container {
