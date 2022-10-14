@@ -16,6 +16,10 @@ export default createStore({
     
     toggleFilter(state,index){
       for(var i = 0; i < state.searchFilters.length; i++){
+
+        if(i == index)
+          continue;
+          
         state.searchFilters[i] = false;
     }
 
