@@ -1,5 +1,5 @@
 <template>
-  <div class="tempBackground">
+  <div v-if="!isLoading" class="tempBackground">
 
     <div class="leading">
       <div>Busqueda de Propiedad</div>

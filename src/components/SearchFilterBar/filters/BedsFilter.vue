@@ -31,7 +31,6 @@
 <script>
 import { mapGetters } from 'vuex';
 import { useFilters } from '../../../composables/useFilters';
-// import { useMinMax } from '../../composables/useMinMax';
 
 export default {
     name: "BedsItem",

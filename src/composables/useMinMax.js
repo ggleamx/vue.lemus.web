@@ -1,4 +1,3 @@
-import axios from "axios";
 import { ref } from "vue";
 
 export function useMinMax(){
@@ -45,12 +44,13 @@ export function useMinMax(){
                 maxBedrooms.value=5
                 minBaths.value=2
                 maxBaths.value=4
-                minPrice.value=1400000
+                minPrice.value=1400
                 maxPrice.value=3500000   
 
                 isLoading.value = false;
 
             },1000)
+
 
 
             
@@ -71,6 +71,6 @@ export function useMinMax(){
     minBaths, 
     maxBaths, 
     minPrice, 
-    maxPrice, 
+    maxPrice,
     }
 }

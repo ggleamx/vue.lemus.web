@@ -1,5 +1,5 @@
 <template>
-  <filter-bar></filter-bar>
+  <filter-bar ></filter-bar>
   <div @click="closeAll()" class="homesearch-main-container" :class="{ overlay: getOverlay }">
 
 
