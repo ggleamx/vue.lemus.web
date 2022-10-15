@@ -73,6 +73,8 @@ export default {
 
         selectBeds(cant) {
             this.setBedsFilterSelected(cant)
+
+            
             this.toggle();
         },
 
