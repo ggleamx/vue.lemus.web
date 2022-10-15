@@ -62,7 +62,7 @@ export default {
     },
 
     computed: {
-        ...mapGetters(['getFilter','getBedsFilterSelected'])
+        ...mapGetters(['getFilter', 'getBedsFilterSelected'])
     },
 
     methods: {
@@ -71,7 +71,7 @@ export default {
             return this.getFilter(index)
         },
 
-        selectBeds(cant){
+        selectBeds(cant) {
             this.setBedsFilterSelected(cant)
             this.toggle();
         },
@@ -82,7 +82,7 @@ export default {
             this.toggleFilter(this.position)
         },
 
-        getBedsSelected(){
+        getBedsSelected() {
             return this.getBedsFilterSelected
         }
 
@@ -94,6 +94,7 @@ export default {
 .rotate {
     transform: rotateZ(-50deg);
 }
+
 .rooms-dialog-filter {
     /* width: 10.47%;*/
     width: 202.05px;

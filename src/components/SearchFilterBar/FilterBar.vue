@@ -1,20 +1,20 @@
 <template>
-<div  class="tempBackground">
+    <div class="tempBackground">
 
-    <div class="leading">
-        <div>Busqueda de Propiedad</div>
+        <div class="leading">
+            <div>Busqueda de Propiedad</div>
+        </div>
+        <div class="trailing">
+
+            <!-- {{ isLoading }} -->
+            {{ minBeds }}
+
+            <BedsFilter position=0 :max="maxBedrooms" :min="maxBedrooms" />
+            <BathsFilter position=1 :max="maxBaths" :min="minBaths" />
+            <PriceFilter position=2 :maxRange="maxRg" :minRange="minRg" :max="maxPr" :min="minPr" />
+        </div>
+
     </div>
-    <div class="trailing">
-
-        <!-- {{ isLoading }} -->
-        {{ minBeds }}
-
-        <BedsFilter position=0 :max="maxBedrooms" :min="maxBedrooms" />
-        <BathsFilter position=1 :max="maxBaths" :min="minBaths" />
-        <PriceFilter position=2 :maxRange="maxRg" :minRange="minRg" :max="maxPr" :min="minPr" />
-    </div>
-
-</div>
 </template>
 
 <script>
@@ -81,12 +81,17 @@ export default {
     display: flex;
     align-items: center;
     justify-content: flex-start;
+    padding-left: 50px;
 }
 
 .leading div {
-    margin-left: 50px;
-    font-family: 'Georama', sans-serif;
+
+    font-family: Frank Ruhl Libre;
     font-size: 24px;
+    font-weight: 700;
+    line-height: 24px;
+    letter-spacing: .02em;
+    color: #222;
 }
 
 .trailing {

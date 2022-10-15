@@ -64,7 +64,7 @@ export default {
     },
 
     computed: {
-        ...mapGetters(['getFilter','getBathsFilterSelected'])
+        ...mapGetters(['getFilter', 'getBathsFilterSelected'])
     },
 
     methods: {
@@ -77,13 +77,13 @@ export default {
             this.toggleFilter(this.position)
         },
 
-        selectBaths(cant){
+        selectBaths(cant) {
             this.setBathsFilterSelected(cant)
             this.toggle();
-        
+
         },
 
-        getBathsSelected(){
+        getBathsSelected() {
             return this.getBathsFilterSelected
         }
 
@@ -96,6 +96,7 @@ export default {
 .rotate {
     transform: rotateZ(-50deg);
 }
+
 .baths-dialog-filter {
     /*width: 8.55%;*/
     width: 164.5px;

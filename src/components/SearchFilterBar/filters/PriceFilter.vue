@@ -18,33 +18,39 @@
             <div class="dialog-filter-head">
 
                 <div class="dialog-filter-head-column min">
-                    precio min. {{getMinPrice() ?? '' }} </div>
+
+                    <div class="min-price-number-text">
+                        <p> precio min.</p>
+                        <p class="min-price-number"> {{getMinPrice() ?? '' }}</p>
+                    </div>
+                </div>
                 <div class="dialog-filter-head-column">precio max. {{getMaxPrice() ?? '' }}</div>
 
             </div>
-          
+
             <!-- ****v-for ↓*** -->
-            <div  class="dialog-filter-head-column-options prices">
+            <div class="dialog-filter-head-column-options prices">
 
-            <div class="price-column">
-                <div @click="selectMinPrice('CUALQUIER PRECIO')" class="dialog-filter-head-option">
-                    cualquier precio
+                <div class="price-column">
+                    <div @click="selectMinPrice('CUALQUIER PRECIO')" class="dialog-filter-head-option">
+                        cualquier precio
+                    </div>
+
+                    <div @click="selectMinPrice(range)" class="dialog-filter-head-option"
+                        v-for="(range ,index) in minRange" :key="index">
+                        {{ nFormatter(range,4) }}
+                    </div>
                 </div>
 
-                <div @click="selectMinPrice(range)" class="dialog-filter-head-option" v-for="(range ,index) in minRange" :key="index">
-                    {{  nFormatter(range,4) }}
-                </div>
-            </div>
+                <div :class="getMinPrice() == null ? 'disabled' : ''" class="price-column">
+                    <div class="dialog-filter-head-option">cualquier precio</div>
 
-            <div :class="getMinPrice() == null ? 'disabled' : ''" class="price-column">
-                <div  class="dialog-filter-head-option">cualquier precio</div>
+                    <div class="dialog-filter-head-option" v-for="(range ,index) in maxRange" :key="index">
+                        {{ nFormatter(range,4) }}
+                    </div>
 
-                <div   class="dialog-filter-head-option" v-for="(range ,index) in maxRange" :key="index">
-                    {{ nFormatter(range,4) }}
                 </div>
 
-            </div>
-                
             </div>
 
 
@@ -72,8 +78,8 @@ export default {
         position: Number,
         min: Number,
         max: Number,
-        minRange:[],
-        maxRange:[]
+        minRange: [],
+        maxRange: []
     },
     setup(props) {
 
@@ -93,7 +99,7 @@ export default {
     },
 
     computed: {
-        ...mapGetters(['getFilter','getPriceMinMaxSelected']),
+        ...mapGetters(['getFilter', 'getPriceMinMaxSelected']),
 
     },
 
@@ -103,19 +109,19 @@ export default {
             return this.getFilter(index)
         },
 
-        selectMinPrice(value){
+        selectMinPrice(value) {
             this.setMinPrice(value)
-        },  
+        },
 
         toggle() {
             this.toggleFilter(this.position)
         },
 
-        getMaxPrice(){
+        getMaxPrice() {
             return this.getPriceMinMaxSelected[1];
         },
 
-        getMinPrice(){
+        getMinPrice() {
             return this.getPriceMinMaxSelected[0];
         }
 
@@ -124,16 +130,13 @@ export default {
 </script>
 
 <style lang="scss">
-
-
-
-.price-column{
+.price-column {
     display: flex;
-    flex:1;
+    flex: 1;
     flex-direction: column;
     align-items: center;
-    margin:5px;
-    
+    margin: 5px;
+
 }
 
 .rotate {
@@ -251,6 +254,20 @@ export default {
     font-weight: 400;
     color: #27231d;
     margin-right: 10px;
+}
+
+p.min-price-number {
+    margin-top: 5%;
+    font-size: 24px;
+    font-family: Frank Ruhl Libre;
+    color: #222;
+    line-height: 24px;
+    font-weight: 700;
+    letter-spacing: .02em;
+}
+
+.min-price-number-text {
+    text-align: left;
 }
 
 .custom-filter:hover {
