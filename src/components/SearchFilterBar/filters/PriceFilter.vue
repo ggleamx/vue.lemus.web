@@ -258,13 +258,17 @@ export default {
 
 p.min-price-number {
     margin-top: 5%;
-    font-size: 24px;
+    font-size: 12px;
+    width:auto;
+    background-color: red;
     font-family: Frank Ruhl Libre;
     color: #222;
     line-height: 24px;
     font-weight: 700;
     letter-spacing: .02em;
 }
+
+
 
 .min-price-number-text {
     text-align: left;
