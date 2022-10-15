@@ -2,7 +2,7 @@
     <div class="price-filter">
         <div @click="toggle(this.position)" class="custom-filter">
             <div class="cf-title">
-                <span>{{'# DE RECAMARAS'}}</span>
+                <span>{{ getBedsSelected() == null ? '# DE RECAMARAS' : getBedsSelected() + '+ DE RECAMARAS' }} </span>
             </div>
 
             <div :class={rotate:filterStatus(this.position)} class="cf-icon">
@@ -15,7 +15,7 @@
         </div>
 
         <div v-if="filterStatus(this.position)" class="rooms-dialog-filter">
-            <div v-for="i in (min, max)" :key="i" class="bed-filter-head">
+            <div @click='selectBeds(i)' v-for="i in (min, max)" :key="i" class="bed-filter-head">
 
                 <div class="dialog-filter-head-column simple">
                     {{i}}+ CUARTOS
@@ -47,6 +47,7 @@ export default {
         const {
             toggleOverlay,
             toggleFilter,
+            setBedsFilterSelected,
 
         } = useFilters();
 
@@ -55,12 +56,13 @@ export default {
 
             toggleOverlay,
             toggleFilter,
+            setBedsFilterSelected
 
         }
     },
 
     computed: {
-        ...mapGetters(['getFilter'])
+        ...mapGetters(['getFilter','getBedsFilterSelected'])
     },
 
     methods: {
@@ -69,8 +71,19 @@ export default {
             return this.getFilter(index)
         },
 
+        selectBeds(cant){
+            this.setBedsFilterSelected(cant)
+            this.toggle();
+        },
+
+
+
         toggle() {
             this.toggleFilter(this.position)
+        },
+
+        getBedsSelected(){
+            return this.getBedsFilterSelected
         }
 
     }
@@ -101,6 +114,7 @@ export default {
 .bed-filter-head {
     padding: 10px;
     border-radius: 5px;
+    cursor: pointer;
 }
 
 

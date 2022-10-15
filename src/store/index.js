@@ -4,8 +4,8 @@ export default createStore({
   state: {
    overlay: false,
    searchFilters: [false,false,false],
-   bedsMinMaxSelected : [null,null],
-   bathsMinMaxSelected : [null,null],
+   bedsFilterSelected : null,
+   bathsFilterSelected : null,
    priceMinMaxSelected : [null,null],
 
   
@@ -13,23 +13,12 @@ export default createStore({
   mutations: {
 
 
-    setMinBeds(state,value){
-      state.bedsMinMaxSelected[0] = value;
+    setBedsFilterSelected(state,value){
+      state.bedsFilterSelected = value;
     },
 
-    setMaxBeds(state,value){
-      state.bedsMinMaxSelected[1] = value;
-
-    },
-
-
-    setMinBaths(state,value){
-      state.bathsMinMaxSelected[0] = value;
-
-    },
-
-    setMaxBaths(state,value){
-      state.bathsMinMaxSelected[1] = value;
+    setBathsFilterSelected(state,value){
+      state.bathsFilterSelected = value;
 
     },
 
@@ -86,12 +75,12 @@ export default createStore({
   },
   getters: {
 
-    getBathsMinMaxSelected:(state) => {
-      return state.bathsMinMaxSelected;
+    getBathsFilterSelected:(state) => {
+      return state.bathsFilterSelected;
     },
 
-    getBedsMinMaxSelected:(state) => {
-      return state.bedsMinMaxSelected;
+    getBedsFilterSelected:(state) => {
+      return state.bedsFilterSelected;
     },
     getPriceMinMaxSelected:(state) => {
       return state.priceMinMaxSelected

@@ -2,7 +2,7 @@
     <div class="price-filter">
         <div @click="toggle(this.position)" class="custom-filter">
             <div class="cf-title">
-                <span>{{'# DE BAÑOS' }}</span>
+                <span>{{ getBathsSelected() == null ? '# DE BAÑOS' : getBathsSelected() + '+ DE BAÑOS' }}</span>
             </div>
 
             <div :class="{rotate:filterStatus(this.position)}" class="cf-icon">
@@ -15,7 +15,7 @@
         </div>
 
         <div v-if="filterStatus(this.position)" class="baths-dialog-filter">
-            <div v-for="i in (min, max)" :key="i" class="room-filter-head">
+            <div @click='selectBaths(i)' v-for="i in (min, max)" :key="i" class="room-filter-head">
 
                 <div class="dialog-filter-head-column simple">
                     {{i}}+ BAÑOS
@@ -48,6 +48,7 @@ export default {
         const {
             toggleOverlay,
             toggleFilter,
+            setBathsFilterSelected
 
         } = useFilters();
 
@@ -57,12 +58,13 @@ export default {
 
             toggleOverlay,
             toggleFilter,
+            setBathsFilterSelected
 
         }
     },
 
     computed: {
-        ...mapGetters(['getFilter'])
+        ...mapGetters(['getFilter','getBathsFilterSelected'])
     },
 
     methods: {
@@ -73,6 +75,16 @@ export default {
 
         toggle() {
             this.toggleFilter(this.position)
+        },
+
+        selectBaths(cant){
+            this.setBathsFilterSelected(cant)
+            this.toggle();
+        
+        },
+
+        getBathsSelected(){
+            return this.getBathsFilterSelected
         }
 
 
@@ -104,6 +116,7 @@ export default {
 .room-filter-head {
     padding: 10px;
     border-radius: 5px;
+    cursor: pointer;
 }
 
 
