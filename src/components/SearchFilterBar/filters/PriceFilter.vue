@@ -5,7 +5,7 @@
                 <span>{{'PRECIO'}}</span>
             </div>
 
-            <div class="cf-icon">
+            <div :class={rotate:filterStatus(this.position)} class="cf-icon">
                 <svg width="8" height="15" viewBox="0 0 20 15" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path
                         d="M9.17782 14.569C9.26956 14.7022 9.39231 14.8112 9.53551 14.8864C9.6787 14.9617 9.83805 15.001 9.99981 15.001C10.1616 15.001 10.3209 14.9617 10.4641 14.8864C10.6073 14.8112 10.7301 14.7022 10.8218 14.569L19.8218 1.569C19.926 1.41906 19.9871 1.24343 19.9984 1.06121C20.0098 0.87898 19.971 0.697123 19.8863 0.535394C19.8016 0.373665 19.6741 0.238248 19.5179 0.143858C19.3616 0.049468 19.1824 -0.000286344 18.9998 1.23965e-06H0.999815C0.817658 0.000753649 0.639153 0.0511479 0.483495 0.145764C0.327838 0.24038 0.200917 0.375639 0.116383 0.536994C0.0318493 0.698349 -0.00710004 0.879696 0.00372392 1.06153C0.0145479 1.24337 0.0747356 1.41881 0.177815 1.569L9.17782 14.569Z"
@@ -14,42 +14,37 @@
             </div>
         </div>
 
-<<<<<<< HEAD
-        <div  :class="{ rotate : filterStatus(2) }" class="cf-icon">
-            <svg width="8" height="15" viewBox="0 0 20 15" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M9.17782 14.569C9.26956 14.7022 9.39231 14.8112 9.53551 14.8864C9.6787 14.9617 9.83805 15.001 9.99981 15.001C10.1616 15.001 10.3209 14.9617 10.4641 14.8864C10.6073 14.8112 10.7301 14.7022 10.8218 14.569L19.8218 1.569C19.926 1.41906 19.9871 1.24343 19.9984 1.06121C20.0098 0.87898 19.971 0.697123 19.8863 0.535394C19.8016 0.373665 19.6741 0.238248 19.5179 0.143858C19.3616 0.049468 19.1824 -0.000286344 18.9998 1.23965e-06H0.999815C0.817658 0.000753649 0.639153 0.0511479 0.483495 0.145764C0.327838 0.24038 0.200917 0.375639 0.116383 0.536994C0.0318493 0.698349 -0.00710004 0.879696 0.00372392 1.06153C0.0145479 1.24337 0.0747356 1.41881 0.177815 1.569L9.17782 14.569Z" fill="black" />
-            </svg>
-        </div>
-    </div>
-=======
-        <div v-if="filterStatus(2)" class="price-dialog-filter">
+        <div v-if="filterStatus(this.position)" class="price-dialog-filter">
             <div class="dialog-filter-head">
->>>>>>> 4c7a034ab111fb960ce1e804cdf091b8f1e5e252
 
                 <div class="dialog-filter-head-column min">
-                    precio min. {{min}}</div>
-                <div class="dialog-filter-head-column">precio max. {{max}}</div>
+                    precio min. {{getMinPrice() ?? '' }} </div>
+                <div class="dialog-filter-head-column">precio max. {{getMaxPrice() ?? '' }}</div>
 
             </div>
-            <div class="dialog-filter-head-column-options">
-
-                <div class="dialog-filter-head-option">
-                    cualquier precio</div>
-                <div class="dialog-filter-head-option">cualquier precio</div>
-
-            </div>
+          
             <!-- ****v-for ↓*** -->
-            <div class="dialog-filter-head-column-options prices">
-                <div class="dialog-filter-head-option" v-for="(range ,index) in minRanges" :key="index">
-                    {{ nFormatter(range,4)}}
+            <div  class="dialog-filter-head-column-options prices">
+
+            <div class="price-column">
+                <div @click="selectMinPrice('CUALQUIER PRECIO')" class="dialog-filter-head-option">
+                    cualquier precio
                 </div>
 
-
-                <div class="dialog-filter-head-option" v-for="(range ,index) in maxRanges" :key="index" c>
-
-                    {{nFormatter(range,4)}}
-
+                <div @click="selectMinPrice(range)" class="dialog-filter-head-option" v-for="(range ,index) in minRange" :key="index">
+                    {{  nFormatter(range,4) }}
                 </div>
+            </div>
+
+            <div :class="getMinPrice() == null ? 'disabled' : ''" class="price-column">
+                <div  class="dialog-filter-head-option">cualquier precio</div>
+
+                <div   class="dialog-filter-head-option" v-for="(range ,index) in maxRange" :key="index">
+                    {{ nFormatter(range,4) }}
+                </div>
+
+            </div>
+                
             </div>
 
 
@@ -77,29 +72,29 @@ export default {
         position: Number,
         min: Number,
         max: Number,
+        minRange:[],
+        maxRange:[]
     },
     setup(props) {
 
-        let minRanges = Utils.getRanges(props.min, props.max);
-        let maxRanges = [...minRanges, props.max];
         const {
             toggleOverlay,
             toggleFilter,
+            setMinPrice,
 
         } = useFilters();
 
         return {
             toggleOverlay,
             toggleFilter,
-            minRanges,
-            maxRanges,
+            setMinPrice,
             nFormatter: Utils.nFormatter
-
         }
     },
 
     computed: {
-        ...mapGetters(['getFilter'])
+        ...mapGetters(['getFilter','getPriceMinMaxSelected']),
+
     },
 
     methods: {
@@ -108,9 +103,21 @@ export default {
             return this.getFilter(index)
         },
 
+        selectMinPrice(value){
+            this.setMinPrice(value)
+        },  
+
         toggle() {
             this.toggleFilter(this.position)
         },
+
+        getMaxPrice(){
+            return this.getPriceMinMaxSelected[1];
+        },
+
+        getMinPrice(){
+            return this.getPriceMinMaxSelected[0];
+        }
 
     }
 }
@@ -118,9 +125,25 @@ export default {
 
 <style lang="scss">
 
+
+
+.price-column{
+    display: flex;
+    flex:1;
+    flex-direction: column;
+    align-items: center;
+    margin:5px;
+    
+}
+
 .rotate {
     transform: rotateZ(-50deg);
 }
+
+.disabled {
+    opacity: 0.2;
+}
+
 
 .price-dialog-filter {
     /*width: 16.77%;*/
@@ -181,10 +204,10 @@ export default {
 .dialog-filter-head-column-options {
     display: flex;
     flex-wrap: wrap;
+    width: 100%;
 }
 
 .dialog-filter-head-option {
-    width: 50%;
     height: 50px;
     justify-content: center;
     display: flex;
@@ -195,10 +218,14 @@ export default {
     font-size: 12px;
     line-height: 16px;
     font-weight: 700;
+    width: 100%;
+
 }
 
 .dialog-filter-head-option:hover {
     background: #ebebeb;
+    width: 100%;
+    cursor: pointer;
 }
 
 .price-filter {

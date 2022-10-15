@@ -1,3 +1,4 @@
+import axios from "axios";
 import { ref } from "vue";
 
 export function useMinMax(){
@@ -9,8 +10,10 @@ export function useMinMax(){
     const maxBedrooms = ref(0);
     const minBaths = ref(0);
     const maxBaths = ref(0);
-    const minPrice = ref(0);
-    const maxPrice = ref(0);
+    const minPr = ref(0);
+    const maxPr = ref(0);
+    const minRg = ref(0);
+    const maxRg = ref(0);
 
 
 
@@ -18,59 +21,53 @@ export function useMinMax(){
 
         isLoading.value = true;
         try {
-            // const { data } = await axios.get('...');
+            const { data } = await axios.get('https://lemus.gleam.mx/api/w/estates/filter/mixsmaxs');
 
-            // const {
-            //     minBedrooms,
-            //     maxBedrooms,
-            //     minBaths,
-            //     maxBaths,
-            //     minPrice,
-            //     maxPrice,
+            console.log(data.payload)
+            const {
+                minRecamaras,
+                maxRecamaras,
+                minBanos,
+                maxBanos,
+                minPrice,
+                maxPrice,
+                minRange,
+                maxRange
 
-            // } = data.payload;
+            } = data.payload;
 
-
-            // minBedrooms.value=minBedrooms;
-            // maxBedrooms.value=maxBedrooms;
-            // minBaths.value=minBaths;
-            // maxBaths.value=maxBaths;
-            // minPrice.value=minPrice;
-            // maxPrice.value=maxPrice;
-
-
-            await setTimeout(function(){
-                minBedrooms.value=1
-                maxBedrooms.value=5
-                minBaths.value=2
-                maxBaths.value=4
-                minPrice.value=1400
-                maxPrice.value=3500000   
+            minBedrooms.value = minRecamaras; 
+            maxBedrooms.value = maxRecamaras;
+            minBaths.value = minBanos;
+            maxBaths.value = maxBanos;
+            minPr.value = minPrice;
+            maxPr.value = maxPrice;
+            minRg.value = minRange;
+            maxRg.value = maxRange;
 
                 isLoading.value = false;
-
-            },1000)
-
-
-
             
         }catch(err){
+            console.log(err);
             error.value = 'No se pudo cargar filters mins y maxs'
         }
     }
 
     getMinAndMaxs();
 
-
+          
 
     return { 
     error, 
     isLoading, 
-    minBedrooms, 
-    maxBedrooms, 
-    minBaths, 
-    maxBaths, 
-    minPrice, 
-    maxPrice,
+    minBedrooms,
+    maxBedrooms,
+    minBaths,
+    maxBaths,
+    minPr,
+    maxPr,
+    minRg,
+    maxRg
+
     }
 }
