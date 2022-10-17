@@ -15,10 +15,10 @@
         </div>
 
         <div v-if="filterStatus(this.position)" class="baths-dialog-filter">
-            <div @click='selectBaths(i)' v-for="i in (min, max)" :key="i" class="room-filter-head">
+            <div @click='selectBaths(value)' v-for="(value,i) in getMinMaxRange()" :key="i" class="room-filter-head">
 
                 <div class="dialog-filter-head-column simple">
-                    {{i}}+ BAÑOS
+                    {{value}}+ BAÑOS
                 </div>
 
             </div>
@@ -85,7 +85,17 @@ export default {
 
         getBathsSelected() {
             return this.getBathsFilterSelected
-        }
+        },
+              getMinMaxRange(){
+            let aux = this.min;
+            let values = [];
+            for(aux; aux <= this.max; aux++){
+                values.push(aux);
+            }
+
+            return values;
+        },
+
 
 
     }

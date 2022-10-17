@@ -12,12 +12,19 @@ export function useProperties() {
     const error = ref(null);
     const isLoading = ref(false);
 
+    const axiosInstance = axios.create({
+        headers: {
+          "Access-Control-Allow-Origin": "*"
+        }
+      });
+      
+
     const getPropertys = async() => {
 
         isLoading.value = true;
         try {
 
-            const { data } = await axios.get('https://lemus.gleam.mx/api/w/estates')
+            const { data } = await axiosInstance.get(' https://lemus.gleam.mx/api/w/estates')
             propertys.value = data.payload;
             
         } catch (err) {
@@ -26,14 +33,14 @@ export function useProperties() {
 
         isLoading.value = false;
     }
+    
+        getPropertys();
 
-    getPropertys();
 
-
-    return { 
-        propertys, 
-        isLoading, 
-        error,
+        return { 
+           propertys, 
+           isLoading, 
+           error,
         
     }
 

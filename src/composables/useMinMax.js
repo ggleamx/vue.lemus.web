@@ -14,6 +14,7 @@ export function useMinMax(){
     const maxPr = ref(0);
     const minRg = ref(0);
     const maxRg = ref(0);
+    const typesRg = ref(null)
 
 
 
@@ -21,7 +22,7 @@ export function useMinMax(){
 
         isLoading.value = true;
         try {
-            const { data } = await axios.get('https://lemus.gleam.mx/api/w/estates/filter/mixsmaxs');
+            const { data } = await axios.get(' https://lemus.gleam.mx/api/w/estates/filter/mixsmaxs');
 
             console.log(data.payload)
             const {
@@ -32,7 +33,8 @@ export function useMinMax(){
                 minPrice,
                 maxPrice,
                 minRange,
-                maxRange
+                maxRange,
+                // typesRg
 
             } = data.payload;
 
@@ -44,6 +46,7 @@ export function useMinMax(){
             maxPr.value = maxPrice;
             minRg.value = minRange;
             maxRg.value = maxRange;
+            // typesRg.value = typesRange,
 
                 isLoading.value = false;
             
@@ -56,7 +59,12 @@ export function useMinMax(){
     getMinAndMaxs();
 
           
-
+typesRg.value = [
+    'CASA',
+    'DEPARTAMENTO',
+    'TERRENO',
+    
+]
     return { 
     error, 
     isLoading, 
@@ -67,7 +75,8 @@ export function useMinMax(){
     minPr,
     maxPr,
     minRg,
-    maxRg
+    maxRg,
+    typesRg
 
     }
 }

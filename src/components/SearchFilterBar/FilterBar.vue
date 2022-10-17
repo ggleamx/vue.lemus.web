@@ -7,11 +7,11 @@
         <div class="trailing">
 
             <!-- {{ isLoading }} -->
-            {{ minBeds }}
-
-            <BedsFilter position=0 :max="maxBedrooms" :min="maxBedrooms" />
-            <BathsFilter position=1 :max="maxBaths" :min="minBaths" />
-            <PriceFilter position=2 :maxRange="maxRg" :minRange="minRg" :max="maxPr" :min="minPr" />
+            <CategoryFilter :position=0 />
+            <TypeFilter :position=1 :types=typesRg />
+            <BedsFilter :position=2 :max="maxBedrooms" :min="minBedrooms" />
+            <BathsFilter :position=3 :max="maxBaths" :min="minBaths" />
+            <PriceFilter :position=4 :maxRange="maxRg" :minRange="minRg" :max="maxPr" :min="minPr" />
         </div>
 
     </div>
@@ -21,6 +21,9 @@
 import BedsFilter from './filters/BedsFilter';
 import BathsFilter from './filters/BathsFilter';
 import PriceFilter from './filters/PriceFilter';
+import CategoryFilter from './filters/CategoryFilter'
+import TypeFilter from './filters/TypeFilter.vue'
+
 import {
     useMinMax
 } from '../../composables/useMinMax';
@@ -30,7 +33,9 @@ export default {
     components: {
         BedsFilter,
         BathsFilter,
-        PriceFilter
+        PriceFilter,
+        CategoryFilter,
+        TypeFilter
     },
 
     setup() {
@@ -45,7 +50,9 @@ export default {
             minPr,
             maxPr,
             minRg,
-            maxRg
+            maxRg,
+            typesRg,
+
         } = useMinMax();
 
         return {
@@ -58,7 +65,8 @@ export default {
             minPr,
             maxPr,
             minRg,
-            maxRg
+            maxRg,
+            typesRg
         }
     }
 

@@ -3,10 +3,12 @@ import { createStore } from 'vuex'
 export default createStore({
   state: {
    overlay: false,
-   searchFilters: [false,false,false],
+   searchFilters: [false,false,false,false,false],
    bedsFilterSelected : null,
    bathsFilterSelected : null,
    priceMinMaxSelected : [null,null],
+   categoryFilterSelected: null,
+   typeFilterSelected: null,
 
   
   },
@@ -15,6 +17,14 @@ export default createStore({
 
     setBedsFilterSelected(state,value){
       state.bedsFilterSelected = value;
+    },
+
+    setCategoryFilterSelected(state,value){
+      state.categoryFilterSelected = value;
+    },
+
+    setTypeFilterSelected(state,value){
+      state.typeFilterSelected = value;
     },
 
     setBathsFilterSelected(state,value){
@@ -77,6 +87,14 @@ export default createStore({
 
     getBathsFilterSelected:(state) => {
       return state.bathsFilterSelected;
+    },
+
+    getCategoryFilterSelected:(state) => {
+      return state.categoryFilterSelected;
+    },
+
+    getTypeFilterSelected:(state) => {
+      return state.typeFilterSelected;
     },
 
     getBedsFilterSelected:(state) => {

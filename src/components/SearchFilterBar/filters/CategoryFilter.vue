@@ -2,7 +2,7 @@
     <div class="price-filter">
         <div @click="toggle(this.position)" class="custom-filter">
             <div class="cf-title">
-                <span>{{ getBedsSelected() == null ? '# DE RECAMARAS' : getBedsSelected() + '+ DE RECAMARAS' }} </span>
+                <span>{{ getCategorySelected() ?? 'CATEGORIA' }} </span>
             </div>
 
             <div :class={rotate:filterStatus(this.position)} class="cf-icon">
@@ -15,10 +15,20 @@
         </div>
 
         <div v-if="filterStatus(this.position)" class="rooms-dialog-filter">
-            <div @click='selectBeds(value)' v-for="(value,i) in getMinMaxRange()" :key="i" class="bed-filter-head">
+            
+            
+            <div @click='selectCategory("VENTA")' class="bed-filter-head">
 
                 <div class="dialog-filter-head-column simple">
-                    {{value}}+ RECAMARAS
+                    VENTA
+                </div>
+
+            </div>
+
+             <div @click='selectCategory("RENTA")' class="bed-filter-head">
+
+                <div class="dialog-filter-head-column simple">
+                    RENTA   
                 </div>
 
             </div>
@@ -37,8 +47,6 @@ export default {
 
     props: {
         position: Number,
-        min: Number,
-        max: Number,
     },
 
 
@@ -47,7 +55,7 @@ export default {
         const {
             toggleOverlay,
             toggleFilter,
-            setBedsFilterSelected,
+            setCategoryFilterSelected,
 
         } = useFilters();
 
@@ -56,13 +64,13 @@ export default {
 
             toggleOverlay,
             toggleFilter,
-            setBedsFilterSelected
+            setCategoryFilterSelected
 
         }
     },
 
     computed: {
-        ...mapGetters(['getFilter', 'getBedsFilterSelected'])
+        ...mapGetters(['getFilter', 'getCategoryFilterSelected'])
     },
 
     methods: {
@@ -71,29 +79,18 @@ export default {
             return this.getFilter(index)
         },
 
-        selectBeds(cant) {
-            this.setBedsFilterSelected(cant)
-
-            
+        selectCategory(cant) {
+            this.setCategoryFilterSelected(cant)
             this.toggle();
         },
 
-        getMinMaxRange(){
-            let aux = this.min;
-            let values = [];
-            for(aux; aux <= this.max; aux++){
-                values.push(aux);
-            }
-
-            return values;
-        },
-
+    
         toggle() {
             this.toggleFilter(this.position)
         },
 
-        getBedsSelected() {
-            return this.getBedsFilterSelected
+        getCategorySelected() {
+            return this.getCategoryFilterSelected
         }
 
     }
