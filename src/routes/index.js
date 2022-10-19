@@ -10,11 +10,15 @@ import NotFound from "@/views/NotFound.vue";
 
 const routes = [{
         path: "/",
-        name: "Home",
+        name: "home",
         component: Home,
     },
     {
-        path: "/Buscar",
+        path: "/home",
+        redirect: '/'
+    },
+    {
+        path: "/buscar",
         name: "home-search",
         component: HomeSearch,
     },

@@ -189,7 +189,7 @@
             <div class="images-grid-main-button chat-callout-button">
               <router-link
                 class="grid-button chat-button"
-                :to="{ name: 'Home' }"
+                :to="{ name: 'home' }"
               >
                 <p>CONTACTO</p>
               </router-link>

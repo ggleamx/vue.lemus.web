@@ -1,4 +1,5 @@
 import { createStore } from 'vuex'
+import router from '../routes';
 
 export default createStore({
   state: {
@@ -58,9 +59,9 @@ export default createStore({
         state.searchFilters[i] = false;
     }
 
+
       state.searchFilters[index] =! state.searchFilters[index];
       
-      console.log(state.searchFilters[index]);
 
       if(!state.searchFilters[index]){
         state.overlay = false;
