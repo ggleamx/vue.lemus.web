@@ -28,13 +28,14 @@
 import FilterBar from "@/components/SearchFilterBar/FilterBar.vue";
 import PropertyCard from "@/components/PropertyCard.vue";
 import EstatesMap from "@/components/EstatesMap.vue";
-import { useProperties } from "@/composables/usePropertys.js";
+import { usePropertys } from "@/composables/usePropertys.js";
 import Loading from "vue-loading-overlay";
 import "vue-loading-overlay/dist/vue-loading.css";
 import { useFilters } from '../composables/useFilters';
+import { useRoute } from 'vue-router';
 
 export default {
-  name: "Homesearch",
+  name: "Search",
   components: { FilterBar, PropertyCard, EstatesMap, Loading },
   data() {
     return {
@@ -43,9 +44,16 @@ export default {
     };
   },
   setup() {
-    const { propertys, isLoading, error } = useProperties();
+
+
+
+    
+    const { propertys, isLoading, error } = usePropertys();
     const { toggleOverlay, closeAll,getOverlay } = useFilters();
 
+
+
+ 
     return {
       closeAll, 
       toggleOverlay,

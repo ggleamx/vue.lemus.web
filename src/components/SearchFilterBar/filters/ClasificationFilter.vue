@@ -33,11 +33,11 @@ import { mapGetters } from 'vuex';
 import { useFilters } from '../../../composables/useFilters';
 
 export default {
-    name: "BedsItem",
+    name: "ClasificationItem",
 
     props: {
         position: Number,
-        types: []
+        clasifications: []
     },
 
 

@@ -8,7 +8,7 @@
 
             <!-- {{ isLoading }} -->
             <CategoryFilter :position=0 />
-            <TypeFilter :position=1 :types=typesRg />
+            <ClasificationFilter :position=1 :types=typesRg />
             <BedsFilter :position=2 :max="maxBedrooms" :min="minBedrooms" />
             <BathsFilter :position=3 :max="maxBaths" :min="minBaths" />
             <PriceFilter :position=4 :maxRange="maxRg" :minRange="minRg" :max="maxPr" :min="minPr" />
@@ -22,7 +22,7 @@ import BedsFilter from './filters/BedsFilter';
 import BathsFilter from './filters/BathsFilter';
 import PriceFilter from './filters/PriceFilter';
 import CategoryFilter from './filters/CategoryFilter'
-import TypeFilter from './filters/TypeFilter.vue'
+import ClasificationFilter from './filters/ClasificationFilter.vue'
 
 import {
     useMinMax
@@ -35,7 +35,7 @@ export default {
         BathsFilter,
         PriceFilter,
         CategoryFilter,
-        TypeFilter
+        ClasificationFilter
     },
 
     setup() {

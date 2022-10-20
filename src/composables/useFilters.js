@@ -4,7 +4,7 @@ import {
     computed
 } from "vue";
 import {
-    useRoute
+    useRoute, useRouter
 } from "vue-router";
 import {
     useStore
@@ -14,6 +14,7 @@ import router from "../routes";
 export function useFilters() {
     const store = useStore();
     const isLoading = ref(false);
+    const router = useRouter();
 
 
     const getPropertysByFilter = async () => {
@@ -48,6 +49,9 @@ export function useFilters() {
 
         window.location.search = urlParams;
 
+
+
+
         store.commit(filter, value);
 
     }
@@ -64,10 +68,10 @@ export function useFilters() {
             store.commit('toggleOverlay', value)
         },
         setMinPrice: (value) => toggleFilter('preciomin', 'setMinPrice', value),
-        setTypeFilterSelected: (value) => toggleFilter('clasificacion', 'setTypeFilterSelected', value),
-        setCategoryFilterSelected: (value) => toggleFilter('categoria', 'setCategoryFilterSelected', value),
-        setBathsFilterSelected: (value) => toggleFilter('banos', 'setBathsFilterSelected', value),
-        setBedsFilterSelected: (value) => toggleFilter('recamaras', 'setBedsFilterSelected', value),
+        setTypeFilterSelected: (value) => toggleFilter('clasification', 'setTypeFilterSelected', value),
+        setCategoryFilterSelected: (value) => toggleFilter('category', 'setCategoryFilterSelected', value),
+        setBathsFilterSelected: (value) => toggleFilter('bathrooms', 'setBathsFilterSelected', value),
+        setBedsFilterSelected: (value) => toggleFilter('bedrooms', 'setBedsFilterSelected', value),
         toggleFilter: (index) => {
 
 

@@ -85,7 +85,7 @@
           <!----------------------------------------------------------------------->
           <div class="carousel-slide-callout-box-button">
             <div class="images-grid-main-button callout-box-slide-button">
-              <router-link class="grid-button callout-box-button" :to="{ name: 'home-search' }">
+              <router-link class="grid-button callout-box-button" :to="{ name: 'search' }">
                 <p>Descubrir Mas</p>
               </router-link>
             </div>

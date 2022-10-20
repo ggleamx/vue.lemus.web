@@ -1,6 +1,6 @@
 import { createRouter, createWebHistory } from "vue-router";
 import Home from "@/views/Home.vue";
-import HomeSearch from "@/views/HomeSearch.vue";
+import Search from "@/views/Search.vue";
 import SingleNeighborhood from "@/views/SingleNeighborhood.vue";
 import SinglePropertyView from "@/views/single-property/SinglePropertyView.vue";
 import VirtualTours from "@/views/VirtualTours.vue";
@@ -11,7 +11,7 @@ import NotFound from "@/views/NotFound.vue";
 const routes = [{
         path: "/",
         name: "home",
-        component: Home,
+        component: () => import(/*webpackChunnkName:"counter" */'../views/Home.vue'),
     },
     {
         path: "/home",
@@ -19,9 +19,10 @@ const routes = [{
     },
     {
         path: "/buscar",
-        name: "home-search",
-        component: HomeSearch,
+        name: "search",
+        component: () => import(/*webpackChunnkName:"counter" */'../views/Search.vue'),
     },
+
     {
         path: "/Zonas/:neighborhood",
         name: "single-neighborhood",

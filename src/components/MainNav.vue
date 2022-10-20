@@ -6,9 +6,9 @@
     </div>
     <!----------------------------------------------------------------------->
     <nav class="main-nav-items">
-      <!---HomeSearch Option--------------------------------------------------->
+      <!---Search Option--------------------------------------------------->
       <div class="nav-item">
-        <router-link :to="{ name: 'home-search' }">
+        <router-link :to="{ name: 'search' }">
           <p class="option-underline">Buscar Propiedad</p>
         </router-link>
       </div>

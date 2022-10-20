@@ -1,12 +1,29 @@
 import axios from "axios";
-import { ref } from "vue";
-import { useStore } from "vuex";
+import {
+    ref
+} from "vue";
+import {
+    useRoute
+} from "vue-router";
+import {
+    useStore
+} from "vuex";
 
 
 
 
-export function useProperties() {
+export function usePropertys() {
 
+
+    const route = useRoute();
+
+    let filters = [];
+
+    const url = route.fullPath.split('?');
+
+    if (url.length > 1) {
+        filters = url[1].split('&');
+    }
 
     const propertys = ref(null);
     const error = ref(null);
@@ -14,34 +31,54 @@ export function useProperties() {
 
     const axiosInstance = axios.create({
         headers: {
-          "Access-Control-Allow-Origin": "*"
+            "Access-Control-Allow-Origin": "*"
         }
-      });
-      
+    });
 
-    const getPropertys = async() => {
+
+    console.log(filters)
+
+    let obj = {
+
+    }
+    filters.forEach(filter => {
+        const splitters = filter.split('=');
+        obj[splitters[0]] = splitters[1].toUpperCase();
+    })
+
+    const getPropertys = async () => {
 
         isLoading.value = true;
         try {
-
-            const { data } = await axiosInstance.get(' https://lemus.gleam.mx/api/w/estates')
-            propertys.value = data.payload;
             
+            if(filters.length > 0){
+                const { data } = await axiosInstance.post('https://lemus.gleam.mx/api/w/estates/filter',obj);
+
+                console.log(data);
+                propertys.value = data.payload;
+            }else {
+                const { data } = await axiosInstance.get('https://lemus.gleam.mx/api/w/estates')
+                propertys.value = data.payload;
+
+            }
+
+
+
         } catch (err) {
-            error.value = 'No se pudo cargar las propiedades' 
+            error.value = 'No se pudo cargar las propiedades'
         }
 
         isLoading.value = false;
     }
-    
-        getPropertys();
+
+    getPropertys();
 
 
-        return { 
-           propertys, 
-           isLoading, 
-           error,
-        
+    return {
+        propertys,
+        isLoading,
+        error,
+
     }
 
 }
