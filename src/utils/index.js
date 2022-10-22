@@ -7,6 +7,8 @@ export default class Utils {
     }
 
 
+    
+
 
     static getFilterSelected = (keyword) => {
         const route = useRoute();
@@ -19,10 +21,19 @@ export default class Utils {
 
         if(exists != -1){
 
-            const urlArray = url.split('?');
+            let urlArray = url.split('?');
+
+            console.log(urlArray);
+
+            if(urlArray[1].indexOf('&') != -1){
+                urlArray = urlArray[1].split('&');
+
+            }
 
             urlArray.forEach(filter => {
+               
                 const splitters = filter.split('=');
+
 
                 if(splitters[0] == keyword){
                     value = splitters[1];

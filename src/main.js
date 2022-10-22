@@ -12,6 +12,8 @@ import router from "./routes";
 import "./assets/globals.css";
 import "normalize.css";
 
+
+
 console.warn = () => {}
 createApp(App)
     .use(router)

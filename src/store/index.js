@@ -25,7 +25,8 @@ export default createStore({
     },
 
     setTypeFilterSelected(state,value){
-      state.typeFilterSelected = value;
+      console.log(value);
+      state.typeFilterSelected = value.nombre;
     },
 
     setBathsFilterSelected(state,value){

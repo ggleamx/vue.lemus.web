@@ -31,6 +31,7 @@
 <script>
 import { mapGetters } from 'vuex';
 import { useFilters } from '../../../composables/useFilters';
+import Utils from '../../../utils';
 
 export default {
     name: "BedsItem",
@@ -50,6 +51,11 @@ export default {
             setBedsFilterSelected,
 
         } = useFilters();
+//         const value = Utils.getFilterSelected('bedrooms')
+
+// if(value != ''){
+//      setBedsFilterSelected(value,true);
+// }
 
 
         return {

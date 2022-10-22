@@ -15,8 +15,8 @@
         </div>
 
         <div v-if="filterStatus(this.position)" class="rooms-dialog-filter">
-            
-            
+
+
             <div @click='selectCategory("VENTA")' class="bed-filter-head">
 
                 <div class="dialog-filter-head-column simple">
@@ -25,10 +25,10 @@
 
             </div>
 
-             <div @click='selectCategory("RENTA")' class="bed-filter-head">
+            <div @click='selectCategory("RENTA")' class="bed-filter-head">
 
                 <div class="dialog-filter-head-column simple">
-                    RENTA   
+                    RENTA
                 </div>
 
             </div>
@@ -41,6 +41,7 @@
 <script>
 import { mapGetters } from 'vuex';
 import { useFilters } from '../../../composables/useFilters';
+import Utils from '../../../utils';
 
 export default {
     name: "BedsItem",
@@ -58,6 +59,12 @@ export default {
             setCategoryFilterSelected,
 
         } = useFilters();
+
+        const value = Utils.getFilterSelected('category')
+
+        if (value != '') {
+            setCategoryFilterSelected(value, true);
+        }
 
 
         return {
@@ -84,7 +91,7 @@ export default {
             this.toggle();
         },
 
-    
+
         toggle() {
             this.toggleFilter(this.position)
         },

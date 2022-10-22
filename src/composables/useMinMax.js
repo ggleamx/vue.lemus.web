@@ -23,8 +23,12 @@ export function useMinMax(){
     const getMinAndMaxs = async() => {
 
         isLoading.value = true;
+
+        const  env = true ? 'http://localhost:8081'  : 'https://lemus.gleam.mx'
+
+
         try {
-            const { data } = await axios.get(' https://lemus.gleam.mx/api/w/estates/filter/mixsmaxs');
+            const { data } = await axios.get(`${env}/api/w/estates/filter/mixsmaxs`);
 
             const {
                 minRecamaras,
@@ -38,6 +42,8 @@ export function useMinMax(){
                 clasificaciones
 
             } = data.payload;
+          
+            console.log(clasificaciones)
 
             minBedrooms.value = minRecamaras; 
             maxBedrooms.value = maxRecamaras;

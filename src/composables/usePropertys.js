@@ -44,17 +44,20 @@ export function usePropertys() {
 
 
     const getPropertys = async () => {
+        const  env = true ? 'http://localhost:8081'  : 'https://lemus.gleam.mx'
+
+
 
         isLoading.value = true;
         try {
             
             if(filters.length > 0) {
-                const { data } = await axiosInstance.post('https://lemus.gleam.mx/api/w/estates/filter',obj);
+                const { data } = await axiosInstance.post(`${env}/api/w/estates/filter`,obj);
 
                 console.log(data);
                 propertys.value = data.payload;
             }else {
-                const { data } = await axiosInstance.get('https://lemus.gleam.mx/api/w/estates')
+                const { data } = await axiosInstance.get(`${env}/api/w/estates`)
                 propertys.value = data.payload;
 
             }

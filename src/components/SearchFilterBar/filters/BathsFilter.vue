@@ -54,11 +54,11 @@ export default {
         } = useFilters();
 
 
-        // const vzalue = Utils.getFilterSelected('bathrooms')
+        // const value = Utils.getFilterSelected('baths')
+        // console.log(value);
 
         // if(value != ''){
-        //      setBathsFilterSelected(value);
-        // console.log('entre')
+        //      setBathsFilterSelected(value,true);
         // }
 
 
@@ -70,6 +70,9 @@ export default {
 
         }
     },
+    
+
+
 
     computed: {
         ...mapGetters(['getFilter', 'getBathsFilterSelected'])
