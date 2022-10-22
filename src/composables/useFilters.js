@@ -36,8 +36,6 @@ export function useFilters() {
 
         const urlParams = new URLSearchParams(window.location.search);
 
-        console.log(value);
-
         let valueFormatted = '';
         if (typeof value == 'string') {
             valueFormatted = value.toLowerCase();
@@ -48,9 +46,6 @@ export function useFilters() {
         urlParams.set(type, valueFormatted);
 
         window.location.search = urlParams;
-
-
-
 
         store.commit(filter, value);
 

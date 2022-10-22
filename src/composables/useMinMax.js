@@ -19,12 +19,7 @@ export function useMinMax(){
     const typesRg = ref(null)
 
 
-    const route = useRoute();
-    const url = route.fullPath;
-
-    Utils.getFilterSelected(url,'category');
-
-
+    
     const getMinAndMaxs = async() => {
 
         isLoading.value = true;

@@ -1,3 +1,6 @@
+import { useRoute } from "vue-router";
+
+
 export default class Utils {
 
     constructor(){
@@ -5,8 +8,9 @@ export default class Utils {
 
 
 
-    static getFilterSelected = (url,keyword) => {
-
+    static getFilterSelected = (keyword) => {
+        const route = useRoute();
+        const url = route.fullPath;
 
         const exists = url.indexOf(keyword);
 
@@ -29,8 +33,6 @@ export default class Utils {
             
         }
         
-        console.log(value == '');
-
         return value;
     }
 

@@ -31,6 +31,7 @@
 <script>
 import { mapGetters } from 'vuex';
 import { useFilters } from '../../../composables/useFilters';
+import Utils from '../../../utils';
 // import { useMinMax } from '../../composables/useMinMax';
 
 export default {
@@ -52,6 +53,13 @@ export default {
 
         } = useFilters();
 
+
+        // const vzalue = Utils.getFilterSelected('bathrooms')
+
+        // if(value != ''){
+        //      setBathsFilterSelected(value);
+        // console.log('entre')
+        // }
 
 
         return {

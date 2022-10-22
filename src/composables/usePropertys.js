@@ -5,11 +5,6 @@ import {
 import {
     useRoute
 } from "vue-router";
-import {
-    useStore
-} from "vuex";
-
-
 
 
 export function usePropertys() {
@@ -38,21 +33,22 @@ export function usePropertys() {
 
 
     let obj = {
-
+    
     }
+
+
     filters.forEach(filter => {
         const splitters = filter.split('=');
         obj[splitters[0]] = splitters[1].toUpperCase();
-    })
+    });     
 
-    console.log(obj);
 
     const getPropertys = async () => {
 
         isLoading.value = true;
         try {
             
-            if(filters.length > 0){
+            if(filters.length > 0) {
                 const { data } = await axiosInstance.post('https://lemus.gleam.mx/api/w/estates/filter',obj);
 
                 console.log(data);

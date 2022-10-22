@@ -32,7 +32,6 @@ import { usePropertys } from "@/composables/usePropertys.js";
 import Loading from "vue-loading-overlay";
 import "vue-loading-overlay/dist/vue-loading.css";
 import { useFilters } from '../composables/useFilters';
-import { useRoute } from 'vue-router';
 
 export default {
   name: "Search",
@@ -45,23 +44,17 @@ export default {
   },
   setup() {
 
-
-
-    
-    const { propertys, isLoading, error } = usePropertys();
-    
+    const { propertys, isLoading, error }        = usePropertys();    
     const { toggleOverlay, closeAll,getOverlay } = useFilters();
 
-
-
- 
     return {
       closeAll, 
       toggleOverlay,
       getOverlay, 
       propertys, 
       isLoading, 
-      error}
+      error
+    }
 
 
   },
