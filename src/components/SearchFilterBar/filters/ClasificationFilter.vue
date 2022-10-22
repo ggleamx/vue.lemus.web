@@ -37,7 +37,7 @@ export default {
 
     props: {
         position: Number,
-        clasifications: []
+        types: []
     },
 
 

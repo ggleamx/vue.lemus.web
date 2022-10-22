@@ -4,6 +4,36 @@ export default class Utils {
     }
 
 
+
+    static getFilterSelected = (url,keyword) => {
+
+
+        const exists = url.indexOf(keyword);
+
+        let value = "";
+
+
+        if(exists != -1){
+
+            const urlArray = url.split('?');
+
+            urlArray.forEach(filter => {
+                const splitters = filter.split('=');
+
+                if(splitters[0] == keyword){
+                    value = splitters[1];
+                    return;
+                }
+
+            })
+            
+        }
+        
+        console.log(value == '');
+
+        return value;
+    }
+
     static getRanges = (min,max) => {
         let ranges = [];
 

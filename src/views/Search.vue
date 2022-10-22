@@ -49,6 +49,7 @@ export default {
 
     
     const { propertys, isLoading, error } = usePropertys();
+    
     const { toggleOverlay, closeAll,getOverlay } = useFilters();
 
 

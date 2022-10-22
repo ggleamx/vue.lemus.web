@@ -36,7 +36,6 @@ export function usePropertys() {
     });
 
 
-    console.log(filters)
 
     let obj = {
 
@@ -45,6 +44,8 @@ export function usePropertys() {
         const splitters = filter.split('=');
         obj[splitters[0]] = splitters[1].toUpperCase();
     })
+
+    console.log(obj);
 
     const getPropertys = async () => {
 

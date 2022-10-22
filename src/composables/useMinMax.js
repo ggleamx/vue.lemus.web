@@ -1,5 +1,7 @@
 import axios from "axios";
 import { ref } from "vue";
+import { useRoute } from "vue-router";
+import Utils from "../utils";
 
 export function useMinMax(){
 
@@ -17,6 +19,11 @@ export function useMinMax(){
     const typesRg = ref(null)
 
 
+    const route = useRoute();
+    const url = route.fullPath;
+
+    Utils.getFilterSelected(url,'category');
+
 
     const getMinAndMaxs = async() => {
 
@@ -24,7 +31,6 @@ export function useMinMax(){
         try {
             const { data } = await axios.get(' https://lemus.gleam.mx/api/w/estates/filter/mixsmaxs');
 
-            console.log(data.payload)
             const {
                 minRecamaras,
                 maxRecamaras,
@@ -34,7 +40,7 @@ export function useMinMax(){
                 maxPrice,
                 minRange,
                 maxRange,
-                // typesRg
+                clasificaciones
 
             } = data.payload;
 
@@ -46,7 +52,7 @@ export function useMinMax(){
             maxPr.value = maxPrice;
             minRg.value = minRange;
             maxRg.value = maxRange;
-            // typesRg.value = typesRange,
+            typesRg.value = clasificaciones,
 
                 isLoading.value = false;
             
@@ -59,12 +65,7 @@ export function useMinMax(){
     getMinAndMaxs();
 
           
-typesRg.value = [
-    'CASA',
-    'DEPARTAMENTO',
-    'TERRENO',
-    
-]
+
     return { 
     error, 
     isLoading, 
